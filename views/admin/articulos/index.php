@@ -1,12 +1,15 @@
 <?php
-
-include '../../../templates/header.php';
-include '../../../templates/navAdmin.php';
-include_once __DIR__ . '../../../../controller/Articulos.php';
-include_once __DIR__ . '../../../../model/Cons_Articulos.php';
-
-
+    include '../../../templates/header.php';
+    include '../../../templates/navAdmin.php';
+    include '../../../templates/alertas.php';
+    include_once __DIR__ . '../../../../controller/Articulos.php';
+    include_once __DIR__ . '../../../../controller/Alertas.php';
+    include_once __DIR__ . '../../../../model/Cons_Articulos.php';
+    $articulo = new Articulos();
+    $consultas = new Cons_Articulos();
+    $alertas = new Alertas();
 ?>
+
 <br>
 <h3 class="titulo-vista-admin">Gestión de Artículos</h3>
 <div class="card">
@@ -33,35 +36,42 @@ include_once __DIR__ . '../../../../model/Cons_Articulos.php';
                     if (isset($_POST['editarArticulo'])) {
                         $_POST;
                     }
+                    
                     if (isset($_POST['agregarArticulo'])) {
                         $id = $_POST['idArt'];
                         $desc = $_POST['descripcionArticulo'];
                         $grupo = $_POST['grupoArticulo'];
                         $precio = $_POST['precioArticulo'];
-                        actualizarArticulos($id, $desc, $grupo, $precio);
+                        $validarDatos = $alertas->validarDatosArticulos($desc, $precio, $grupo);
 
-                        if($_FILES){
-                            $imagen = $_FILES['fotoArticulo']['name'];
-                            actualizarImagen($id, $imagen);
-                            
-                            $imagen = $_POST['fotoArticulo'];
-                            if(file_exists("../../../images/".$imagen)){
-                                unlink("../../../images/".$imagen);
+                        if($validarDatos){
+                            echo mostrarAlertas($validarDatos);
+                        } else {
+                            $articulo->actualizarArticulos($id, $desc, $grupo, $precio);
+                            if ($_FILES) {
+                                $imagen = $_FILES['fotoArticulo']['name'];
+                                $articulo->actualizarImagen($id, $imagen);
+    
+                                $imagen = $_POST['fotoArticulo'];
+                                if (file_exists("../../../images/" . $imagen)) {
+                                    unlink("../../../images/" . $imagen);
+                                }
                             }
                         }
                         
                     }
+
                     if (isset($_POST['eliminarArticulo'])) {
                         $imagen = $_POST['imagenArticulo'];
-                        if(file_exists("../../../images/".$imagen)){
-                            unlink("../../../images/".$imagen);
+                        if (file_exists("../../../images/" . $imagen)) {
+                            unlink("../../../images/" . $imagen);
                         }
 
                         $id = intval($_POST['idArticulo']);
-                        eliminarArticulo($id);
+                        $consultas->eliminarArticulo($id);
                     }
 
-                    mostrarArticulos();
+                    $articulo->mostrarArticulos();
                     ?>
                 </tbody>
             </table>

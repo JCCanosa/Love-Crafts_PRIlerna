@@ -1,6 +1,6 @@
 <?php
 include '../templates/header.php';
-header('refresh: 5; http://localhost/PRIlerna/');
+header('refresh: 3; http://localhost/PRIlerna/');
 ?>
 
 <div class="container-md contenedor">

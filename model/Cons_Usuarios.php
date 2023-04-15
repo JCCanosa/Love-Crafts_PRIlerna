@@ -21,7 +21,7 @@ class Cons_Usuarios
         if ($resultado) {
             return $resultado;
         } else {
-            echo ('Error al Insertar Usuario');
+            echo 'Error al Insertar Usuario';
         }
 
         //Cerramos la conexión
@@ -43,7 +43,8 @@ class Cons_Usuarios
         if (mysqli_num_rows($resultado) > 0) {
             return $resultado;
         } else {
-            echo ('Error al Consultar Usuarios');
+            // Controlaremos esta salida en Usuarios.php
+            // echo 'Error al Consultar Usuarios';
         }
 
         //Cerramos la conexión
@@ -65,7 +66,7 @@ class Cons_Usuarios
         if (mysqli_num_rows($resultado) > 0) {
             return $resultado;
         } else {
-            echo ('Error al Seleccionar un Usuario');
+            echo 'Error al Seleccionar un Usuario';
         }
 
         //Cerramos la conexión

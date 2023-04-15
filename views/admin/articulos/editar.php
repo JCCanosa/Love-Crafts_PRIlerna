@@ -1,8 +1,8 @@
 <?php
 include '../../../templates/header.php';
 include '../../../templates/navAdmin.php';
-include '../../../model/Cons_Articulos.php';
-include '../../../controller/Articulos.php';
+// include '../../../model/Cons_Articulos.php';
+// include '../../../controller/Articulos.php';
 ?>
 
 <br>
@@ -55,7 +55,7 @@ include '../../../controller/Articulos.php';
       <input type="hidden" name="idArt" value="<?php echo $id; ?>">
       <input type="hidden" name="fotoArticulo" value="<?php echo $_POST['imagenArticulo']; ?>">
       <input type="submit" name="agregarArticulo" class="btn btn-success" value="Editar Artículo">
-      <a name="cancelarArticulo" id="cancelarArticulo" class="btn btn-danger" href="index.php" role="button">Cancelar</a>
+      <a name="cancelarArticulo" id="cancelarArticulo" class="btn btn-danger" href="index.php">Cancelar</a>
 
     </form>
     <?php include '../../../templates/footer.php'; ?>

@@ -10,6 +10,7 @@
 
         <p>Falta ver si solo es con Email</p>
         <p>Y acabar de ajustar estilos</p>
+        <p>ñadir el ojete de la contraseña</p>
 
         <div class="mb-3">
             <label for="emailUsuario" class="form-label">Email</label>
@@ -18,17 +19,17 @@
 
         <div class="mb-3">
             <label for="passwordUsuario" class="form-label">Password</label>
-            <input type="tel" class="form-control" id="passwordUsuario" placeholder="Introduce una Contraseña Nueva" required>
+            <input type="password" class="form-control" id="passwordUsuario" placeholder="Introduce una Contraseña Nueva" required>
         </div>
 
         <div class="mb-3">
             <label for="passwordUsuario" class="form-label">Repetir Password</label>
-            <input type="tel" class="form-control" id="passwordUsuario" placeholder="Introduce una Contraseña Nueva" required>
+            <input type="password" class="form-control" id="passwordUsuario" placeholder="Introduce una Contraseña Nueva" required>
         </div>
 
-        <input type="submit" class="btn btn-primary" value="Recuperar Contraseña" />
+        <input type="submit" class="btn-area-login" value="Recuperar Contraseña" />
 
-        <div class="botones">
+        <div class="links">
             <a name="index" id="index" href="<?php echo $url_absoluta; ?>">¿Ya tienes cuenta?</a>
             <a name="registrarse" id="registrarse" href="<?php echo $url_absoluta; ?>views/registro.php">¿Eres Nuevo? Registrate!</a>
         </div>

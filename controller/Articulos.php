@@ -8,12 +8,12 @@ class Articulos
     public function mostrarArticulos()
     {
         $consultas = new Cons_Articulos();
-        $datos = $consultas -> getArticulos();
+        $datos = $consultas->getArticulos();
 
         // Comprueba que hay datos antes de recorrerlos
         if (is_string($datos)) {
             echo $datos;
-        } else {
+        } else if ($datos) {
             while ($fila = mysqli_fetch_assoc($datos)) {
                 echo "<tr class='text-center'>\n
                         <td>" . $fila["id"] . "</td>\n
@@ -43,24 +43,16 @@ class Articulos
                         </td>\n
                     </tr>";
             }
+        } else {
+            echo "<p class='vacio'>Actualmente no hay artículos</p>";
         }
     }
 
-    //Validación de los campos e inserción en la BD
+    //Inserción en la BD
     public function guardarArticulo($desc, $grupo, $imagen, $precio)
     {
-        if (empty($desc) || empty($precio)) {
-            echo '<p class="error">Los campos Descripcion y Precio son obligatorios</p>';
-            return;
-        }
-
-        if (strlen($desc) < 6) {
-            echo '<p class="error">La descripcion debe tener más de 6 carácteres</p>';
-            return;
-        }
-
         $consultas = new Cons_Articulos();
-        $consultas -> setArticulo($desc, $grupo, $imagen, $precio);
+        $consultas->setArticulo($desc, $grupo, $imagen, $precio);
         echo '<p class="exito">Artículo Creado Correctamente</p>';
     }
 
@@ -80,23 +72,15 @@ class Articulos
         if ($tmp_foto != '') {
             move_uploaded_file($tmp_foto, '../../../images/' . $nombreArchivo);
         }
+
+        return $nombreArchivo;
     }
 
     //Actualiza los campos en la base de datos.
     public function actualizarArticulos($id, $desc, $grupo, $precio)
     {
-        if (empty($desc) || empty($grupo) || empty($precio)) {
-            echo '<p class="error">Los campos Descripcion, Grupo y Precio son obligatorios</p>';
-            return;
-        }
-
-        if (strlen($desc) < 6) {
-            echo '<p class="error">La descripcion debe tener más de 6 carácteres</p>';
-            return;
-        }
-
         $consultas = new Cons_Articulos();
-        $consultas -> actArticulos($id, $desc, $grupo, $precio);
+        $consultas->actArticulos($id, $desc, $grupo, $precio);
         echo '<p class="exito">Artículo Actualizado Correctamente</p>';
     }
 
@@ -117,6 +101,6 @@ class Articulos
         }
 
         $consultas = new Cons_Articulos();
-        $consultas -> actImagen($id, $imagen);
+        $consultas->actImagen($id, $imagen);
     }
 }

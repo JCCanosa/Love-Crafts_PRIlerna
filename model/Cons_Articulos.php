@@ -19,8 +19,9 @@ class Cons_Articulos
         if (mysqli_num_rows($resultado) > 0) {
             return $resultado;
         } else {
-            //A este mensaje le damos formato porque se va a mostrar cuando no haya artículos
-            echo '<p class="error">Error en la consulta de artículos</p>';
+            // Comentamos este mensaje para que no salga cuando no tenemos articulos.
+            // Controlaremos este mensaje desde Articulos.php
+            // echo 'Error en la consulta de artículos';
         }
 
         //Cerramos la conexión

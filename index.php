@@ -17,8 +17,8 @@
             <label for="password" class="form-label">Password</label>
             <input type="password" class="form-control" id="password" placeholder="Introduzca Password">
         </div>
-        <input type="submit" class="button btn btn-primary" value="Login" />
-        <div class="botones">
+        <input type="submit" class="btn-area-login" value="Login" />
+        <div class="links">
             <a name="registrarse" id="registrarse" href="<?php echo $url_absoluta; ?>views/registro.php">¿Eres Nuevo? Registrate!</a>
             <a name="recuperar" id="recuperar" href="<?php echo $url_absoluta; ?>views/recuperar.php">¿Olvidaste tu Contraseña?</a>
         </div>

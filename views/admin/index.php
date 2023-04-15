@@ -2,46 +2,47 @@
 include '../../templates/header.php';
 include '../../templates/navAdmin.php';
 include_once __DIR__ . '/../../controller/Contadores.php';
+$contador = new Contadores();
 ?>
 
 <br>
 <div class="container text-center">
-  <div class="row">
+  <div class="tarjetas">
 
-    <div class="col">
-      <div class="card" style="width: 18rem;">
-        <img src="../../img/orders.svg" class="card-img-top" alt="Img Usuarios">
-        <div class="card-body">
-          <h5 class="card-title">Pedidos</h5>
-          <p class="card-text"><?php echo mostrartNumeroUsuarios(); ?></p>
-          <a href="usuarios/index.php" class="btn btn-primary">Ver Usuarios</a>
+    
+      <div class="tarjeta">
+        <img src="../../img/orders.svg" class="tarjeta-img-top" alt="Img Usuarios">
+        <div class="tarjeta-body">
+          <h5 class="tarjeta-title">Pedidos</h5>
+          <p class="tarjeta-text"><?php echo $contador->mostrarNumeroUsuarios(); ?></p>
+          <a href="usuarios/index.php" class="btn-area-admin">Ver Pedidos</a>
         </div>
       </div>
-    </div>
+    
 
-    <div class="col">
-      <div class="card" style="width: 18rem;">
-        <img src="../../img/articles.svg" class="card-img-top" alt="Img Usuarios">
-        <div class="card-body">
-          <h5 class="card-title">Artículos</h5>
-          <p class="card-text"><?php echo mostrartNumeroArticulos(); ?></p>
-          <p class="card-text"><?php echo numeroArticulos3d(); ?></p>
-          <p class="card-text"><?php echo numeroArticulosLaser(); ?></p>
-          <a href="usuarios/index.php" class="btn btn-primary">Ver Usuarios</a>
+   
+      <div class="tarjeta">
+        <img src="../../img/articles.svg" class="tarjeta-img-top" alt="Img Usuarios">
+        <div class="tarjeta-body">
+          <h5 class="tarjeta-title">Artículos</h5>
+          <p class="tarjeta-text"><?php echo $contador->mostrarNumeroArticulos(); ?></p>
+          <p class="tarjeta-text"><?php echo $contador->numeroArticulos3d(); ?></p>
+          <p class="tarjeta-text"><?php echo $contador->numeroArticulosLaser(); ?></p>
+          <a href="usuarios/index.php" class="btn-area-admin">Ver Artículos</a>
         </div>
       </div>
-    </div>
+    
 
-    <div class="col">
-      <div class="card" style="width: 18rem;">
-        <img src="../../img/users.svg" class="card-img-top" alt="Img Usuarios">
-        <div class="card-body">
-          <h5 class="card-title">Usuarios</h5>
-          <p class="card-text"><?php echo mostrartNumeroUsuarios(); ?></p>
-          <a href="usuarios/index.php" class="btn btn-primary">Ver Usuarios</a>
+    
+      <div class="tarjeta">
+        <img src="../../img/users.svg" class="tarjeta-img-top" alt="Img Usuarios">
+        <div class="tarjeta-body">
+          <h5 class="tarjeta-title">Usuarios</h5>
+          <p class="tarjeta-text"><?php echo $contador->mostrarNumeroUsuarios(); ?></p>
+          <a href="usuarios/index.php" class="btn-area-admin">Ver Usuarios</a>
         </div>
       </div>
-    </div>
+    
 
   </div>
 </div>

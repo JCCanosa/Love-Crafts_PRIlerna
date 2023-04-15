@@ -1,8 +1,13 @@
 <?php
-$url_abs = "http://localhost/ProyectoIlerna/";
+$url_absoluta = "http://localhost/PRIlerna/";
 include '../templates/header.php';
+include '../templates/alertas.php';
 include_once __DIR__ . '../../controller/Usuarios.php';
+include_once __DIR__ . '../../controller/Alertas.php';
 include_once __DIR__ . '../../phpmailer/EnviarEmail.php';
+$usuario = new Usuarios();
+$mail = new EnviarEmail();
+$alertas = new Alertas();
 ?>
 
 <div class="container-md registro">
@@ -10,17 +15,21 @@ include_once __DIR__ . '../../phpmailer/EnviarEmail.php';
 
     <?php
     if (isset($_POST['registro'])) {
-        $usuario = new Usuarios();
-        $mail = new EnviarEmail();
         $nombre = $_POST['nombreUsuario'];
         $apellidos = $_POST['apellidosUsuario'];
         $email = $_POST['emailUsuario'];
         $telefono = $_POST['telefonoUsuario'];
         $password = $_POST['passwordUsuario'];
-        $password = $usuario -> hashPassword($password);
-        $validador = $usuario -> setValidador();
-        $usuario-> guardarUsuario($nombre, $apellidos, $email, $password, $telefono, $validador);
-        $mail-> enviarEmail($email, $nombre);
+        $validarDatos = $alertas->validarDatosRegistro($nombre, $apellidos, $email, $password, $telefono);
+
+        if ($validarDatos) {
+            echo mostrarAlertas($validarDatos);
+        } else {
+            $password = $usuario->hashPassword($password);
+            $validador = $usuario->setValidador();
+            $usuario->guardarUsuario($nombre, $apellidos, $email, $password, $telefono, $validador);
+            $mail->enviarEmail($email, $nombre);
+        }
     }
     ?>
 
@@ -45,11 +54,11 @@ include_once __DIR__ . '../../phpmailer/EnviarEmail.php';
             <label for="passwordUsuario" class="form-label">Password</label>
             <input type="tel" name="passwordUsuario" class="form-control" id="passwordUsuario" placeholder="Introduce una Contraseña">
         </div>
-        <input type="submit" name="registro" class="btn btn-primary" value="Registrarse" />
+        <input type="submit" name="registro" class="btn-area-login" value="Registrarse" />
 
-        <div class="botones">
-            <a name="index" id="index" href="<?php echo $url_abs; ?>">¿Ya tienes cuenta?</a>
-            <a name="recuperar" id="recuperar" href="<?php echo $url_abs; ?>views/recuperar.php">¿Olvidaste tu Contraseña?</a>
+        <div class="links">
+            <a name="index" id="index" href="<?php echo $url_absoluta; ?>">¿Ya tienes cuenta?</a>
+            <a name="recuperar" id="recuperar" href="<?php echo $url_absoluta; ?>views/recuperar.php">¿Olvidaste tu Contraseña?</a>
         </div>
     </form>
 </div>

@@ -4,28 +4,6 @@ include_once __DIR__ . '../../model/Cons_Usuarios.php';
 
 class Usuarios
 {
-    //Validación de los campos del formulario de registro e inserción a la BD
-    public function guardarUsuario($nombre, $apellidos, $email, $password, $telefono, $validador)
-    {
-        if (empty($nombre) || empty($apellidos) || empty($email) || empty($password) || empty($telefono)) {
-            echo '<p class="error">Todos los campos son Obligatorios</p>';
-            return;
-        }
-
-        if (strlen($nombre) < 2) {
-            echo '<p class="error">El Nombre debe tener más de 2 carácteres</p>';
-            return;
-        }
-        if (strlen($telefono) != 9) {
-            echo '<p class="error">El Teléfono debe contener 9 Números</p>';
-            return;
-        }
-
-        $consultas = new Cons_Usuarios();
-        $consultas->setUsuario($nombre, $apellidos, $email, $password, $telefono, $confirmado = 0, $permisos = 0, $validador);
-        echo '<p class="exito">Usuario Creado Correctamente</p>';
-    }
-
     //Hash password
     public function hashPassword($password)
     {
@@ -40,6 +18,14 @@ class Usuarios
         return $validador;
     }
 
+    //Inserción a la BD
+    public function guardarUsuario($nombre, $apellidos, $email, $password, $telefono, $validador)
+    {
+        $consultas = new Cons_Usuarios();
+        $consultas->setUsuario($nombre, $apellidos, $email, $password, $telefono, $confirmado = 0, $permisos = 0, $validador);
+        echo '<p class="exito">Usuario Creado Correctamente</p>';
+    }
+
     //Listar todos los usuarios
     public function mostrarUsuarios()
     {
@@ -50,7 +36,7 @@ class Usuarios
         //Comprobamos y recorremos los datos recogidos
         if (is_string($datos)) {
             echo $datos;
-        } else {
+        } else if ($datos) {
             while ($fila = mysqli_fetch_assoc($datos)) {
 
                 //Cambia el formato de salida de confirmado y permisos para que el usuario lo vea claro.
@@ -88,6 +74,8 @@ class Usuarios
                         </td>\n
                     </tr>";
             }
+        } else {
+            echo "<p class='vacio'>No se ha registrado ningún Usuario</p>";
         }
     }
 
@@ -96,7 +84,7 @@ class Usuarios
     {
         //Recogemos los datos de la consulta
         $consultas = new Cons_Usuarios();
-        $datos = $consultas->getUsuarios();
+        $datos = $consultas->getUsuario($id);
 
         //Comprobamos y recorremos los datos recogidos
         if (is_string($datos)) {

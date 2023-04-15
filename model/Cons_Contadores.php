@@ -20,7 +20,8 @@ class Cons_Contadores
         if (mysqli_num_rows($resultado) > 0) {
             return $resultado;
         } else {
-            echo 'Error al recuperar los Usuarios';
+            // Controlaremos esta salida desde Contadores.php
+            // echo 'Error al recuperar los Usuarios';
         }
 
         //Cerramos la conexión
@@ -42,7 +43,8 @@ class Cons_Contadores
         if (mysqli_num_rows($resultado) > 0) {
             return $resultado;
         } else {
-            echo 'Error al recuperar los Articulos';
+            // Controlaremos esta salida desde Contadores.php
+            // echo 'Error al recuperar los Articulos';
         }
 
         //Cerramos la conexión

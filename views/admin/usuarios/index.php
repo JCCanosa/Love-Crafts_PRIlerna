@@ -1,9 +1,11 @@
-<?php 
+<?php
 
-    include '../../../templates/header.php';
-    include '../../../templates/navAdmin.php';
-    include_once __DIR__ . '../../../../controller/Usuarios.php';
-    include_once __DIR__ . '../../../../model/Cons_Usuarios.php';
+include '../../../templates/header.php';
+include '../../../templates/navAdmin.php';
+include_once __DIR__ . '../../../../controller/Usuarios.php';
+include_once __DIR__ . '../../../../model/Cons_Usuarios.php';
+$usuario = new Usuarios();
+$consultas = new Cons_Usuarios();
 ?>
 
 <br>
@@ -29,20 +31,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                        <?php  
-                            if(isset($_POST['editarUsuario'])){
-                                $permisos = intval($_POST['permisosUsuario']);
-                                $id = intval($_POST['idUsuario']);
-                                editarPermisosUsuarios($permisos, $id);
-                            }
-
-                            if(isset($_POST['eliminarUsuario'])){
-                                $id = intval($_POST['idUsuario']);
-                                eliminarUsuario($id);
-                            }
-
-                            mostrarUsuarios();
-                        ?>
+                    <?php
+                    if (isset($_POST['editarUsuario'])) {
+                        $permisos = intval($_POST['permisosUsuario']);
+                        $id = intval($_POST['idUsuario']);
+                        $consultas->editarPermisosUsuarios($permisos, $id);
+                    }
+                    if (isset($_POST['eliminarUsuario'])) {
+                        $id = intval($_POST['idUsuario']);
+                        $consultas->eliminarUsuario($id);
+                    }
+                    $usuario->mostrarUsuarios();
+                    ?>
                 </tbody>
             </table>
         </div>

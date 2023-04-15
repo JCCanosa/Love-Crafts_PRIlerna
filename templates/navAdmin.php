@@ -1,24 +1,24 @@
 <?php
-$url_abs = "http://localhost/ProyectoIlerna/";
+$url_absoluta = "http://localhost/PRIlerna/";
 ?>
 
 <header>
-        <nav class="navbar navbar-expand navbar-light bg-light">
-            <ul class="nav navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" href="<?php echo $url_abs;?>views/admin" aria-current="page">Inicio <span class="visually-hidden">(current)</span></a>
+        <nav class="navegacion">
+            <ul class="navegacion-ul">
+                <li class="navegacion-li">
+                    <a class="navegacion-enlace" href="<?php echo $url_absoluta;?>views/admin" aria-current="page">Inicio</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo $url_abs; ?>views/admin/pedidos/">Pedidos</a>
+                <li class="navegacion-li">
+                    <a class="navegacion-enlace" href="<?php echo $url_absoluta; ?>views/admin/pedidos/">Pedidos</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo $url_abs; ?>views/admin/articulos/">Artículos</a>
+                <li class="navegacion-li">
+                    <a class="navegacion-enlace" href="<?php echo $url_absoluta; ?>views/admin/articulos/">Artículos</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo $url_abs; ?>views/admin/usuarios/">Usuarios</a>
+                <li class="navegacion-li">
+                    <a class="navegacion-enlace" href="<?php echo $url_absoluta; ?>views/admin/usuarios/">Usuarios</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="<?php echo $url_abs; ?>cerrar.php">Cerrar Sesión</a>
+                <li class="navegacion-li">
+                    <a class="navegacion-enlace" href="<?php echo $url_absoluta; ?>cerrar.php">Cerrar Sesión</a>
                 </li>
             </ul>
         </nav>

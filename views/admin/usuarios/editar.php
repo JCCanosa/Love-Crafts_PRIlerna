@@ -2,6 +2,7 @@
   include '../../../templates/header.php';
   include '../../../templates/navAdmin.php';
   include_once __DIR__ . '../../../../controller/Usuarios.php';
+  $usuario = new Usuarios();
 ?>
 
 <br>
@@ -14,7 +15,7 @@
     <div class="card-body">
         <form action="index.php" method="post" name="editar">
             <?php
-                mostrarUnUsuario($_GET['id']);
+                $usuario -> mostrarUnUsuario($_GET['id']);
              ?>
 
             <input type="submit" name="editarUsuario" class="btn btn-success" value="Guardar Cambios">

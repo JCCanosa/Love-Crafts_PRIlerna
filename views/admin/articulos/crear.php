@@ -1,9 +1,10 @@
 <?php
 include '../../../templates/header.php';
 include '../../../templates/navAdmin.php';
-include '../../../model/Cons_Articulos.php';
+include '../../../templates/alertas.php';
 include '../../../controller/Articulos.php';
-
+$articulo = new Articulos();
+$alertas = new Alertas();
 ?>
 <br>
 
@@ -17,14 +18,20 @@ include '../../../controller/Articulos.php';
             <?php
 
             if (isset($_POST['agregarArticulo'])) {
-                guardarImagen();
+                $desc = $_POST['descArticulo'];
+                $grupo = $_POST['grArticulo'];
+                $imagen =  $_FILES['fotoArticulo']['name'];
+                $precio = $_POST['precioArticulo'];
+                $validarDatos = $alertas -> validarDatosArticulos($desc, $precio, $grupo);
 
-                guardarArticulo(
-                    $_POST['descArticulo'],
-                    $_POST['grArticulo'],
-                    $_FILES['fotoArticulo']['name'],
-                    $_POST['precioArticulo']
-                );
+                if($validarDatos){
+                    echo mostrarAlertas($validarDatos);
+                } else {
+                    $archivoImagen = $articulo->guardarImagen();
+                    $imagen = $archivoImagen;
+                    $articulo->guardarArticulo($desc, $grupo, $imagen, $precio);
+                }
+
             }
             ?>
 
@@ -36,7 +43,8 @@ include '../../../controller/Articulos.php';
             <div class="mb-3">
                 <label for="grArticulo" class="form-label">Grupo</label>
                 <select class="form-select form-select-sm" name="grArticulo" id="grArticulo">
-                    <option selected value="3D">3D</option>
+                    <option selected value="0">Selecciona un grupo</option>
+                    <option value="3D">3D</option>
                     <option value="laser">Láser</option>
                 </select>
             </div>
@@ -58,7 +66,5 @@ include '../../../controller/Articulos.php';
     </div>
 
 </div>
-
-
 
 <?php include '../../../templates/footer.php'; ?>

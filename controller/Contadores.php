@@ -12,21 +12,29 @@ class Contadores
         $datos = $consultas->getAllUsers();
 
         //Mostramos el número de filas obtenidas
-        $numUsuarios = mysqli_num_rows($datos);
-        mysqli_free_result($datos);
-        return $numUsuarios;
+        if(!$datos){
+            echo 'Usuarios: 0';
+        } else {
+            $numUsuarios = mysqli_num_rows($datos);
+            mysqli_free_result($datos);
+            return 'Usuarios: '.$numUsuarios;
+        }
     }
 
-    public function mostrartNumeroArticulos()
+    public function mostrarNumeroArticulos()
     {
         //Recogemos los datos de la consulta
         $consultas = new Cons_Contadores();
         $datos = $consultas->getAllArticulos();
 
         //Mostramos el número de filas obtenidas
-        $numArticulos = mysqli_num_rows($datos);
-        mysqli_free_result($datos);
-        return $numArticulos;
+        if(!$datos){
+            echo 'Artículos: 0';
+        } else {
+            $numArticulos = mysqli_num_rows($datos);
+            mysqli_free_result($datos);
+            return 'Artículos: '.$numArticulos;
+        }
     }
 
     public function numeroArticulos3d()
@@ -36,9 +44,13 @@ class Contadores
         $datos = $consultas->getArticulos3D();
 
         //Mostramos el número de filas obtenidas
-        $numArticulos3d = mysqli_num_rows($datos);
-        mysqli_free_result($datos);
-        return $numArticulos3d;
+        if(!$datos){
+            echo 'Artículos 3D: 0';
+        } else {
+            $numArticulos3D = mysqli_num_rows($datos);
+            mysqli_free_result($datos);
+            return 'Artículos 3D: '.$numArticulos3D;
+        }
     }
 
     public function numeroArticulosLaser()
@@ -48,8 +60,12 @@ class Contadores
         $datos = $consultas->getArticulosLaser();
 
         //Mostramos el número de filas obtenidas
-        $numArticulosLaser = mysqli_num_rows($datos);
-        mysqli_free_result($datos);
-        return $numArticulosLaser;
+        if(!$datos){
+            echo 'Artículos Láser: 0';
+        } else {
+            $numArticulosLaser = mysqli_num_rows($datos);
+            mysqli_free_result($datos);
+            return 'Artículos Láser: '.$numArticulosLaser;
+        }
     }
 }
