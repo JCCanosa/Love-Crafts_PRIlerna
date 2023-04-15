@@ -1,0 +1,166 @@
+/* Estilos personalizados de componentes de las vistas */
+
+/* SECCION LOGIN */
+.login{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 90vh;
+}
+
+.login img{
+    width: 300px;
+}
+
+.form-login{
+    min-width: 400px;
+}
+
+.form-login label{
+    color: white;
+    font-weight: bold;
+}
+
+.form-login input:not([type='submit']){
+    background-color: rgba(255, 255, 255, 0.3);
+    border: none;
+}
+
+.button{
+    width: 100%;
+}
+
+.botones{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.botones a{
+    text-decoration: none;
+    color: orange;
+    transition: all 300ms;
+}
+
+.botones a:hover{
+    color: rgb(225, 255, 0);
+}
+
+/* FORMULARIO DE REGISTRO Y RECUPERAR CONTRASEÑA */
+.registro,
+.recupera{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+    margin-bottom: 60px;
+}
+
+.registro img,
+.recupera img{
+    width: 200px;
+}
+
+.form-registro,
+.form-recupera{
+    min-width: 450px;
+}
+
+.form-registro label,
+.form-recupera label{
+    color: white;
+    font-size: 85%;
+    font-weight: bold;
+}
+
+.form-registro input:not([type='submit']),
+.form-recupera input:not([type='submit']){
+    background-color: rgba(255, 255, 255, 0.3);
+    border: none;
+}
+
+.form-registro input[type='submit'],
+.form-recupera input[type='submit']{
+    margin-top: 15px;
+    width: 100%;
+}
+
+/* ESTILOS DE CONFIRMADO */
+.contenedor{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   margin-top: 80px;
+   margin-bottom: 100px;
+}
+
+.contenedor-imagen{
+    width: 450px;
+}
+
+.contenedor-titulo{
+    font-weight: bold;
+    margin-top: 20px;
+    color: white;
+}
+
+.contenedor-p{
+    font-size: large;
+    margin-top: 10px;
+    color: white;
+}
+
+.contenedor-enlace{
+    margin-top: 50px;
+    color: orange;
+}
+
+
+/**/
+
+.titulo-vista-admin{
+    margin-top: 40px;
+    margin-bottom: 40px;
+    text-align: center;
+    color: lightgray;
+    font-weight: bold;
+}
+
+
+
+
+/* ESTILOS DE MENSAJES DE VALIDACION */
+
+.exito,
+.exito:nth-child(0){
+    width: 450px;
+    background-color: rgb(0, 167, 0);
+    color: white;
+    text-align: center;
+    margin-top: 10px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.error,
+.error:nth-child(0){
+    width: 450px;
+    background-color: rgb(246, 70, 70);
+    color: white;
+    text-align: center;
+    margin-top: 10px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/* FOOTER */
+.footer{
+    display: flex;
+    justify-content: center;
+}
+
+.footer p{
+    color: rgb(171, 171, 171);
+    font-weight: bold;
+}
