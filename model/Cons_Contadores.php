@@ -1,6 +1,6 @@
 <?php
 
-include 'Db.php';
+require_once 'Db.php';
 
 //En esta clase vamos a ir mostrando todos los datos de las tablas para luego mostrar un contador en admin
 class Cons_Contadores

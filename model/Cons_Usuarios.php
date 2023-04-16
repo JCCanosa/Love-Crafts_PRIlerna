@@ -51,7 +51,7 @@ class Cons_Usuarios
         $db->cerrarConexion($conexion);
     }
 
-    //Devoler un usuario mediante su id
+    //Devolver un usuario mediante su id
     public function getUsuario($id)
     {
         //Instancia de la clase Db y llamada a la función crearConexión

@@ -104,51 +104,51 @@ class Usuarios
                 // Solo puede modificar los permisos del mismo
                 echo "<div class='mb-3'>\n
                         <label for='idUsuario' class='form-label'>Id Usuario</label>\n
-                        <input type='number' value=" . $fila['id'] . " disabled\n
-                            class='form-control' name='idUsuario' id='idUsuario'>\n
+                        <input type='number' class='form-control' name='idUsuario' id='idUsuario' value=" . $fila['id'] . " disabled>\n
                         <input type='hidden' value=" . $fila['id'] . " name='idUsuario' id='idUsuario'>\n
-                    </div>
+                    </div>\n
+
                     <div class='mb-3'>\n
                         <label for='nombreUsuario' class='form-label'>Nombre</label>\n
-                        <input type='text' value=" . $fila['nombre'] . " disabled\n
-                            class='form-control' name='nombreUsuario' id='nombreUsuario'>\n
-                    </div>
+                        <input type='text' class='form-control' name='nombreUsuario' id='nombreUsuario' value=" . $fila['nombre'] . " disabled>\n
+                    </div>\n
+
                     <div class='mb-3'>\n
                         <label for='apellidosUsuario' class='form-label'>Apellidos</label>\n
-                        <input type='text' value=" . $fila['apellidos'] . " disabled\n
-                            class='form-control' name='apellidosUsuario' id='apellidosUsuario'>\n
-                    </div>
+                        <input type='text' class='form-control' name='apellidosUsuario' id='apellidosUsuario' value=" . $fila['apellidos'] . " disabled>\n
+                    </div>\n
+
                     <div class='mb-3'>\n
                         <label for='emailUsuario' class='form-label'>Email</label>\n
-                        <input type='email' value=" . $fila['email'] . " disabled\n
-                            class='form-control' name='emailUsuario' id='emailUsuario'>\n
-                    </div>
+                        <input type='email' class='form-control' name='emailUsuario' id='emailUsuario' value=" . $fila['email'] . " disabled>\n
+                    </div>\n
+
                     <div class='mb-3'>\n
                         <label for='telefonoUsuario' class='form-label'>Teléfono</label>\n
-                        <input type='tel' value=" . $fila['telefono'] . " disabled\n
-                            class='form-control' name='telefonoUsuario' id='telefonoUsuario'>\n
-                    </div>
+                        <input type='tel' class='form-control' name='telefonoUsuario' id='telefonoUsuario' value=" . $fila['telefono'] . " disabled>\n
+                    </div>\n
+
                     <div class='mb-3'>\n
                         <label for='confirmadoUsuario' class='form-label'>Confirmado</label>\n
-                        <input type='text' value=" . $filaConfirmado . " disabled\n
-                            class='form-control' name='confirmadoUsuario' id='confirmadoUsuario'>\n
-                    </div>
+                        <input type='text' class='form-control' name='confirmadoUsuario' id='confirmadoUsuario' value=" . $filaConfirmado . " disabled>\n
+                    </div>\n
+
                     <div class='mb-3'>\n
-                    <label for='permisosUsuario' class='form-label'>Permisos</label>\n
+                        <label for='permisosUsuario' class='form-label'>Permisos</label>\n
                         <select class='form-select form-select-sm' name='permisosUsuario' id='permisosUsuario'>\n";
-                if ($fila["permisos"] === "0") {
-                    echo "
-                                <option selected value='0'>Usuario</option>
-                                <option value='1'>Administrador</option>
-                            </select>\n
-                            </div>";
-                } else {
-                    echo "
-                                <option value='0'>Usuario</option>
-                                <option selected value='1'>Administrador</option>
-                            </select>\n
-                            </div>";
-                }
+                            if ($fila["permisos"] === "0") {
+                                echo "
+                                        <option selected value='0'>Usuario</option>
+                                        <option value='1'>Administrador</option>
+                                    </select>\n
+                                </div>";
+                            } else {
+                                echo "
+                                        <option value='0'>Usuario</option>
+                                        <option selected value='1'>Administrador</option>
+                                    </select>\n
+                                </div>";
+                            }
             }
         }
     }

@@ -1,6 +1,6 @@
 <?php
 
-include 'DB.php';
+require_once 'DB.php';
 
 class Cons_Articulos
 {
@@ -22,6 +22,27 @@ class Cons_Articulos
             // Comentamos este mensaje para que no salga cuando no tenemos articulos.
             // Controlaremos este mensaje desde Articulos.php
             // echo 'Error en la consulta de artículos';
+        }
+
+        //Cerramos la conexión
+        $db->cerrarConexion($conexion);
+    }
+
+    public function getPrecio($id)
+    {
+        //Instancia de la clase Db y llamada a la función crearConexión
+        $db = new Db;
+        $conexion = $db->crearConexion();
+
+        //Consulta y ejecución SQL
+        $sql = 'SELECT precio FROM articulos WHERE id='. $id;
+        $resultado = mysqli_query($conexion, $sql);
+
+        // Comprobamos que obtenemos el resultado
+        if (mysqli_num_rows($resultado) > 0) {
+            return $resultado;
+        } else {
+            echo 'Error al consultar el precio';
         }
 
         //Cerramos la conexión

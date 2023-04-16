@@ -17,12 +17,12 @@ $alertas = new Alertas();
         <form action="crear.php" method="POST" enctype="multipart/form-data">
             <?php
 
-            if (isset($_POST['agregarArticulo'])) {
-                $desc = $_POST['descArticulo'];
-                $grupo = $_POST['grArticulo'];
-                $imagen =  $_FILES['fotoArticulo']['name'];
-                $precio = $_POST['precioArticulo'];
-                $validarDatos = $alertas -> validarDatosArticulos($desc, $precio, $grupo);
+                if (isset($_POST['agregarArticulo'])) {
+                    $desc = $_POST['descArticulo'];
+                    $grupo = $_POST['grArticulo'];
+                    $imagen =  $_FILES['fotoArticulo']['name'];
+                    $precio = $_POST['precioArticulo'];
+                    $validarDatos = $alertas -> validarDatosArticulos($desc, $precio, $grupo);
 
                 if($validarDatos){
                     echo mostrarAlertas($validarDatos);
@@ -60,8 +60,7 @@ $alertas = new Alertas();
             </div>
 
             <input type="submit" name="agregarArticulo" class="btn btn-success" value="Agregar Artículo">
-            <input type="reset" class="btn btn-danger" value="Cancelar">
-            <a href="index.php">Volver a Artículos</a>
+            <a href="index.php" class="btn btn-danger" role="button">Cancelar</a>
         </form>
     </div>
 

@@ -1,87 +1,74 @@
 <?php 
     include '../../../templates/header.php'; 
     include '../../../templates/navAdmin.php';
+    include '../../../templates/alertas.php';
+    include '../../../controller/Pedidos.php';
+    $pedido = new Pedidos();
+    $alertas = new Alertas();
 ?>
+
+<!-- FALTA PONER JS PARA MOSTAR CAMPO DE TEXTO POR SI UN USUARIO NO ESTÁ REGISTRADO -->
 
 <br>
 <div class="card">
     <div class="card-header">
-        Crear Pedido Manualmente
+        Crear Nuevo Pedido
     </div>
     <div class="card-body">
 
-        <form action="" method="POST">
+        <form action="crear.php" method="POST">
+            <?php 
+                
+                if (isset($_POST['agregarPedido'])) {
+                    var_dump($_POST);
+                    
+                    $pedidoPor = $_POST['pedidoPor'];
+                    $articulo = $_POST['articulo'];
+                    $cantidad = $_POST['cantidad'];
+
+                    // $desc = $_POST['descArticulo'];
+                    // $grupo = $_POST['grArticulo'];
+                    // $imagen =  $_FILES['fotoArticulo']['name'];
+                    // $precio = $_POST['precioArticulo'];
+                    // $validarDatos = $alertas -> validarDatosArticulos($desc, $precio, $grupo);
+
+                    // if($validarDatos){
+                    //     echo mostrarAlertas($validarDatos);
+                    // } else {
+                    //     $archivoImagen = $articulo->guardarImagen();
+                    //     $imagen = $archivoImagen;
+                    //     $articulo->guardarArticulo($desc, $grupo, $imagen, $precio);
+                    // }
+
+                }
+            ?>    
 
             <div class="mb-3">
-              <label for="numeroPedido" class="form-label">Num. Pedido</label>
-              <input type="number" disabled
-                class="form-control" name="numeroPedido" id="numeroPedido">
-            </div>
-
-            <div class="mb-3">
-                <label for="pedidoPorPedido" class="form-label">Pedido Por:</label>
-                <select class="form-select form-select-sm" name="pedidoPorPedido" id="pedidoPorPedido">
-                    <option selected>Alfredo</option>
-                    <option value="">Gerardo</option>
+                <label for="pedidoPor" class="form-label">Pedido Por</label>
+                <select class="form-select form-select-sm" name="pedidoPor" id="pedidoPor">
+                    <?php 
+                        $pedido -> usuariosRegistrados();         
+                    ?>
                 </select>
             </div>
             
             <div class="mb-3">
-              <label for="idUsuarioPedido" class="form-label">Id Usuario</label>
-              <input type="number" disabled
-                class="form-control" name="idUsuarioPedido" id="idUsuarioPedido">
-            </div>
-
-            <div class="mb-3">
-                <label for="descArticuloPedido" class="form-label">Des. Artículo Pedido</label>
-                <select class="form-select form-select-sm" name="descArticuloPedido" id="descArticuloPedido">
-                    <option selected>Lámpara con Nombre</option>
-                    <option value="">Llavero Disney</option>
+                <label for="articulo" class="form-label">Articulo Pedido</label>
+                <select class="form-select form-select-sm" name="articulo" id="articulo">
+                    <option selected disabled>Selecciona un Artículo</option>
+                    <?php 
+                        $pedido -> articulosDisponibles();  
+                    ?>
                 </select>
             </div>
 
             <div class="mb-3">
-              <label for="idArticuloPedido" class="form-label">Id Artículo</label>
-              <input type="number" disabled
-                class="form-control" name="idArticuloPedido" id="idArticuloPedido">
+              <label for="cantidad" class="form-label">Cantidad</label>
+              <input type="number" class="form-control" name="cantidad" id="cantidad">
             </div>
-
-            <div class="mb-3">
-              <label for="cantidadArticulo" class="form-label">Cantidad</label>
-              <input type="number"
-                class="form-control" name="cantidadArticulo" id="cantidadArticulo">
-            </div>
-
-            <div class="mb-3">
-              <label for="precioUPedido" class="form-label">Precio U.</label>
-              <input type="number" step="any" disabled
-                class="form-control" name="precioUPedido" id="precioUPedido">
-            </div>
-
-            <div class="mb-3">
-              <label for="totalPedido" class="form-label">Total</label>
-              <input type="number" step="any" disabled
-                class="form-control" name="totalPedido" id="totalPedido">
-            </div>
-
-            <div class="mb-3">
-                <label for="pagadoPedido" class="form-label">Pagado</label>
-                <select class="form-select form-select-sm" name="pagadoPedido" id="pagadoPedido">
-                    <option selected>No</option>
-                    <option value="">Si</option>
-                </select>
-            </div>
-
-            <div class="mb-3">
-                <label for="entregadoPedido" class="form-label">Entregado</label>
-                <select class="form-select form-select-sm" name="entregadoPedido" id="entregadoPedido">
-                    <option selected>No</option>
-                    <option value="">Si</option>
-                </select>
-            </div>
-
-            <button type="submit" class="btn btn-success">Agregar Pedido</button>
-            <a name="cancelarArticulo" id="cancelarArticulo" class="btn btn-danger" href="index.php" role="button">Cancelar</a>
+            
+            <input type="submit" name="agregarPedido" class="btn btn-success" value="Agregar Pedido">
+            <a href="index.php" class="btn btn-danger" role="button">Cancelar</a>
 
         </form>
     </div>

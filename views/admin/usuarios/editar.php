@@ -19,6 +19,7 @@
              ?>
 
             <input type="submit" name="editarUsuario" class="btn btn-success" value="Guardar Cambios">
+            <a href="index.php" class="btn btn-danger" role="button">Cancelar</a>
         </form>
 
     </div>
