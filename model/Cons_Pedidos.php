@@ -47,6 +47,52 @@ class Cons_Pedidos
         $db->cerrarConexion($conexion);
     }
 
+    //Devolver pedidos pagados / Para contadores
+    public function getPedidosPagados()
+    {
+        //Instancia de la clase Db y llamada a la función crearConexión
+        $db = new Db;
+        $conexion = $db->crearConexion();
+
+        //Instrucción y ejecución SQL
+        $sql = 'SELECT * FROM pedidos WHERE pagado = 1';
+        $resultado = mysqli_query($conexion, $sql);
+
+        //Comprobamos que se ejecuta correctamente
+        if (mysqli_num_rows($resultado) > 0) {
+            return $resultado;
+        } else {
+            //Controlamos esta excepción desde Contadores
+            // echo 'Error al Seleccionar un Pedido';
+        }
+
+        //Cerramos la conexión
+        $db->cerrarConexion($conexion);
+    }
+
+    //Devolver pedidos entregados / Para contadores
+    public function getPedidosEntregados()
+    {
+        //Instancia de la clase Db y llamada a la función crearConexión
+        $db = new Db;
+        $conexion = $db->crearConexion();
+
+        //Instrucción y ejecución SQL
+        $sql = 'SELECT * FROM pedidos WHERE entregado = 1';
+        $resultado = mysqli_query($conexion, $sql);
+
+        //Comprobamos que se ejecuta correctamente
+        if (mysqli_num_rows($resultado) > 0) {
+            return $resultado;
+        } else {
+            //Controlamos esta excepción desde Contadores
+            // echo 'Error al Seleccionar un Pedido';
+        }
+
+        //Cerramos la conexión
+        $db->cerrarConexion($conexion);
+    }
+
     //Editar los campos que vienen del formulario de editar de pedidos
     public function editarPedido($id, $cantidad, $pagado, $entregado)
     {
