@@ -1,10 +1,10 @@
 <?php
-include '../../../templates/header.php';
-include '../../../templates/navAdmin.php';
-include '../../../templates/alertas.php';
-include_once __DIR__ . '../../../../controller/Pedidos.php';
-// include_once __DIR__ . '../../../../controller/Alertas.php';
-include_once __DIR__ . '../../../../model/Cons_Pedidos.php';
+include_once '../../../templates/header.php';
+include_once '../../../templates/navAdmin.php';
+include_once '../../../templates/alertas.php';
+include_once '../../../controller/Pedidos.php';
+include_once '../../../controller/Alertas.php';
+include_once '../../../model/Cons_Pedidos.php';
 $pedido = new Pedidos();
 $consultas = new Cons_Pedidos();
 ?>

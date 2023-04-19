@@ -185,6 +185,59 @@ class Pedidos
         }
     }
 
+    // Obtener id del usuario seleccionado en el formulario de pedidos
+    public function getIdUsuario($nombre)
+    {
+        //Recogemos los datos de la consulta
+        $consultas = new Cons_Usuarios();
+        $datos = $consultas->getIdUsuarioNombre($nombre);
 
-    
+        if (is_string($datos)) {
+            echo $datos;
+        } else if ($datos) {
+            while ($fila = mysqli_fetch_assoc($datos)) {
+                return $fila['id'];
+            }
+        }
+    }
+
+    // Obtener el id del artículo seleccionado en el formulario de pedidos.
+    public function getIdArticulo($descripcion)
+    {
+        //Recogemos los datos de la consulta
+        $consultas = new Cons_Articulos();
+        $datos = $consultas->getIdArticulo($descripcion);
+
+        if (is_string($datos)) {
+            echo $datos;
+        } else if ($datos) {
+            while ($fila = mysqli_fetch_assoc($datos)) {
+                return $fila['id'];
+            }
+        }
+    }
+
+    // Obtener el precio del artículo seleccionado en el formulario de pedidos
+    public function getPrecioArticulo($descripcion)
+    {
+        //Recogemos los datos de la consulta
+        $consultas = new Cons_Articulos();
+        $datos = $consultas->getPrecioPorDescripcion($descripcion);
+
+        if (is_string($datos)) {
+            echo $datos;
+        } else if ($datos) {
+            while ($fila = mysqli_fetch_assoc($datos)) {
+                return $fila['precio'];
+            }
+        }
+    }
+
+    // //Inserción en la BD
+    // public function guardarPedido($id_usuario, $pedidoPor, $id_articulo, $articulo, $cantidad, $precioU, $total, $pagado, $entregado)
+    // {
+    //     $consultas = new Cons_Pedidos();
+    //     $consultas->setPedido($id_usuario, $pedidoPor, $id_articulo, $articulo, $cantidad, $precioU, $total, $pagado, $entregado);
+    //     echo '<p class="exito">Pedido Creado Correctamente</p>';
+    // }
 }

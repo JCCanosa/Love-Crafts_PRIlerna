@@ -73,6 +73,28 @@ class Cons_Usuarios
         $db->cerrarConexion($conexion);
     }
 
+    public function getIdUsuarioNombre($nombre)
+    {
+        //Instancia de la clase Db y llamada a la función crearConexión
+        $db = new Db;
+        $conexion = $db->crearConexion();
+
+        //Instrucción y ejecución SQL
+        $sql = 'SELECT id FROM usuarios WHERE nombre="' . $nombre .'"';
+        $resultado = mysqli_query($conexion, $sql);
+
+        //Comprobamos que se ejecuta correctamente
+        if (mysqli_num_rows($resultado) > 0) {
+            return $resultado;
+        } else {
+            // Controlaremos esta excepcion desde pedidos/crear.php
+            // echo 'Error al Seleccionar un Usuario por nombre';
+        }
+
+        //Cerramos la conexión
+        $db->cerrarConexion($conexion);
+    }
+
     //Editar los permisos de un usuario concreto
     public function editarPermisosUsuarios($permisos, $id)
     {

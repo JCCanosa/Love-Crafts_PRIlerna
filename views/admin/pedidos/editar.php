@@ -15,7 +15,7 @@ $pedido = new Pedidos();
     <form action="index.php" method="POST">
 
       <?php
-      $pedido->mostrarUnPedido($_GET['id']);
+        $pedido->mostrarUnPedido($_GET['id']);
       ?>
 
       <input type="submit" name="editarPedido" class="btn btn-success" value="Guardar Cambios">

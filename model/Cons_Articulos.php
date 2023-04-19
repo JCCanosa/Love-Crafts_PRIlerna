@@ -28,6 +28,50 @@ class Cons_Articulos
         $db->cerrarConexion($conexion);
     }
 
+    public function getIdArticulo($descripcion)
+    {
+        //Instancia de la clase Db y llamada a la función crearConexión
+        $db = new Db;
+        $conexion = $db->crearConexion();
+
+        //Consulta y ejecución SQL
+        $sql = 'SELECT id FROM articulos WHERE descripcion = "' . $descripcion . '"';
+        $resultado = mysqli_query($conexion, $sql);
+
+        // Comprobamos que obtenemos el resultado
+        if (mysqli_num_rows($resultado) > 0) {
+            return $resultado;
+        } else {
+            // Controlaremos esta excepcion desde pedidos/crear.php
+            // echo 'Error al consultar el id del articulo';
+        }
+
+        //Cerramos la conexión
+        $db->cerrarConexion($conexion);
+    }
+
+    public function getPrecioPorDescripcion($descripcion)
+    {
+        //Instancia de la clase Db y llamada a la función crearConexión
+        $db = new Db;
+        $conexion = $db->crearConexion();
+
+        //Consulta y ejecución SQL
+        $sql = 'SELECT precio FROM articulos WHERE descripcion = "' . $descripcion . '"';
+        $resultado = mysqli_query($conexion, $sql);
+
+        // Comprobamos que obtenemos el resultado
+        if (mysqli_num_rows($resultado) > 0) {
+            return $resultado;
+        } else {
+            // Controlaremos esta excepcion desde pedidos/crear.php
+            // echo 'Error al consultar el precio del articulo';
+        }
+
+        //Cerramos la conexión
+        $db->cerrarConexion($conexion);
+    }
+
     public function getGrupo($grupo)
     {
         //Instancia de la clase Db y llamada a la función crearConexión
@@ -35,7 +79,7 @@ class Cons_Articulos
         $conexion = $db->crearConexion();
 
         //Consulta y ejecución SQL
-        $sql = 'SELECT * FROM articulos WHERE grupo="'. $grupo . '"';
+        $sql = 'SELECT * FROM articulos WHERE grupo="' . $grupo . '"';
         $resultado = mysqli_query($conexion, $sql);
 
         // Comprobamos que obtenemos el resultado
@@ -56,7 +100,7 @@ class Cons_Articulos
         $conexion = $db->crearConexion();
 
         //Consulta y ejecución SQL
-        $sql = 'SELECT precio FROM articulos WHERE id='. $id;
+        $sql = 'SELECT precio FROM articulos WHERE id=' . $id;
         $resultado = mysqli_query($conexion, $sql);
 
         // Comprobamos que obtenemos el resultado

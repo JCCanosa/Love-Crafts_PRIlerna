@@ -16,7 +16,7 @@ $contador = new Contadores();
         <p class="tarjeta-text"><?php echo $contador->numeroPedidos(); ?></p>
         <p class="tarjeta-text"><?php echo $contador->numeroPedidosPagados(); ?></p>
         <p class="tarjeta-text"><?php echo $contador->numeroPedidosEntregados(); ?></p>
-        <a href="usuarios/index.php" class="btn-area-admin">Ver Pedidos</a>
+        <a href="pedidos/index.php" class="btn-area-admin">Ver Pedidos</a>
       </div>
     </div>
 
@@ -36,7 +36,7 @@ $contador = new Contadores();
         <p class="tarjeta-text"><?php echo $contador->mostrarNumeroArticulos(); ?></p>
         <p class="tarjeta-text"><?php echo $contador->numeroArticulos3d(); ?></p>
         <p class="tarjeta-text"><?php echo $contador->numeroArticulosLaser(); ?></p>
-        <a href="usuarios/index.php" class="btn-area-admin">Ver Artículos</a>
+        <a href="articulos/index.php" class="btn-area-admin">Ver Artículos</a>
       </div>
     </div>
 

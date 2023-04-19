@@ -93,6 +93,28 @@ class Cons_Pedidos
         $db->cerrarConexion($conexion);
     }
 
+    // Añadir nuevo pedido
+    public function setPedido($id_usuario, $pedidoPor, $id_articulo, $articulo, $cantidad, $precioU, $total, $pagado, $entregado)
+    {
+        //Instancia de la clase Db y llamada a la función crearConexión
+        $db = new Db;
+        $conexion = $db->crearConexion();
+
+        //Consulta y ejecución SQL
+        $sql = 'INSERT INTO pedidos (id_usuario, pedidopor, id_articulo, articulopedido, cantidad, preciou, total, pagado, entregado) VALUES (' . $id_usuario . ', "' . $pedidoPor . '", ' . $id_articulo . ', "' . $articulo . '", ' . $cantidad . ', ' . $precioU . ', ' . $total . ', ' . $pagado . ', ' . $entregado . ')';
+        $resultado = mysqli_query($conexion, $sql);
+
+        // Comprobamos que obtenemos el resultado
+        if ($resultado) {
+            return $resultado;
+        } else {
+            echo 'Error al Añadir Pedido';
+        }
+
+        //Cerramos la conexión
+        $db->cerrarConexion($conexion);
+    }
+
     //Editar los campos que vienen del formulario de editar de pedidos
     public function editarPedido($id, $cantidad, $pagado, $entregado)
     {

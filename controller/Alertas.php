@@ -40,4 +40,22 @@ class Alertas
 
         return $alertas;
     }
+
+    //Validar datos de formulario Crear y Actualizar Pedidos
+    public function validarDatosPedidos($pedidoPor, $articulo, $cantidad){
+        $alertas = [];
+
+        if (!isset($pedidoPor) || $pedidoPor == '0') {
+            $alertas['error'][] =  'Debe seleccionar un Usuario';
+        }
+        if (!isset($articulo) || $articulo == '0') {
+            $alertas['error'][] =  'Debe seleccionar un Artículo';
+        }
+        if(empty($cantidad)){
+            $alertas['error'][] =  'Debe introducir al menos 1 unidad';
+        }
+
+        return $alertas;
+
+    }
 }
