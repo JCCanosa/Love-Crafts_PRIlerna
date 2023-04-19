@@ -34,15 +34,16 @@ class Alertas
         if (strlen($desc) < 4) {
             $alertas['error'][] =  'La descripcion debe contener al menos 4 carácteres';
         }
-        if(!isset($grupo) || $grupo == '0'){
+        if (!isset($grupo) || $grupo == '0') {
             $alertas['error'][] =  'Debe seleccionar un Grupo';
         }
 
         return $alertas;
     }
 
-    //Validar datos de formulario Crear y Actualizar Pedidos
-    public function validarDatosPedidos($pedidoPor, $articulo, $cantidad){
+    //Validar datos de formulario Crear Pedidos
+    public function validarDatosPedidos($pedidoPor, $articulo, $cantidad)
+    {
         $alertas = [];
 
         if (!isset($pedidoPor) || $pedidoPor == '0') {
@@ -51,11 +52,20 @@ class Alertas
         if (!isset($articulo) || $articulo == '0') {
             $alertas['error'][] =  'Debe seleccionar un Artículo';
         }
-        if(empty($cantidad)){
+        if (empty($cantidad)) {
             $alertas['error'][] =  'Debe introducir al menos 1 unidad';
         }
-
         return $alertas;
+    }
 
+    //Validar datos de formulario Editar Pedidos
+    public function validarDatosPedidosAct($cantidad)
+    {
+        $alertas = [];
+
+        if (empty($cantidad)) {
+            $alertas['error'][] =  'Debe introducir al menos 1 unidad';
+        }
+        return $alertas;
     }
 }

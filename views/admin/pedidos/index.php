@@ -7,6 +7,7 @@ include_once '../../../controller/Alertas.php';
 include_once '../../../model/Cons_Pedidos.php';
 $pedido = new Pedidos();
 $consultas = new Cons_Pedidos();
+$alertas = new Alertas();
 ?>
 
 <br>
@@ -40,7 +41,14 @@ $consultas = new Cons_Pedidos();
                             $cantidad = intval($_POST['cantidad']);
                             $pagado = intval($_POST['pagado']);
                             $entregado = intval($_POST['entregado']);
-                            $consultas -> editarPedido($id, $cantidad, $pagado, $entregado); 
+                            $validarDatos = $alertas->validarDatosPedidosAct($cantidad);
+                            
+                            if($validarDatos){
+                                echo mostrarAlertas($validarDatos);
+                            } else {
+                                $consultas -> editarPedido($id, $cantidad, $pagado, $entregado);
+                                
+                            }
                         }
                         if (isset($_POST['eliminarPedido'])) {
                             $id = intval($_POST['numeroPedido']);

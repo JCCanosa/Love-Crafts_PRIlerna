@@ -42,13 +42,17 @@
                         $desc = $_POST['descripcionArticulo'];
                         $grupo = $_POST['grupoArticulo'];
                         $precio = $_POST['precioArticulo'];
+                        $imagen = $_POST['fotoArticulo'];
+                        
                         $validarDatos = $alertas->validarDatosArticulos($desc, $precio, $grupo);
 
                         if($validarDatos){
                             echo mostrarAlertas($validarDatos);
                         } else {
                             $articulo->actualizarArticulos($id, $desc, $grupo, $precio);
-                            if ($_FILES) {
+                            if (empty($_FILES['fotoArticulo']['name'])) {
+                                $imagen = $imagen;
+                            } else { 
                                 $imagen = $_FILES['fotoArticulo']['name'];
                                 $articulo->actualizarImagen($id, $imagen);
     

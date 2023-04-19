@@ -1,23 +1,29 @@
 <?php
     $url_absoluta = "http://localhost/PRIlerna/";
-    include 'templates/header.php';
-    // include_once __DIR__ . '/controller/Usuarios.php';
+    include_once 'templates/header.php';
+    include_once 'model/Cons_Login.php';
+    $cons_login = new Cons_Login();
+
+    if(isset($_POST['login'])){
+        $cons_login->setLogin($_POST['email'], $_POST['password']);
+    }
+
 ?>
 
 
 <div class="container-md login">
     <img src="img/Logo.png" class="img-fluid" alt="Logo">
-    <form class="form-login">
+    <form class="form-login" action="index.php" method="POST">
         
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" placeholder="Introduzca Email">
+            <input type="email" class="form-control" name="email" id="email" placeholder="Introduzca Email">
         </div>
         <div class="mb-3">
             <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="Introduzca Password">
+            <input type="password" class="form-control" name="password" id="password" placeholder="Introduzca Password">
         </div>
-        <input type="submit" class="btn-area-login" value="Login" />
+        <input type="submit" name="login" class="btn-area-login" value="Login" />
         <div class="links">
             <a name="registrarse" id="registrarse" href="<?php echo $url_absoluta; ?>views/registro.php">¿Eres Nuevo? Registrate!</a>
             <a name="recuperar" id="recuperar" href="<?php echo $url_absoluta; ?>views/recuperar.php">¿Olvidaste tu Contraseña?</a>

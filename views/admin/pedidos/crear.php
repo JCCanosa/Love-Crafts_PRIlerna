@@ -33,7 +33,6 @@ $alertas = new Alertas();
                 } else {
                     $consultas->setPedido($id_usuario, $pedidoPor, $id_articulo, $articulo, $cantidad, $precioU, $total, $pagado = 0, $entregado = 0);
                     echo '<p class="exito">Pedido Creado Correctamente</p>';
-                    header('refresh: 5; index.php');
                 }
             }
             ?>
