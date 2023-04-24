@@ -27,7 +27,7 @@
             <input type="password" class="form-control" id="passwordUsuario" placeholder="Introduce una Contraseña Nueva" required>
         </div>
 
-        <input type="submit" class="btn-area-login" value="Recuperar Contraseña" />
+        <input type="submit" class="boton-submit" value="Recuperar Contraseña" />
 
         <div class="links">
             <a name="index" id="index" href="<?php echo $url_absoluta; ?>">¿Ya tienes cuenta?</a>

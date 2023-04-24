@@ -54,7 +54,7 @@ $alertas = new Alertas();
             <label for="passwordUsuario" class="form-label">Password</label>
             <input type="tel" name="passwordUsuario" class="form-control" id="passwordUsuario" placeholder="Introduce una Contraseña">
         </div>
-        <input type="submit" name="registro" class="btn-area-login" value="Registrarse" />
+        <input type="submit" name="registro" class="boton-submit" value="Registrarse" />
 
         <div class="links">
             <a name="index" id="index" href="<?php echo $url_absoluta; ?>">¿Ya tienes cuenta?</a>

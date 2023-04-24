@@ -233,11 +233,16 @@ class Pedidos
         }
     }
 
-    // //Inserción en la BD
-    // public function guardarPedido($id_usuario, $pedidoPor, $id_articulo, $articulo, $cantidad, $precioU, $total, $pagado, $entregado)
-    // {
-    //     $consultas = new Cons_Pedidos();
-    //     $consultas->setPedido($id_usuario, $pedidoPor, $id_articulo, $articulo, $cantidad, $precioU, $total, $pagado, $entregado);
-    //     echo '<p class="exito">Pedido Creado Correctamente</p>';
-    // }
+    //Inserción en la BD
+    public function guardarPedido($pedidoPor, $articulo, $cantidad)
+    {
+        $consultas = new Cons_Pedidos();
+
+        $id_usuario = intval(self::getIdUsuario($pedidoPor));
+        $id_articulo = intval(self::getIdArticulo($articulo));
+        $precioU = floatval(self::getPrecioArticulo($articulo));
+        $total = $cantidad * $precioU;
+
+        $consultas->setPedido($id_usuario, $pedidoPor, $id_articulo, $articulo, $cantidad, $precioU, $total, $pagado = 0, $entregado = 0);
+    }
 }

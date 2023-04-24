@@ -1,7 +1,30 @@
 <?php
 
+include_once __DIR__ . '../../model/Cons_Login.php';
+include_once __DIR__ . '../../controller/Login.php';
+
 class Alertas
 {
+
+    public function validarDatosLogin($email, $password){
+        $cons_login = new Cons_Login();
+        $login = new Login();
+        $val_email = $cons_login -> getEmail($email);
+        $val_password = $login -> obtenerPassword($email);
+        $alertas = [];
+
+        if (empty($email) || empty($val_email)) {
+            $alertas['error'][] =  'Debe introducir un Email válido';
+        }
+        
+        if (empty($password) || !password_verify($password, $val_password)) {
+            $alertas['error'][] =  'Debe introducir un Password válido';
+        }
+
+        return $alertas;
+    }
+
+
     //Validar datos de formulario registro
     public function validarDatosRegistro($nombre, $apellidos, $email, $password, $telefono)
     {

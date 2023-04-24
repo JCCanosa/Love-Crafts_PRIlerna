@@ -152,4 +152,17 @@ class Usuarios
             }
         }
     }
+
+    public function obtenerDatosUsuario($email){
+        $consultas = new Cons_Usuarios();
+        $datos = $consultas->getUsuarioEmail($email);
+
+        if(is_string($datos)){
+            echo $datos;
+        } else if($datos) {
+            while($fila = mysqli_fetch_assoc($datos)){
+                return $fila;
+            }
+        }
+    }
 }

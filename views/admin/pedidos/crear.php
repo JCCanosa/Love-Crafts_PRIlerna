@@ -22,16 +22,12 @@ $alertas = new Alertas();
                 $pedidoPor = $_POST['pedidoPor'];
                 $articulo = $_POST['articulo'];
                 $cantidad = intval($_POST['cantidad']);
-                $id_usuario = intval($pedido->getIdUsuario($pedidoPor));
-                $id_articulo = intval($pedido->getIdArticulo($articulo));
-                $precioU = floatval($pedido->getPrecioArticulo($articulo));
-                $total = $cantidad * $precioU;
-                $validarDatos = $alertas->validarDatosPedidos($pedidoPor, $articulo, $cantidad);
+                $validarDatos = $alertas->validarDatosPedidos($_POST['pedidoPor'], $_POST['articulo'], intval($_POST['cantidad']));
 
                 if ($validarDatos) {
                     echo mostrarAlertas($validarDatos);
                 } else {
-                    $consultas->setPedido($id_usuario, $pedidoPor, $id_articulo, $articulo, $cantidad, $precioU, $total, $pagado = 0, $entregado = 0);
+                    $pedido->guardarPedido($pedidoPor, $articulo, $cantidad);
                     echo '<p class="exito">Pedido Creado Correctamente</p>';
                 }
             }

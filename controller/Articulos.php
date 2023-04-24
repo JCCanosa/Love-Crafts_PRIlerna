@@ -48,6 +48,53 @@ class Articulos
         }
     }
 
+    public function mostrarArticulo()
+    {
+        $total = 0;
+        foreach ($_SESSION['carrito'] as $id => $item) {
+            $consultas = new Cons_Articulos();
+            $datos = $consultas->getArticulo($id);
+
+            if (is_string($datos)) {
+                echo $datos;
+            } else if ($datos) {
+                while ($fila = mysqli_fetch_assoc($datos)) {
+                    $subtotal = $item['cantidad'] * $fila['precio'];
+                    $total = $total + $subtotal;
+
+                    echo "<tbody>\n
+                            <tr>\n
+                                <td>" . $fila['descripcion'] . "</td>\n
+                                <td>" . $fila['precio'] . "</td>
+                                <td>\n
+                                    <form method='POST'>\n
+                                        <input type='hidden' name='id' value=" . $id . ">\n
+                                        <input type='number' name='cantidad' value=" . $item['cantidad'] . " min=1>\n
+                                        <input type='submit' name='actualizar' value='Actualizar'>\n
+                                    </form>\n
+                                </td>\n
+                                <td>" . $subtotal . "</td>\n
+                                <td>\n
+                                    <form method='POST'>\n
+                                        <input type='hidden' name='id' value=" . $id . ">\n
+                                        <input type='submit' name'eliminar' value='Eliminar'>\n
+                                    </from>\n
+                                </td>\n
+                            </tr>\n
+                        </tbody>";
+                }
+            }
+        }
+        echo "<tfoot>\n
+                <tr>\n
+                    <th colspan='3'>Total</th>\n
+                    <td>" . $total . "</td>\n
+                    <td></td>\n
+                </tr>\n
+            </tfoot>";
+    }
+
+
     //Inserción en la BD
     public function guardarArticulo($desc, $grupo, $imagen, $precio)
     {
@@ -102,5 +149,56 @@ class Articulos
 
         $consultas = new Cons_Articulos();
         $consultas->actImagen($id, $imagen);
+    }
+
+    // Lista todos los articulos de la BD
+    public function mostrarArticulosUsuarios()
+    {
+        $consultas = new Cons_Articulos();
+        $datos = $consultas->getArticulos();
+
+        // Comprueba que hay datos antes de recorrerlos
+        if (is_string($datos)) {
+            echo $datos;
+        } else if ($datos) {
+            while ($fila = mysqli_fetch_assoc($datos)) {
+                echo "<form action='index.php' method=GET>
+                        <div class='tarjeta-articulo'>\n
+                            <div class='tarjeta-imagen'>\n
+                                <img src='../../images/" . $fila["imagen"] . "' alt='Foto Artículo'>\n
+                            </div>\n
+                            <h4>" . $fila['descripcion'] . "</h4>\n
+                            <p>" . $fila['precio'] . " €</p>\n
+                            <label for='cantidad'>Cantidad</label>
+                            <input type='number' name='cantidad' value=1 min=1>\n
+                            <input type='hidden' name='id' value=" . $fila['id'] . ">\n
+                            <input type='submit' class='boton-anadir-articulo' name='crear-pedido' value='Añadir al Carrito'>\n
+                        </div>\n
+                    </form>";
+            }
+        } else {
+            echo "<p class='vacio'>Actualmente no hay artículos</p>";
+        }
+    }
+
+    public function agregarCarrito($id, $cantidad)
+    {
+        $consultas = new Cons_Articulos();
+        $datos = $consultas->getArticulo($id);
+
+        if (is_string($datos)) {
+            echo $datos;
+        } else if ($datos) {
+            while ($fila = mysqli_fetch_assoc($datos)) {
+                $art_seleccionado = [
+                    'id' => $fila['id'],
+                    'descripcion' => $fila['descripcion'],
+                    'precio' => $fila['precio'],
+                    'cantidad' => $cantidad
+                ];
+            }
+        }
+
+        return $art_seleccionado;
     }
 }

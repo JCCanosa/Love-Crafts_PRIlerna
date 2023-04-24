@@ -73,6 +73,28 @@ class Cons_Usuarios
         $db->cerrarConexion($conexion);
     }
 
+    //Devolver un usuario mediante su email
+    public function getUsuarioEmail($email)
+    {
+        //Instancia de la clase Db y llamada a la función crearConexión
+        $db = new Db;
+        $conexion = $db->crearConexion();
+
+        //Instrucción y ejecución SQL
+        $sql = 'SELECT id, nombre, apellidos, telefono FROM usuarios WHERE email="' .$email . '"';
+        $resultado = mysqli_query($conexion, $sql);
+
+        //Comprobamos que se ejecuta correctamente
+        if (mysqli_num_rows($resultado) > 0) {
+            return $resultado;
+        } else {
+            echo 'Error al Seleccionar un Usuario por email';
+        }
+
+        //Cerramos la conexión
+        $db->cerrarConexion($conexion);
+    }
+
     public function getIdUsuarioNombre($nombre)
     {
         //Instancia de la clase Db y llamada a la función crearConexión
@@ -80,7 +102,7 @@ class Cons_Usuarios
         $conexion = $db->crearConexion();
 
         //Instrucción y ejecución SQL
-        $sql = 'SELECT id FROM usuarios WHERE nombre="' . $nombre .'"';
+        $sql = 'SELECT id FROM usuarios WHERE nombre="' . $nombre . '"';
         $resultado = mysqli_query($conexion, $sql);
 
         //Comprobamos que se ejecuta correctamente
