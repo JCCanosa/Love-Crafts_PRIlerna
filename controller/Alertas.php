@@ -11,6 +11,7 @@ class Alertas
         $login = new Login();
         $val_email = $cons_login -> getEmail($email);
         $val_password = $login -> obtenerPassword($email);
+        $val_confirmado = $login -> validarConfirmado($email);
         $alertas = [];
 
         if (empty($email) || empty($val_email)) {
@@ -21,6 +22,10 @@ class Alertas
             $alertas['error'][] =  'Debe introducir un Password válido';
         }
 
+        if ($val_confirmado == 0){
+            $alertas['error'][] = 'Antes de acceder debe confirmar su dirección de correo';
+        }
+
         return $alertas;
     }
 
@@ -29,9 +34,14 @@ class Alertas
     public function validarDatosRegistro($nombre, $apellidos, $email, $password, $telefono)
     {
         $alertas = [];
+        $login = new Login();
+        $val_email = $login->existeEmail($email);
 
         if (empty($nombre) || empty($apellidos) || empty($email) || empty($password) || empty($telefono)) {
             $alertas['error'][] =  'Todos los campos son Obligatorios';
+        }
+        if(!empty($val_email)){
+            $alertas['error'][] =  'La dirección de correo introducida ya existe';
         }
         if (strlen($password) < 6) {
             $alertas['error'][] =  'El Password debe contener al menos 6 cáracteres';

@@ -65,20 +65,20 @@ class Articulos
                     echo "<tbody>\n
                             <tr>\n
                                 <td>" . $fila['descripcion'] . "</td>\n
-                                <td>" . $fila['precio'] . "</td>
+                                <td>" . $fila['precio'] . "</td>\n
                                 <td>\n
-                                    <form method='POST'>\n
-                                        <input type='hidden' name='id' value=" . $id . ">\n
+                                    <form method='POST' action='act_carrito.php'>\n
                                         <input type='number' name='cantidad' value=" . $item['cantidad'] . " min=1>\n
+                                        <input type='hidden' name='id' value=" . $item['id'] . ">\n
                                         <input type='submit' name='actualizar' value='Actualizar'>\n
                                     </form>\n
                                 </td>\n
                                 <td>" . $subtotal . "</td>\n
                                 <td>\n
-                                    <form method='POST'>\n
-                                        <input type='hidden' name='id' value=" . $id . ">\n
-                                        <input type='submit' name'eliminar' value='Eliminar'>\n
-                                    </from>\n
+                                    <form method='POST' action='eliminar_carrito.php'>\n
+                                        <input type='hidden' name='id' value=" . $item['id'] . ">\n
+                                        <input type='submit' name='eliminar' value='Eliminar'>\n
+                                    </form>\n
                                 </td>\n
                             </tr>\n
                         </tbody>";

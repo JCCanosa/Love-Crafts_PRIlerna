@@ -165,4 +165,21 @@ class Usuarios
             }
         }
     }
+
+    public function confirmarUsuario($validador){
+        $consultas = new Cons_Usuarios();
+        $datos = $consultas->getValidador($validador);
+
+        if(is_string($datos)){
+            echo $datos;
+        } else if ($datos){
+            while ($fila = mysqli_fetch_assoc($datos)){
+                $id = $fila['id'];
+                $consultas->editarConfirmarUsuario($id);
+                echo 'Cuenta confirmada correctamente';
+            }
+        } else {
+            echo 'No se ha podido confirmar la cuenta';
+        }
+    }
 }

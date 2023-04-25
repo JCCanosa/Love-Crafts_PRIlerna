@@ -59,7 +59,7 @@ class Cons_Usuarios
         $conexion = $db->crearConexion();
 
         //Instrucción y ejecución SQL
-        $sql = 'SELECT id, nombre, apellidos, email, telefono, confirmado, permisos FROM usuarios WHERE id=' . $id;
+        $sql = 'SELECT id, nombre, apellidos, email, telefono, confirmado, permisos, validador FROM usuarios WHERE id=' . $id;
         $resultado = mysqli_query($conexion, $sql);
 
         //Comprobamos que se ejecuta correctamente
@@ -81,7 +81,7 @@ class Cons_Usuarios
         $conexion = $db->crearConexion();
 
         //Instrucción y ejecución SQL
-        $sql = 'SELECT id, nombre, apellidos, telefono FROM usuarios WHERE email="' .$email . '"';
+        $sql = 'SELECT id, nombre, apellidos, telefono, validador FROM usuarios WHERE email="' . $email . '"';
         $resultado = mysqli_query($conexion, $sql);
 
         //Comprobamos que se ejecuta correctamente
@@ -111,6 +111,50 @@ class Cons_Usuarios
         } else {
             // Controlaremos esta excepcion desde pedidos/crear.php
             // echo 'Error al Seleccionar un Usuario por nombre';
+        }
+
+        //Cerramos la conexión
+        $db->cerrarConexion($conexion);
+    }
+
+    public function getValidador($validador)
+    {
+        //Instancia de la clase Db y llamada a la función crearConexión
+        $db = new Db;
+        $conexion = $db->crearConexion();
+
+        //Instrucción y ejecución SQL
+        $sql = 'SELECT * FROM usuarios WHERE validador="' . $validador . '"';
+        $resultado = mysqli_query($conexion, $sql);
+
+        //Comprobamos que se ejecuta correctamente
+        if (mysqli_num_rows($resultado) > 0) {
+            return $resultado;
+        } else {
+            // Controlar esta excepción desde confirmado.php
+            // echo 'Error al comprobar el código de validación';
+        }
+
+        //Cerramos la conexión
+        $db->cerrarConexion($conexion);
+    }
+
+    //Editar campo confirmar usuario
+    public function editarConfirmarUsuario($id)
+    {
+        //Instancia de la clase Db y llamada a la función crearConexión
+        $db = new Db;
+        $conexion = $db->crearConexion();
+
+        //Instrucción y ejecución SQL
+        $sql = 'UPDATE usuarios SET confirmado = 1 WHERE id = ' . $id;
+        $resultado = mysqli_query($conexion, $sql);
+
+        //Comprobamos que se ejecuta correctamente
+        if ($resultado) {
+            return $resultado;
+        } else {
+            echo "Error al Actualizar el Usuario";
         }
 
         //Cerramos la conexión

@@ -31,6 +31,33 @@ class Login{
         }
     }
 
+    public function existeEmail($email){
+        $cons_login = new Cons_Login();
+        $datos = $cons_login->verificarEmail($email);
+
+        if(is_string($datos)){
+            echo $datos;
+        } else if($datos){
+            while($fila = mysqli_fetch_assoc($datos)){
+                return $fila;
+            }
+        }
+        
+    }
+
+    public function validarConfirmado($email){
+        $cons_login = new Cons_Login();
+        $datos = $cons_login -> getConfirmado($email);
+
+        if(is_string($datos)){
+            echo $datos;
+        } else if($datos){
+            while($fila = mysqli_fetch_assoc($datos)){
+                return $fila['confirmado'];
+            }
+        }
+    }
+
     public function setLogin($email){
         $permisos = self::validarPermisos($email);
         

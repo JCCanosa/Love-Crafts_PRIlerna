@@ -56,23 +56,37 @@ class Cons_Login
         }
     }
 
-    // public function setLogin($email, $password)
-    // {
-    //     // Nos conectamos a la BD
-    //     $db = new Db();
-    //     $conexion = $db->crearConexion();
+    public function getConfirmado($email)
+    {
+        // Nos conectamos a la BD
+        $db = new Db();
+        $conexion = $db->crearConexion();
 
-    //     //Creamos y lanzamos la consulta.
-    //     $sql = 'SELECT * FROM usuarios WHERE email= "' . $email . '" AND password="' . $password . '"';
-    //     $resultado = mysqli_query($conexion, $sql);
+        $sql = 'SELECT confirmado FROM usuarios WHERE email = "' . $email . '"';
+        $resultado = mysqli_query($conexion, $sql);
 
-    //     if (mysqli_num_rows($resultado) > 0) {
-    //         return $resultado;
-    //     } else {
-    //         echo 'Error al hacer login';
-    //     }
+        if (mysqli_num_rows($resultado) > 0) {
+            return $resultado;
+        } else {
+            // Controlamos esta excepcion con las alertas
+            // echo 'Error al consultar el valor de confirmado';
+        }
+    }
 
-    //     //Cerramos la conexión a la BD
-    //     $db->cerrarConexion($conexion);
-    // }
+    public function verificarEmail($email)
+    {
+        // Nos conectamos a la BD
+        $db = new Db();
+        $conexion = $db->crearConexion();
+
+        $sql = 'SELECT * FROM usuarios WHERE email = "' . $email . '"';
+        $resultado = mysqli_query($conexion, $sql);
+
+        if (mysqli_num_rows($resultado) > 0) {
+            return $resultado;
+        } else {
+            // Controlamos esta excepcion desde registro.php con alertas
+            // echo 'Error al comprobar si existe email';
+        }
+    }
 }

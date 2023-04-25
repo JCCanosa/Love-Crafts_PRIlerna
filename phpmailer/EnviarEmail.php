@@ -13,7 +13,7 @@ require 'SMTP.php';
 
 class EnviarEmail
 {
-    public function enviarEmail($email, $nombre)
+    public function enviarEmail($email, $nombre, $validador)
     {
         $url_absoluta = "http://localhost/PRIlerna/";
         //Create an instance; passing `true` enables exceptions
@@ -36,26 +36,41 @@ class EnviarEmail
             $mail->addAddress($email, $nombre);
             $mail->Subject = 'Confirmacion de Registro';
             $mail->addEmbeddedImage('../img/Logo.png', 'logo_lc');
-            $email_template = $url_absoluta . 'phpmailer/registroUsuario.html';
 
-            $username = $nombre;
+            $mail->Subject = 'Confirma tu cuenta';
 
-            $message = file_get_contents($email_template);
-            $message = str_replace('%username%', $username, $message);
+            $contenido = '<html>';
+            $contenido .= '<head>';
+            $contenido .= '<style>';
+            $contenido .= 'body {';
+            $contenido .= 'font-family: Verdana, Geneva, Tahoma, sans-serif;';
+            $contenido .= '}';
+            $contenido .= '.mensaje {';
+            $contenido .= 'display: flex;';
+            $contenido .= 'flex-direction: column;';
+            $contenido .= 'align-items: center;';
+            $contenido .= '}';
+            $contenido .= '.imagen {';
+            $contenido .= 'width: 150px;';
+            $contenido .= 'margin: 0 auto;';
+            $contenido .= 'margin-top: 80px;';
+            $contenido .= '}';
+            $contenido .= '.titulo {';
+            $contenido .= 'text-align: center;';
+            $contenido .= '}';
+            $contenido .= '</style>';
+            $contenido .= '</head>';
+            $contenido .= '<body>';
+            $contenido .= '<div class="mensaje">';
+            $contenido .= '<img class="imagen" src="cid:logo_lc" alt="Logo L&C">';
+            $contenido .= '<h1 class="titulo">Hola ' . $nombre . '!</h1>';
+            $contenido .= '<h3 class="titulo">Te damos la bienvenida a Love & Crafts</h3>';
+            $contenido .= '<a href="http://localhost/PRIlerna/views/confirmado.php?validador=' . $validador . '">Confirma tu direcci&oacute;n de correo</a>';
+            $contenido .= '</div>';
+            $contenido .= '</body>  ';
+            $contenido .= '</html>';
 
-            $mail->msgHTML($message);
-
-
-            // if (isset($_POST['registro'])) {
-            //     $mail->Subject = 'Bienvenido a Love & Crafts';
-            //     $mail->Body = "<h1>Bienvenido a Love & Crafts</h1>\n
-            //                     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta, vero veritatis.\n
-            //                     Quibusdam modi porro, nobis quod facere, animi quisquam distinctio voluptatum, dolor \n
-            //                     ut natus facilis magnam veritatis iste molestiae cupiditate.</p>";
-            // } else {
-            //     $mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-            // }
-
+            $mail->Body = $contenido;
             $mail->send();
             echo '<p class="exito">Revisa tu Correo</p>';
         } catch (Exception $e) {
