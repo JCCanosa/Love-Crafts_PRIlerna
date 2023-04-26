@@ -140,6 +140,120 @@ class Pedidos
         }
     }
 
+    public function agregarCarrito($id, $cantidad)
+    {
+        $consultas = new Cons_Articulos();
+        $datos = $consultas->getArticulo($id);
+
+        if (is_string($datos)) {
+            echo $datos;
+        } else if ($datos) {
+            while ($fila = mysqli_fetch_assoc($datos)) {
+                $art_seleccionado = [
+                    'id' => $fila['id'],
+                    'descripcion' => $fila['descripcion'],
+                    'grupo' => $fila['grupo'],
+                    'imagen' => $fila['imagen'],
+                    'precio' => $fila['precio'],
+                    'cantidad' => $cantidad
+                ];
+            }
+        }
+
+        return $art_seleccionado;
+    }
+
+    public function mostrarArticulosSeleccionados()
+    {
+        $total = 0;
+        foreach ($_SESSION['carrito'] as $id => $item) {
+            $consultas = new Cons_Articulos();
+            $datos = $consultas->getArticulo($id);
+
+            if (is_string($datos)) {
+                echo $datos;
+            } else if ($datos) {
+                while ($fila = mysqli_fetch_assoc($datos)) {
+                    $subtotal = $item['cantidad'] * $fila['precio'];
+                    $total = $total + $subtotal;
+
+                    echo "<tbody>\n
+                            <tr>\n
+                                <td>" . $fila['descripcion'] . "</td>\n
+                                <td>\n
+                                    <img width='50' class='img-fluid rounded'
+                                    src = '../../images/" . $fila["imagen"] . "' alt=''/>\n
+                                </td>\n
+                                <td>" . $fila['grupo'] . "</td>\n
+                                <td>" . $fila['precio'] . "</td>\n
+                                <td>\n
+                                    <form method='POST' action='act_carrito.php'>\n
+                                        <input type='number' name='cantidad' value=" . $item['cantidad'] . " min=1>\n
+                                        <input type='hidden' name='id' value=" . $item['id'] . ">\n
+                                        <input type='submit' name='actualizar' value='Actualizar'>\n
+                                    </form>\n
+                                </td>\n
+                                <td>" . $subtotal . " €</td>\n
+                                <td>\n
+                                    <form method='POST' action='eliminar_carrito.php'>\n
+                                        <input type='hidden' name='id' value=" . $item['id'] . ">\n
+                                        <input type='submit' name='eliminar' value='Eliminar'>\n
+                                    </form>\n
+                                </td>\n
+                            </tr>\n
+                        </tbody>";
+                }
+            }
+        }
+        echo "<tfoot>\n
+                <tr>\n
+                    <th colspan='5'>Total a Pagar</th>\n
+                    <td><strong>" . $total . " €</<strong></td>\n
+                    <td></td>\n
+                </tr>\n
+            </tfoot>";
+    }
+
+    public function mostrarResumen()
+    {
+        $total = 0;
+        foreach ($_SESSION['carrito'] as $id => $item) {
+            $consultas = new Cons_Articulos();
+            $datos = $consultas->getArticulo($id);
+
+            if (is_string($datos)) {
+                echo $datos;
+            } else if ($datos) {
+                while ($fila = mysqli_fetch_assoc($datos)) {
+                    $subtotal = $item['cantidad'] * $fila['precio'];
+                    $total = $total + $subtotal;
+
+                    echo "<tbody>\n
+                            <tr>\n
+                                <td>" . $fila['descripcion'] . "</td>\n
+                                <td>\n
+                                    <img width='50' class='img-fluid rounded'
+                                    src = '../../images/" . $fila["imagen"] . "' alt=''/>\n
+                                </td>\n
+                                <td>" . $fila['grupo'] . "</td>\n
+                                <td>" . $fila['precio'] . "</td>\n
+                                <td>" . $item['cantidad'] . "</td>\n
+                                <td>" . $subtotal . "</td>\n
+                            </tr>\n
+                        </tbody>";
+                }
+            }
+        }
+        echo "<tfoot>\n
+                <tr>\n
+                    <th colspan='5'>Total a Pagar</th>\n
+                    <td><strong>" . $total . " €</<strong></td>\n
+                    <td></td>\n
+                </tr>\n
+            </tfoot>";
+    }
+
+
     // Mostrar contenido del desplegable con los usuarios registrados
     public function usuariosRegistrados()
     {
@@ -233,7 +347,7 @@ class Pedidos
         }
     }
 
-    //Inserción en la BD
+    //Inserción en la BD - desde admin
     public function guardarPedido($pedidoPor, $articulo, $cantidad)
     {
         $consultas = new Cons_Pedidos();
@@ -245,4 +359,10 @@ class Pedidos
 
         $consultas->setPedido($id_usuario, $pedidoPor, $id_articulo, $articulo, $cantidad, $precioU, $total, $pagado = 0, $entregado = 0);
     }
+
+    // public function guardarPedidoUsuario($id_usuario, $pedidoPor, $id_articulo, $articulo, $cantidad, $precioU){
+    //     $consultas = new Cons_Pedidos();
+    //     $total = $cantidad * $precioU;
+    //     $consultas->setPedido($id_usuario, $pedidoPor, $id_articulo, $articulo, $cantidad, $precioU, $total, $pagado = 0, $entregado = 0);
+    // }
 }

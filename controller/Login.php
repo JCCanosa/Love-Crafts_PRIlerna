@@ -62,11 +62,13 @@ class Login{
         $permisos = self::validarPermisos($email);
         
         if($permisos == 0){
-            $_SESSION['email'] = $email;
-            header('Location: views/users/index.php');
+            session_start();
+            self::setSession($email);
+            header('Location: views/users/');
         } else if ($permisos == 1){
-            $_SESSION['email'] = $email;
-            header('Location: views/admin/index.php');
+            session_start();
+            self::setSession($email);
+            header('Location: views/admin/');
         }
 
     }
@@ -79,6 +81,9 @@ class Login{
         $_SESSION['nombre'] = $datos_usuario['nombre'];
         $_SESSION['apellidos'] = $datos_usuario['apellidos'];
         $_SESSION['telefono'] = $datos_usuario['telefono'];
+        $_SESSION['permisos'] = $datos_usuario['permisos'];
+        
+        return $_SESSION;
     }
 
 

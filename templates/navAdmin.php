@@ -18,7 +18,7 @@ $url_absoluta = "http://localhost/PRIlerna/";
                     <a class="navegacion-enlace" href="<?php echo $url_absoluta; ?>views/admin/usuarios/">Usuarios</a>
                 </li>
                 <li class="navegacion-li">
-                    <a class="navegacion-enlace" href="<?php echo $url_absoluta; ?>cerrar.php">Cerrar Sesión</a>
+                    <a class="navegacion-enlace" href="<?php echo $url_absoluta; ?>views/cerrar.php">Cerrar Sesión</a>
                 </li>
             </ul>
         </nav>

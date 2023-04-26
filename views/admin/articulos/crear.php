@@ -45,7 +45,7 @@ $alertas = new Alertas();
                 <select class="form-select form-select-sm" name="grArticulo" id="grArticulo">
                     <option selected value="0">Selecciona un grupo</option>
                     <option value="3D">3D</option>
-                    <option value="laser">Láser</option>
+                    <option value="Laser">Láser</option>
                 </select>
             </div>
 

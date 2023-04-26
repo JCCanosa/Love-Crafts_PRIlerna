@@ -9,10 +9,10 @@ if(isset($_POST['actualizar'])){
     //Actualizar la cantidad en la variable $_SESSION
     $_SESSION['carrito'][$id]['cantidad'] = $cantidad;
    
-    header('Location: resumen.php');
+    header('Location: carrito.php');
     exit();
 
 } else {
-    header('Location: resumen.php');
+    header('Location: carrito.php');
     exit();
 }

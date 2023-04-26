@@ -30,10 +30,10 @@ include '../../../templates/navAdmin.php';
           <?php
           if ($_POST['grupoArt'] == '3D') {
             echo "<option selected value='3D'>3D</option>\n
-                    <option value='laser'>Láser</option>";
+                    <option value='Laser'>Láser</option>";
           } else {
             echo "<option value='3D'>3D</option>\n
-                    <option selected value='laser'>Láser</option>";
+                    <option selected value='Laser'>Láser</option>";
           }
           ?>
         </select>

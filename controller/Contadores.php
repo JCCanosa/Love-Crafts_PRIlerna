@@ -63,7 +63,7 @@ class Contadores
     {
         //Recogemos los datos de la consulta
         $consultas = new Cons_Articulos();
-        $datos = $consultas->getGrupo('laser');
+        $datos = $consultas->getGrupo('Laser');
 
         //Mostramos el número de filas obtenidas
         if (!$datos) {

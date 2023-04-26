@@ -1,38 +1,45 @@
 <?php
 include_once '../../templates/header.php';
-include_once '../../controller/Articulos.php';
-$articulo = new Articulos();
+include_once '../../controller/Pedidos.php';
+$pedido = new Pedidos();
 
 session_start();
+if(!isset($_SESSION['nombre'])){
+    header('Location: http://localhost/PRIlerna/');
+    exit();
+}
 
-var_dump($_SESSION);
+include_once '../../templates/navUsers.php';
+?>
 
+<h1>Carrito</h1>
+
+<?php
 if (isset($_SESSION['carrito']) && !empty($_SESSION['carrito'])) { ?>
-    <h1>Carrito</h1>
+
     <table>
         <thead>
             <tr>
-                <th>Producto</th>
+                <th colspan='2'>Producto</th>
+                <th>Grupo</th>
                 <th>Precio</th>
                 <th>Cantidad</th>
                 <th>Total</th>
-                <th>Eliminar</th>
             </tr>
         </thead>
         <?php
-        $articulo->mostrarArticulo();
+        $pedido->mostrarArticulosSeleccionados();
         ?>
     </table>
 
 <?php } else { ?>
 
-    <h1>Carrito</h1>
     <p>Debe Seleccionar al menos 1 artículo para continuar</p>
 
 <?php } ?>
 
 <a href="index.php">Volver</a>
-<a href="#">Siguiente</a>
+<a href="pago.php">Siguiente</a>
 
 
 

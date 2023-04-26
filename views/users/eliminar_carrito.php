@@ -8,9 +8,9 @@ if(isset($_POST['eliminar'])){
     //Eliminar el articulo de $SESSION
     unset($_SESSION['carrito'][$id]);
     
-    header('Location: resumen.php');
+    header('Location: carrito.php');
     exit();
 } else {
-    header('Location: resumen.php');
+    header('Location: carrito.php');
     exit();
 }

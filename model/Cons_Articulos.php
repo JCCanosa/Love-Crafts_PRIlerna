@@ -42,7 +42,7 @@ class Cons_Articulos
         if (mysqli_num_rows($resultado) > 0) {
             return $resultado;
         } else {
-            echo 'Error en la consulta de artículo';
+            // echo 'Error en la consulta de artículo';
         }
 
         //Cerramos la conexión
