@@ -28,7 +28,7 @@ $alertas = new Alertas();
             $password = $usuario->hashPassword($password);
             $validador = $usuario->setValidador();
             $usuario->guardarUsuario($nombre, $apellidos, $email, $password, $telefono, $validador);
-            $mail->enviarEmail($email, $nombre, $validador);
+            $mail->enviarEmailRegistro($email, $nombre, $validador);
         }
     }
     ?>

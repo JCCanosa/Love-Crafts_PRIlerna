@@ -2,10 +2,11 @@
 
 <footer class="footer">
   <p>&copy; Love & Crafts <?php echo date('Y'); ?></p>
+
 </footer>
 
 
-
+<script src="../../js/scripts.js"></script>
 <!-- Bootstrap JavaScript Libraries -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
 </script>

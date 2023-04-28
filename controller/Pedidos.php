@@ -359,10 +359,4 @@ class Pedidos
 
         $consultas->setPedido($id_usuario, $pedidoPor, $id_articulo, $articulo, $cantidad, $precioU, $total, $pagado = 0, $entregado = 0);
     }
-
-    // public function guardarPedidoUsuario($id_usuario, $pedidoPor, $id_articulo, $articulo, $cantidad, $precioU){
-    //     $consultas = new Cons_Pedidos();
-    //     $total = $cantidad * $precioU;
-    //     $consultas->setPedido($id_usuario, $pedidoPor, $id_articulo, $articulo, $cantidad, $precioU, $total, $pagado = 0, $entregado = 0);
-    // }
 }

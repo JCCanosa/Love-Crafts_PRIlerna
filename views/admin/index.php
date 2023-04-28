@@ -11,8 +11,9 @@ if(!isset($_SESSION['nombre']) || $_SESSION['permisos'] != "1"){
 }
 ?>
 
-<br>
+
 <div class="container text-center">
+  <a class="contenedor-enlace" href="http://localhost/PRIlerna/views/users">Ir al Panel de Usuarios</a>
   <div class="tarjetas">
 
     <div class="tarjeta">
@@ -46,7 +47,6 @@ if(!isset($_SESSION['nombre']) || $_SESSION['permisos'] != "1"){
       </div>
     </div>
   </div>
-  <a class="contenedor-enlace" href="http://localhost/PRIlerna/views/users">Ir a la vista de Users</a>
 </div>
 
 <?php include '../../templates/footer.php'; ?>

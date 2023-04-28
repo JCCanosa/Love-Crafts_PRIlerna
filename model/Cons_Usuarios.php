@@ -81,7 +81,7 @@ class Cons_Usuarios
         $conexion = $db->crearConexion();
 
         //Instrucción y ejecución SQL
-        $sql = 'SELECT id, nombre, apellidos, telefono, permisos, validador FROM usuarios WHERE email="' . $email . '"';
+        $sql = 'SELECT id, nombre, apellidos, email, telefono, permisos, validador FROM usuarios WHERE email="' . $email . '"';
         $resultado = mysqli_query($conexion, $sql);
 
         //Comprobamos que se ejecuta correctamente

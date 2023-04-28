@@ -80,6 +80,7 @@ class Login{
         $_SESSION['id'] = $datos_usuario['id'];
         $_SESSION['nombre'] = $datos_usuario['nombre'];
         $_SESSION['apellidos'] = $datos_usuario['apellidos'];
+        $_SESSION['email'] = $datos_usuario['email'];
         $_SESSION['telefono'] = $datos_usuario['telefono'];
         $_SESSION['permisos'] = $datos_usuario['permisos'];
         
