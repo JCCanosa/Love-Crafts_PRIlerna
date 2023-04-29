@@ -123,7 +123,7 @@ class Articulos
                             <h4>" . $fila['descripcion'] . "</h4>\n
                             <p>" . $fila['precio'] . " €</p>\n
                             <label for='cantidad'>Cantidad</label>
-                            <input type='number' name='cantidad' value=1 min=1>\n
+                            <input class='cantidad' type='number' name='cantidad' value=1 min=1>\n
                             <input type='hidden' name='id' value=" . $fila['id'] . ">\n
                             <input type='submit' class='boton-anadir-articulo' name='crear-pedido' value='Añadir al Carrito'>\n
                         </div>\n

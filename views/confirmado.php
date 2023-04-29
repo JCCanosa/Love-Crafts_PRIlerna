@@ -4,8 +4,6 @@ include_once '../controller/Usuarios.php';
 $usuario = new Usuarios();
 ?>
 
-
-
 <div class="container-md contenedor">
     <img class="contenedor-imagen" src="../img/Logo.png" alt="Logo L&C">
     <h1 class="contenedor-titulo">

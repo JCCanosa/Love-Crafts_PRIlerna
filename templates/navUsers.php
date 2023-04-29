@@ -3,11 +3,10 @@
     <div class="botones-compra">
         <a class="enlace-compra" href="carrito.php">
             <img class="carrito <?php
-                                if (isset($_SESSION['carrito'])) {
-                                    echo 'carrito-lleno';
-                                } else {
-                                    unset($_SESSION['carrito']);
+                                if (!isset($_SESSION['carrito']) || empty($_SESSION['carrito'])) {
                                     echo '';
+                                } else{
+                                    echo 'carrito-lleno';
                                 }
                                 ?>" src="../../img/cart.svg" alt="Imagen Carrito">
         </a>

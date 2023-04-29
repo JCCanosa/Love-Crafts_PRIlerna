@@ -183,6 +183,50 @@ class Cons_Usuarios
         $db->cerrarConexion($conexion);
     }
 
+    //Editar los validador
+    public function editarValidador($email, $validador)
+    {
+        //Instancia de la clase Db y llamada a la función crearConexión
+        $db = new Db;
+        $conexion = $db->crearConexion();
+
+        //Instrucción y ejecución SQL
+        $sql = 'UPDATE usuarios SET validador ="' . $validador . '" WHERE email = "' . $email . '"';
+        $resultado = mysqli_query($conexion, $sql);
+
+        //Comprobamos que se ejecuta correctamente
+        if ($resultado) {
+            return $resultado;
+        } else {
+            echo "Error al Actualizar el Validador";
+        }
+
+        //Cerramos la conexión
+        $db->cerrarConexion($conexion);
+    }
+
+    //Editar password para recuperar
+    public function editarPassword($validador, $password)
+    {
+        //Instancia de la clase Db y llamada a la función crearConexión
+        $db = new Db;
+        $conexion = $db->crearConexion();
+
+        //Instrucción y ejecución SQL
+        $sql = 'UPDATE usuarios SET password ="' . $password . '" WHERE validador = "' . $validador . '"';
+        $resultado = mysqli_query($conexion, $sql);
+
+        //Comprobamos que se ejecuta correctamente
+        if ($resultado) {
+            return $resultado;
+        } else {
+            echo "Error al Actualizar el Password";
+        }
+
+        //Cerramos la conexión
+        $db->cerrarConexion($conexion);
+    }
+
     //Eliminar un usuario en base a su id
     public function eliminarUsuario($id)
     {

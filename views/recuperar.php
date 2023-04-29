@@ -1,33 +1,44 @@
 <?php 
-    include '../templates/header.php';
+    include_once '../templates/header.php';
+    include_once '../templates/alertas.php';
+    include_once '../controller/Alertas.php';
+    include_once '../controller/Usuarios.php';
+    include_once '../phpmailer/EnviarEmail.php';
     $url_absoluta = "http://localhost/PRIlerna/";
+    $alertas = new Alertas();
+    $usuario = new Usuarios();
+    $mail = new EnviarEmail();
 ?>
 
 <div class="container-md recupera">
     <img src="../img/Logo.png" class="img-fluid" alt="Logo">
 
-    <form class="form-recupera">
+    <form class="form-recupera" action="recuperar.php" method="POST">
 
-        <p>Falta ver si solo es con Email</p>
-        <p>Y acabar de ajustar estilos</p>
-        <p>ñadir el ojete de la contraseña</p>
+    <?php
+        if (isset($_POST['recuperar'])) {
+            $email = $_POST['email'];
+            $validarDatos = $alertas->validarDatosRecuperar($email);
+        
+            if ($validarDatos) {
+                mostrarAlertas($validarDatos);
+            } else {
+                $usuario->actualizarValidador($email);
+                $datosUsuario = $usuario->obtenerDatosUsuario($email);
+                $nombre = $datosUsuario['nombre'];
+                $validador = $datosUsuario['validador'];
+                $mail -> enviarEmailRecuperar($email, $nombre, $validador);
+                header('Location: ins_recuperar.php');
+            }
+        }
+        ?>
 
         <div class="mb-3">
-            <label for="emailUsuario" class="form-label">Email</label>
-            <input type="email" class="form-control" id="emailUsuario" placeholder="Tu Email" required>
+            <label for="email" class="form-label">Email</label>
+            <input type="email" name="email" class="form-control" id="emailUsuario" placeholder="Tu Email" required>
         </div>
 
-        <div class="mb-3">
-            <label for="passwordUsuario" class="form-label">Password</label>
-            <input type="password" class="form-control" id="passwordUsuario" placeholder="Introduce una Contraseña Nueva" required>
-        </div>
-
-        <div class="mb-3">
-            <label for="passwordUsuario" class="form-label">Repetir Password</label>
-            <input type="password" class="form-control" id="passwordUsuario" placeholder="Introduce una Contraseña Nueva" required>
-        </div>
-
-        <input type="submit" class="boton-submit" value="Recuperar Contraseña" />
+        <input type="submit" name='recuperar' class="boton-submit" value="Recuperar Contraseña" />
 
         <div class="links">
             <a name="index" id="index" href="<?php echo $url_absoluta; ?>">¿Ya tienes cuenta?</a>
@@ -37,4 +48,4 @@
 </div>
 
 
-<?php include '../templates/footer.php' ?>
+<?php include_once '../templates/footer.php' ?>

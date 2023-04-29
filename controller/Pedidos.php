@@ -181,37 +181,98 @@ class Pedidos
                             <tr>\n
                                 <td>" . $fila['descripcion'] . "</td>\n
                                 <td>\n
-                                    <img width='50' class='img-fluid rounded'
+                                    <img class='img-fluid rounded'
                                     src = '../../images/" . $fila["imagen"] . "' alt=''/>\n
                                 </td>\n
                                 <td>" . $fila['grupo'] . "</td>\n
                                 <td>" . $fila['precio'] . "</td>\n
                                 <td>\n
                                     <form method='POST' action='act_carrito.php'>\n
-                                        <input type='number' name='cantidad' value=" . $item['cantidad'] . " min=1>\n
+                                        <input class='cantidad' type='number' name='cantidad' value=" . $item['cantidad'] . " min=1>\n
                                         <input type='hidden' name='id' value=" . $item['id'] . ">\n
-                                        <input type='submit' name='actualizar' value='Actualizar'>\n
+                                        <input class='actualizar' type='submit' name='actualizar' value='🔄️'>\n
                                     </form>\n
                                 </td>\n
-                                <td>" . $subtotal . " €</td>\n
-                                <td>\n
-                                    <form method='POST' action='eliminar_carrito.php'>\n
-                                        <input type='hidden' name='id' value=" . $item['id'] . ">\n
-                                        <input type='submit' name='eliminar' value='Eliminar'>\n
-                                    </form>\n
-                                </td>\n
-                            </tr>\n
-                        </tbody>";
+                                <td>" . $subtotal . " €</td>\n";
+
+                                if($fila['grupo'] == '3D'){
+                                    echo "<td>\n
+                                            <form method='POST' action='personalizar_3d.php'>\n
+                                                <input type='hidden' name='id' value=" . $item['id'] . ">\n
+                                                <input class='personalizar' type='submit' name='personalizar' value='✏️'>\n
+                                            </form>\n
+                                        </td>\n";
+                                } else if($fila['grupo'] == 'Laser') {
+                                    echo "<td>\n
+                                            <form method='POST' action='personalizar_laser.php'>\n
+                                                <input type='hidden' name='id' value=" . $item['id'] . ">\n
+                                                <input class='personalizar' type='submit' name='personalizar' value='✏️'>\n
+                                            </form>\n
+                                        </td>\n";
+                                }
+                            
+                    echo  " <td>\n
+                                <form method='POST' action='eliminar_carrito.php'>\n
+                                    <input type='hidden' name='id' value=" . $item['id'] . ">\n
+                                    <input class='eliminar' type='submit' name='eliminar' value='🗑️'>\n
+                                </form>\n
+                            </td>\n
+                        </tr>\n
+                    </tbody>";
                 }
             }
         }
         echo "<tfoot>\n
                 <tr>\n
-                    <th colspan='5'>Total a Pagar</th>\n
+                    <th colspan='6'>Total a Pagar</th>\n
                     <td><strong>" . $total . " €</<strong></td>\n
                     <td></td>\n
                 </tr>\n
             </tfoot>";
+    }
+
+    public function agregarPersonalizar($id, $texto, $color, $disenyo, $fecha)
+    {
+        $cons_articulos = new Cons_Articulos;
+        $datos = $cons_articulos -> getArticulo($id);
+
+        if(is_string($datos)){
+            echo $datos;
+        } elseif ($datos){
+            while($fila = mysqli_fetch_assoc($datos)){
+                $articulo = $fila['descripcion'];
+            }
+        }
+
+        $datos_personalizar = [
+            'id' => $id,
+            'articulo' => $articulo,
+            'texto' => $texto,
+            'color' => $color,
+            'disenyo' => $disenyo,
+            'fecha' => $fecha
+        ];
+        return $datos_personalizar;
+    }
+
+
+    public function mostrarArticuloPersonalizar($id)
+    {
+            $consultas = new Cons_Articulos();
+            $datos = $consultas->getArticulo($id);
+
+            if (is_string($datos)) {
+                echo $datos;
+            } else if ($datos) {
+                while ($fila = mysqli_fetch_assoc($datos)) {
+                    echo "<div class='titulo-personalizar'>\n
+                            <h4>".$fila['descripcion']."</h4>\n
+                        </div>\n
+                        <div class='imagen-personalizar'>\n
+                            <img src='../../images/".$fila['imagen']."' alt='Imagen Articulo'>\n
+                    </div>";
+                }
+            }
     }
 
     public function mostrarResumen()
@@ -246,7 +307,7 @@ class Pedidos
         }
         echo "<tfoot>\n
                 <tr>\n
-                    <th colspan='5'>Total a Pagar</th>\n
+                    <th colspan='4'>Total a Pagar</th>\n
                     <td><strong>" . $total . " €</<strong></td>\n
                     <td></td>\n
                 </tr>\n

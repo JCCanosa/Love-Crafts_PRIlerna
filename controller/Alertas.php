@@ -6,23 +6,24 @@ include_once __DIR__ . '../../controller/Login.php';
 class Alertas
 {
 
-    public function validarDatosLogin($email, $password){
+    public function validarDatosLogin($email, $password)
+    {
         $cons_login = new Cons_Login();
         $login = new Login();
-        $val_email = $cons_login -> getEmail($email);
-        $val_password = $login -> obtenerPassword($email);
-        $val_confirmado = $login -> validarConfirmado($email);
+        $val_email = $cons_login->getEmail($email);
+        $val_password = $login->obtenerPassword($email);
+        $val_confirmado = $login->validarConfirmado($email);
         $alertas = [];
 
         if (empty($email) || empty($val_email)) {
             $alertas['error'][] =  'Debe introducir un Email válido';
         }
-        
+
         if (empty($password) || !password_verify($password, $val_password)) {
             $alertas['error'][] =  'Debe introducir un Password válido';
         }
 
-        if ($val_confirmado == 0){
+        if ($val_confirmado == 0) {
             $alertas['error'][] = 'Antes de acceder debe confirmar su dirección de correo';
         }
 
@@ -40,7 +41,7 @@ class Alertas
         if (empty($nombre) || empty($apellidos) || empty($email) || empty($password) || empty($telefono)) {
             $alertas['error'][] =  'Todos los campos son Obligatorios';
         }
-        if(!empty($val_email)){
+        if (!empty($val_email)) {
             $alertas['error'][] =  'La dirección de correo introducida ya existe';
         }
         if (strlen($password) < 6) {
@@ -53,6 +54,36 @@ class Alertas
             $alertas['error'][] =  'El Teléfono debe contener 9 Números';
         }
 
+        return $alertas;
+    }
+
+    //Validar datos de formulario recuperar
+    public function validarDatosRecuperar($email)
+    {
+        $alertas = [];
+        $login = new Login();
+        $val_email = $login->existeEmail($email);
+
+        if (empty($email)) {
+            $alertas['error'][] =  'El Email es Obligatorio';
+        }
+        if (empty($val_email)) {
+            $alertas['error'][] =  'La dirección de correo introducida No existe';
+        }
+        return $alertas;
+    }
+
+    //Validar datos de formulario recuperar
+    public function validarNuevoPassword($password)
+    {
+        $alertas = [];
+
+        if (empty($password)) {
+            $alertas['error'][] =  'El Password es Obligatorio';
+        }
+        if (strlen($password) < 6) {
+            $alertas['error'][] =  'El Password debe contener al menos 6 cáracteres';
+        }
         return $alertas;
     }
 

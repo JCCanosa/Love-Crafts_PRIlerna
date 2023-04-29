@@ -7,28 +7,36 @@ $pedido = new Pedidos();
 
 session_start();
 if(isset($_POST)){
+    $pedidoPor = $_SESSION['nombre'];
+    $email = $_SESSION['email'];
+    $metodoEntrega = $_POST['entrega'];
+    $calle = $_POST['calle'];
+    $numero = $_POST['numero'];
+    $piso_puerta = $_POST['piso_puerta'];
+    $cp = $_POST['cp'];
+    $poblacion = $_POST['poblacion'];
+    $provincia = $_POST['provincia'];
+    $comentarios = $_POST['comentarios'];
+
+    if(isset($_POST['bizzum'])){
+        $metodoPago = $_POST['bizzum'];
+    } elseif (isset($_POST['efectivo'])){
+        $metodoPago = $_POST['efectivo'];
+    }
+
     foreach ($_SESSION['carrito'] as $compra){
-        $pedidoPor = $_SESSION['nombre'];
-        $email = $_SESSION['email'];
         $articulo = $compra['descripcion'];
         $cantidad = $compra['cantidad'];
-
-        if(isset($_POST['bizzum'])){
-            $metodoPago = $_POST['bizzum'];
-        } elseif (isset($_POST['efectivo'])){
-            $metodoPago = $_POST['efectivo'];
-        }
-
-        var_dump($_POST);
-
-        // $pedido->guardarPedido($pedidoPor, $articulo, $cantidad);
+        $pedido->guardarPedido($pedidoPor, $articulo, $cantidad);
     }
 
     // Enviar email de resumen
-    // $mail->enviarEmailPedido($email, $pedidoPor, $metodoPago);
-    
-    // Vaciar carrito
-    // $_SESSION['carrito'] = [];
+    $mail->enviarEmailPedido($email, $pedidoPor, $metodoPago, $metodoEntrega);
+    $mail->enviarEmailAdmin($pedidoPor, $metodoPago, $metodoEntrega, $calle, $numero, $piso_puerta, $cp, $poblacion, $provincia, $comentarios);
+
+    // Vaciar carrito y personalizar
+    $_SESSION['carrito'] = [];
+    $_SESSION['personalizar'] = [];
 }
 ?>
 

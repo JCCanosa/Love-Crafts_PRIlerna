@@ -1,7 +1,10 @@
 /* Estilos personalizados de componentes de las vistas */
+* {
+    font-family: 'Ubuntu', sans-serif;
+}
 
 /* BOTONES */
-.boton-submit{
+.boton-submit {
     background-color: #2B3035;
     width: 100%;
     color: white;
@@ -9,21 +12,22 @@
     padding: 8px;
 }
 
-.boton-submit:hover{
+.boton-submit:hover {
     background-color: rgba(43, 48, 53, 0.8);
 }
 
-.carrito{
+.carrito {
     background-color: #2B3035;
     padding: 10px;
     border-radius: 50%;
 }
 
-.carrito-lleno{
+.carrito-lleno {
     background-color: rgb(0, 73, 146);
 }
 
-.boton-anadir-articulo{
+.boton-anadir-articulo {
+    margin-top: 10px;
     margin-bottom: 10px;
     padding: 5px 20px;
     background-color: #6c7680;
@@ -33,12 +37,77 @@
     font-weight: bold;
 }
 
-.boton-anadir-articulo:hover{
+.boton-anadir-articulo:hover {
     background-color: #828f9c;
 }
 
+.btn-volver-siguiente {
+    background-color: #3B3B3B;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: white;
+    font-size: 30px;
+    border-radius: 10px;
+}
+
+.btn-volver-siguiente:hover {
+    color: orange;
+}
+
+
+/* BOTONES TABLAS USR */
+.actualizar {
+    border: none;
+    background: #00A6ED;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.eliminar {
+    border: none;
+    background-color: rgb(192, 0, 0);
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+/* BOTONES PAGO */
+.btn-pago {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: orange;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: small;
+}
+
+.btn-pago:first-child {
+    padding: 0;
+}
+
+.btn-pago img {
+    width: 20%;
+}
+
+/* BOTONES ADMIN */
+.btn-area-admin {
+    background-color: #2B3035;
+    text-decoration: none;
+    width: 100%;
+    color: white;
+    border-radius: 10px;
+    padding: 8px;
+}
+
+.btn-area-admin:hover {
+    background-color: rgba(43, 48, 53, 0.8);
+    color: white;
+}
+
+
 /* SECCION LOGIN */
-.login{
+.login {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -46,46 +115,47 @@
     height: 90vh;
 }
 
-.login img{
+.login img {
     width: 300px;
 }
 
-.form-login{
+
+.form-login {
     width: 37%;
     display: flex;
     flex-direction: column;
 }
 
-.form-login label{
+.form-login label {
     color: white;
     font-weight: bold;
 }
 
-.form-login input:not([type='submit']){
+.form-login input:not([type='submit']) {
     background-color: rgba(255, 255, 255, 0.3);
     border: none;
 }
 
-.links{
+.links {
     display: flex;
     justify-content: space-between;
-    margin-top: 30px;
+    margin-top: 40px;
 }
 
-.links a{
+.links a {
     text-decoration: none;
     color: black;
     font-weight: bold;
     transition: all 300ms;
 }
 
-.links a:hover{
+.links a:hover {
     color: white;
 }
 
 /* FORMULARIO DE REGISTRO Y RECUPERAR CONTRASEÑA */
 .registro,
-.recupera{
+.recupera {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -94,109 +164,121 @@
 }
 
 .registro img,
-.recupera img{
+.recupera img {
     width: 200px;
 }
 
 .form-registro,
-.form-recupera{
+.form-recupera {
     min-width: 450px;
 }
 
 .form-registro label,
-.form-recupera label{
+.form-recupera label {
     color: white;
     font-size: 85%;
     font-weight: bold;
 }
 
 .form-registro input:not([type='submit']),
-.form-recupera input:not([type='submit']){
+.form-recupera input:not([type='submit']) {
     background-color: rgba(255, 255, 255, 0.3);
     border: none;
 }
 
 .form-registro input[type='submit'],
-.form-recupera input[type='submit']{
+.form-recupera input[type='submit'] {
     margin-top: 15px;
     width: 100%;
 }
 
 /* ESTILOS DE CONFIRMADO */
-.contenedor{
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   margin-top: 80px;
-   margin-bottom: 100px;
+.contenedor {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 80px;
+    margin-bottom: 100px;
 }
 
-.contenedor-imagen{
+.contenedor-imagen {
     width: 450px;
 }
 
-.contenedor-titulo{
+.contenedor-titulo {
     font-weight: bold;
     margin-top: 20px;
     color: white;
 }
 
-.contenedor-p{
+.contenedor-p {
     font-size: large;
     margin-top: 10px;
     text-align: center;
     color: white;
 }
 
-.contenedor-h{
+.contenedor-h {
     margin-top: 10px;
     text-align: center;
     color: white;
 }
 
-.contenedor-enlace{
+.contenedor-enlace {
     margin-top: 50px;
     color: orange;
 }
 
-.contenedor-enlace:hover{
+.contenedor-enlace:hover {
     color: rgb(222, 251, 59);
 }
 
 /* INDEX USUARIOS */
-.cabecera-usuario{
+.bienvenida {
+    color: white;
+}
+
+.titulo-usr {
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    color: white;
+    font-weight: bold;
+}
+
+.cabecera-usuario {
     display: flex;
     justify-content: space-between;
     margin: 50px;
 }
 
-.enlace-compra{
+.enlace-compra {
     text-decoration: none;
 }
 
-.articulos-usuarios{
+.articulos-usuarios {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 50px;
 }
 
-.tarjeta-imagen{
+.tarjeta-imagen {
     display: flex;
     justify-content: center;
     height: 80%;
-    border-bottom:2px solid #2B3035 ;
+    border-bottom: 2px solid #2B3035;
     border-top-right-radius: 8px;
     border-top-left-radius: 8px;
 }
 
-.tarjeta-imagen img{
+.tarjeta-imagen img {
     border-radius: 5px;
     width: 100%;
     height: 300px;
     overflow: hidden;
 }
 
-.tarjeta-articulo{
+.tarjeta-articulo {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -206,30 +288,292 @@
     border-radius: 10px;
 }
 
-.tarjeta-articulo h4{
+.tarjeta-articulo h4 {
     margin-top: 5px;
     font-weight: bold;
 }
 
-.tarjeta-articulo p{
+.tarjeta-articulo p {
     font-size: medium;
     font-weight: bold;
 }
 
-/* PAGINA DE PAGO */
-#formulario-envio{
+.tarjeta-articulo label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* CARRITO Y PAGO */
+/* SI NO HAY ARTICULOS */
+.no-articulos {
+    margin-top: 50px;
+    text-align: center;
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+}
+
+/* TABLA */
+.tabla-pedidos-usr {
+    margin: 0 auto;
+    width: 90%;
+    border-collapse: collapse;
+}
+
+.tabla-pedidos-usr tbody th,
+.tabla-pedidos-usr tbody td {
+    width: 10%;
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+    background-color: rgb(231, 228, 228);
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.tabla-pedidos-usr tbody td:last-child {
+    border-right: none;
+}
+
+.tabla-pedidos-usr th {
+    padding: 10px;
+    text-align: center;
+    background-color: rgb(59, 59, 59);
+    color: white;
+}
+
+.tabla-pedidos-usr tfoot th,
+.tabla-pedidos-usr tfoot td {
+    text-align: center;
+    background-color: rgb(59, 59, 59);
+    color: white;
+}
+
+/* CAMPO CANTIDAD */
+.cantidad {
+    width: 50px;
+    padding: 5px;
+}
+
+/* FORMULARIO PERSONALIZAR */
+.titulo-personalizar h4 {
+    text-align: center;
+    color: white;
+    font-weight: bold;
+}
+
+.imagen-personalizar {
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.imagen-personalizar img {
+    border-radius: 5px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.formulario-personalizar {
+    background-color: #3B3B3B;
+    width: 50%;
+    margin: 0 auto;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.campo-personalizar {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.campo-personalizar label {
+    color: white;
+    font-weight: bold;
+}
+
+.campo-personalizar span {
+    color: white;
+    font-size: small;
+    font-style: italic;
+}
+
+.campo-personalizar input[type='text'] {
+    border: none;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.titulo-colores {
+    color: white;
+}
+
+.radios-colores {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 20px;
+    gap: 20px;
+
+}
+
+.colores-personalizar {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid white;
+    cursor: pointer;
+}
+
+.colores-personalizar:checked {
+    border: 4px solid orange;
+}
+
+#black {
+    background-color: #000000;
+}
+
+#white {
+    background-color: #FFFFFF;
+}
+
+#grey {
+    background-color: #AAB8BE;
+}
+
+#mSilver {
+    background-color: #6B737D;
+}
+
+#red {
+    background-color: #C92D2B;
+}
+
+#pink {
+    background-color: #EB8198;
+}
+
+#green {
+    background-color: #589642;
+}
+
+#sGreen {
+    background-color: #86DCCB;
+}
+
+#yellow {
+    background-color: #FCE312;
+}
+
+#blue {
+    background-color: #1E47AD;
+}
+
+#sBlue {
+    background-color: #A0CAE8;
+}
+
+#granito {
+    background-image: url('../img/granito.png');
+    background-position: center;
+    background-size: contain;
+}
+
+.btn-personalizar {
+    width: fit-content;
+    margin: 0 auto;
+    margin-top: 40px;
+}
+
+/* FORMULARIO ENVIO Y COMENTARIOS */
+.form-envio-comentarios {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 50%;
+    margin-top: 20px;
+    padding: 50px;
+    border-radius: 10px;
+    background-color: #3B3B3B;
+}
+
+.form-envio-comentarios label,
+.form-envio-comentarios span {
+    margin-top: 15px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+.form-envio-comentarios span {
+    font-size: 12px;
+    font-style: italic;
+}
+
+.form-envio-comentarios select {
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.formulario-envio {
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+.formulario-envio h5 {
+    text-align: center;
+    color: white;
+}
+
+.formulario-envio input {
+    width: 100%;
+    border-radius: 5px;
+    border: none;
+}
+
+#formulario-envio {
     display: none;
 }
 
+.area-comentarios {
+    margin-top: 10px;
+    border-radius: 5px;
+}
+
+.botones-pago {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.botones-pago span {
+    margin: 0;
+}
+
+/* POSICIONAMIENTO BOTONES */
+.botones-volver-siguiente {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 25px;
+}
+
+
 /* ESTILOS VISTA ADMIN */
 /* NAVEGACION */
-.navegacion{
+.navegacion {
     background-color: #2B3035;
     border-radius: 10px;
     margin-top: 20px;
 }
 
-.navegacion-ul{
+.navegacion-ul {
     list-style: none;
     display: flex;
     justify-content: center;
@@ -238,7 +582,9 @@
     gap: 50px;
 }
 
-.navegacion-enlace{
+
+
+.navegacion-enlace {
     text-decoration: none;
     color: white;
     font-size: larger;
@@ -246,64 +592,52 @@
     transition: all 300ms;
 }
 
-.navegacion-enlace:hover{
+.navegacion-enlace:hover {
     color: rgb(144, 142, 142);
 }
 
-.enlace-admin{
+.enlace-admin {
     max-width: fit-content;
     margin: 0 auto;
     margin-bottom: 10px;
 }
 
+
 /* INDEX ADMIN */
-.tarjetas{
+
+.tarjetas {
     display: flex;
     justify-content: space-around;
     align-items: center;
     margin-top: 60px;
 }
 
-.tarjeta{
+.tarjeta {
     width: 300px;
     min-height: 600px;
 }
 
-.tarjeta-img-top{
+.tarjeta-img-top {
     width: fit-content;
 }
 
-.tarjeta-body{
+.tarjeta-body {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 20px;
 }
 
-.tarjeta-title{
+.tarjeta-title {
     color: white;
     font-weight: bold;
 }
 
-.tarjeta-text{
+.tarjeta-text {
     color: white;
 }
 
-.btn-area-admin{
-    background-color: #2B3035;
-    text-decoration: none;
-    width: 100%;
-    color: white;
-    border-radius: 10px;
-    padding: 8px;
-}
-
-.btn-area-admin:hover{
-    background-color: rgba(43, 48, 53, 0.8);
-    color: white;
-}
-
-.titulo-vista-admin{
+.titulo-vista-admin {
     margin-top: 40px;
     margin-bottom: 40px;
     text-align: center;
@@ -313,7 +647,7 @@
 
 
 /* ESTILOS DE MENSAJES DE VALIDACION */
-.exito{
+.exito {
     background-color: rgb(0, 167, 0);
     color: white;
     text-align: center;
@@ -322,7 +656,7 @@
     border-radius: 5px;
 }
 
-.error{
+.error {
     background-color: rgb(246, 70, 70);
     color: white;
     text-align: center;
@@ -331,7 +665,7 @@
     border-radius: 5px;
 }
 
-.vacio{
+.vacio {
     margin: 0 auto;
     width: 80%;
     background-color: darkcyan;
@@ -344,12 +678,28 @@
 }
 
 /* FOOTER */
-.footer{
+.footer {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
 }
 
-.footer p{
+.footer p {
     color: rgb(171, 171, 171);
     font-weight: bold;
+}
+
+.redes {
+    display: flex;
+    gap: 15px;
+}
+
+.redes a {
+    padding: 10px;
+}
+
+.redes a:hover {
+    background-color: #2B3035;
+    border-radius: 50%;
 }

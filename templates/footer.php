@@ -1,8 +1,19 @@
+<?php $url_absoluta = "http://localhost/PRIlerna/"; ?>
+
 </main>
 
 <footer class="footer">
+  <div class="copy">
   <p>&copy; Love & Crafts <?php echo date('Y'); ?></p>
-
+  </div>
+  <div class="redes">
+    <a href="https://www.instagram.com/loveandcrafts/">
+      <img src="<?php echo $url_absoluta; ?>img/instragram.svg" alt="Icono Instagram">
+    </a>
+    <a href="mailto:jcanosa1988@gmail.com">
+    <img src="<?php echo $url_absoluta; ?>img/arroba.svg" alt="Icono Arroba">
+    </a>
+  </div>
 </footer>
 
 

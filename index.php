@@ -41,9 +41,6 @@ $login = new Login();
             <a name="recuperar" id="recuperar" href="<?php echo $url_absoluta; ?>views/recuperar.php">¿Olvidaste tu Contraseña?</a>
         </div>
     </form>
-
-    <a href="<?php echo $url_absoluta; ?>views/admin">Admin</a>
-    <a href="<?php echo $url_absoluta; ?>views/usuarios">Usuarios</a>
 </div>
 
 

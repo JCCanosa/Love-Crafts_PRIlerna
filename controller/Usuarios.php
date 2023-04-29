@@ -18,6 +18,18 @@ class Usuarios
         return $validador;
     }
 
+    public function actualizarValidador($email){
+        $consultas = new Cons_Usuarios();
+        $validador = self::setValidador();
+        $consultas -> editarValidador($email, $validador);
+    }
+
+    public function actualizarPassword($validador, $password){
+        $consultas = new Cons_Usuarios();
+        $password = self::hashPassword($password);
+        $consultas -> editarPassword($validador, $password);
+    }
+
     //Inserción a la BD
     public function guardarUsuario($nombre, $apellidos, $email, $password, $telefono, $validador)
     {
