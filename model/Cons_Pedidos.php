@@ -158,4 +158,25 @@ class Cons_Pedidos
         //Cerramos la conexión
         $db->cerrarConexion($conexion);
     }
+
+    public function getPedidoBuscar($campo, $buscar)
+    {
+        //Instancia de la clase Db y llamada a la función crearConexión
+        $db = new Db;
+        $conexion = $db->crearConexion();
+
+        //Consulta y ejecución SQL
+        $sql = 'SELECT * FROM pedidos WHERE '. $campo .' LIKE "%' . $buscar . '%"';
+        $resultado = mysqli_query($conexion, $sql);
+
+        // Comprobamos que obtenemos el resultado
+        if (mysqli_num_rows($resultado) > 0) {
+            return $resultado;
+        } else {
+            // echo 'Error al filtrar usuarios';
+        }
+
+        //Cerramos la conexión
+        $db->cerrarConexion($conexion);
+    }
 }

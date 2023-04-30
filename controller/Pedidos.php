@@ -195,22 +195,22 @@ class Pedidos
                                 </td>\n
                                 <td>" . $subtotal . " €</td>\n";
 
-                                if($fila['grupo'] == '3D'){
-                                    echo "<td>\n
+                    if ($fila['grupo'] == '3D') {
+                        echo "<td>\n
                                             <form method='POST' action='personalizar_3d.php'>\n
                                                 <input type='hidden' name='id' value=" . $item['id'] . ">\n
                                                 <input class='personalizar' type='submit' name='personalizar' value='✏️'>\n
                                             </form>\n
                                         </td>\n";
-                                } else if($fila['grupo'] == 'Laser') {
-                                    echo "<td>\n
+                    } else if ($fila['grupo'] == 'Laser') {
+                        echo "<td>\n
                                             <form method='POST' action='personalizar_laser.php'>\n
                                                 <input type='hidden' name='id' value=" . $item['id'] . ">\n
                                                 <input class='personalizar' type='submit' name='personalizar' value='✏️'>\n
                                             </form>\n
                                         </td>\n";
-                                }
-                            
+                    }
+
                     echo  " <td>\n
                                 <form method='POST' action='eliminar_carrito.php'>\n
                                     <input type='hidden' name='id' value=" . $item['id'] . ">\n
@@ -234,12 +234,12 @@ class Pedidos
     public function agregarPersonalizar($id, $texto, $color, $disenyo, $fecha)
     {
         $cons_articulos = new Cons_Articulos;
-        $datos = $cons_articulos -> getArticulo($id);
+        $datos = $cons_articulos->getArticulo($id);
 
-        if(is_string($datos)){
+        if (is_string($datos)) {
             echo $datos;
-        } elseif ($datos){
-            while($fila = mysqli_fetch_assoc($datos)){
+        } elseif ($datos) {
+            while ($fila = mysqli_fetch_assoc($datos)) {
                 $articulo = $fila['descripcion'];
             }
         }
@@ -258,21 +258,21 @@ class Pedidos
 
     public function mostrarArticuloPersonalizar($id)
     {
-            $consultas = new Cons_Articulos();
-            $datos = $consultas->getArticulo($id);
+        $consultas = new Cons_Articulos();
+        $datos = $consultas->getArticulo($id);
 
-            if (is_string($datos)) {
-                echo $datos;
-            } else if ($datos) {
-                while ($fila = mysqli_fetch_assoc($datos)) {
-                    echo "<div class='titulo-personalizar'>\n
-                            <h4>".$fila['descripcion']."</h4>\n
+        if (is_string($datos)) {
+            echo $datos;
+        } else if ($datos) {
+            while ($fila = mysqli_fetch_assoc($datos)) {
+                echo "<div class='titulo-personalizar'>\n
+                            <h4>" . $fila['descripcion'] . "</h4>\n
                         </div>\n
                         <div class='imagen-personalizar'>\n
-                            <img src='../../images/".$fila['imagen']."' alt='Imagen Articulo'>\n
+                            <img src='../../images/" . $fila['imagen'] . "' alt='Imagen Articulo'>\n
                     </div>";
-                }
             }
+        }
     }
 
     public function mostrarResumen()
@@ -419,5 +419,85 @@ class Pedidos
         $total = $cantidad * $precioU;
 
         $consultas->setPedido($id_usuario, $pedidoPor, $id_articulo, $articulo, $cantidad, $precioU, $total, $pagado = 0, $entregado = 0);
+    }
+
+    public function buscadorArticulo($articulo)
+    {
+        $cons_articulos = new Cons_Articulos();
+        $datos = $cons_articulos->getArticuloBuscar($articulo);
+
+        if (is_string($datos)) {
+            echo $datos;
+        } else if ($datos) {
+            while ($fila = mysqli_fetch_assoc($datos)) {
+                echo "<form action='index.php' method=GET>
+                        <div class='tarjeta-articulo'>\n
+                            <div class='tarjeta-imagen'>\n
+                                <img src='../../images/" . $fila["imagen"] . "' alt='Foto Artículo'>\n
+                            </div>\n
+                            <h4>" . $fila['descripcion'] . "</h4>\n
+                            <p>" . $fila['precio'] . " €</p>\n
+                            <label for='cantidad'>Cantidad</label>
+                            <input class='cantidad' type='number' name='cantidad' value=1 min=1>\n
+                            <input type='hidden' name='id' value=" . $fila['id'] . ">\n
+                            <input type='submit' class='boton-anadir-articulo' name='crear-pedido' value='Añadir al Carrito'>\n
+                        </div>\n
+                    </form>";
+            }
+        } else {
+            echo "<p class='vacio'>Actualmente no hay artículos</p>";
+        }
+    }
+
+    public function buscarPedidoPorUsuarioAreaAdmin($campo, $buscar)
+    {
+        //Recogemos los datos
+        $consultas = new Cons_Pedidos();
+        $datos = $consultas->getPedidoBuscar($campo, $buscar);
+
+        //Recorremos el resultado de la consulta y mostramos el resultado
+        if (is_string($datos)) {
+            echo $datos;
+        } else if ($datos) {
+
+            while ($fila = mysqli_fetch_assoc($datos)) {
+                //Cambiamos el formato de salida de Pagado y Entregado para el usuario
+                $filaPagado = '';
+                if ($fila["pagado"] == 1) {
+                    $filaPagado = 'Si';
+                } else {
+                    $filaPagado = 'No';
+                }
+
+                $filaEntregado = '';
+                if ($fila["entregado"] == 1) {
+                    $filaEntregado = 'Si';
+                } else {
+                    $filaEntregado = 'No';
+                }
+
+                echo "<tr class='text-center'>\n
+                               <td>" . $fila["id"] . "</td>\n
+                               <td>" . $fila["pedidopor"] . "</td>\n
+                               <td>" . $fila["articulopedido"] . "</td>\n
+                               <td>" . $fila["cantidad"] . "</td>\n
+                               <td>" . $fila["preciou"] . " €</td>\n
+                               <td>" . $fila["total"] . " €</td>\n
+                               <td>" . $filaPagado . "</td>\n
+                               <td>" . $filaEntregado . "</td>\n
+                       <td>\n
+                           <a name='editar' id='editar' class='btn btn-success' href='editar.php?id=" . $fila["id"] . "' role='button'>Editar</a>\n
+                       </td>\n
+                       <td>\n
+                           <form action='index.php' method='POST'>\n
+                               <input type='hidden' name='numeroPedido' value='" . $fila['id'] . "'>\n
+                               <input type='submit' name='eliminarPedido' id='eliminar' class='btn btn-danger'value='Eliminar'>\n
+                           </form>\n
+                       </td>\n
+                   </tr>";
+            }
+        } else {
+            echo "<p class='vacio'>Actualmente no hay Pedidos</p>";
+        }
     }
 }

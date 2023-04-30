@@ -14,7 +14,19 @@ $alertas = new Alertas();
 <h3 class="titulo-vista-admin">Pedidos</h3>
 <div class="card">
     <div class="card-header">
-        <a name="crearPedido" id="crearPedido" class="btn btn-primary" href="crear.php" role="button">Crear Nuevo Pedido</a>
+        <div class="buscador-admin">
+            <a name="crearPedido" id="crearPedido" class="btn btn-primary" href="crear.php" role="button">Crear Nuevo Pedido</a>
+            <form action="index.php" method="get">
+                <label for="articulo">Artículo</label>
+                <input type="text" name="articulo">
+                <label for="pedidoPor">Pedido Por</label>
+                <input type="text" name="pedidoPor">
+                <label for="pagado">Pagados</label>
+                <input type="checkbox" name="pagado" value="1">
+                <input class="btn btn-primary" type="submit" name="buscar" value="Buscar">
+                <input class="btn btn-primary" type="submit" name="reset" value="Ver Todos">
+            </form>
+        </div>
     </div>
     <div class="card-body">
         <div class="table-responsive-sm">
@@ -36,25 +48,48 @@ $alertas = new Alertas();
                 <tbody>
 
                     <?php
-                        if (isset($_POST['editarPedido'])) {
-                            $id = intval($_POST['numeroPedido']);
-                            $cantidad = intval($_POST['cantidad']);
-                            $pagado = intval($_POST['pagado']);
-                            $entregado = intval($_POST['entregado']);
-                            $validarDatos = $alertas->validarDatosPedidosAct($cantidad);
-                            
-                            if($validarDatos){
-                                echo mostrarAlertas($validarDatos);
-                            } else {
-                                $consultas -> editarPedido($id, $cantidad, $pagado, $entregado);
-                                
-                            }
+                    if (isset($_POST['editarPedido'])) {
+                        $id = intval($_POST['numeroPedido']);
+                        $cantidad = intval($_POST['cantidad']);
+                        $pagado = intval($_POST['pagado']);
+                        $entregado = intval($_POST['entregado']);
+                        $validarDatos = $alertas->validarDatosPedidosAct($cantidad);
+
+                        if ($validarDatos) {
+                            echo mostrarAlertas($validarDatos);
+                        } else {
+                            $consultas->editarPedido($id, $cantidad, $pagado, $entregado);
                         }
-                        if (isset($_POST['eliminarPedido'])) {
-                            $id = intval($_POST['numeroPedido']);
-                            $consultas->eliminarPedido($id);
+                    }
+                    if (isset($_POST['eliminarPedido'])) {
+                        $id = intval($_POST['numeroPedido']);
+                        $consultas->eliminarPedido($id);
+                    }
+                    if(isset($_GET['buscar'])){
+                        $articulo = $_GET['articulo'];
+                        $pedidoPor = $_GET['pedidoPor'];
+                        if(isset($_GET['pagado'])){
+                            $pagado = $_GET['pagado'];
                         }
+     
+                        if($pedidoPor){
+                            $pedido->buscarPedidoPorUsuarioAreaAdmin('pedidopor', $pedidoPor);
+                        }
+                        if($articulo){
+                            $pedido->buscarPedidoPorUsuarioAreaAdmin('articulopedido', $articulo);
+                        }
+                        if(isset($pagado)){
+                            $pedido->buscarPedidoPorUsuarioAreaAdmin('pagado', $pagado);
+                        } else {
+                            $pedido->mostrarPedidos();
+                        }
+                                                
+                    } elseif (isset($_GET['reset'])){
                         $pedido->mostrarPedidos();
+                    } else {
+                        $pedido->mostrarPedidos();
+                    }
+                    
                     ?>
 
                 </tbody>

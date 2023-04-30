@@ -63,6 +63,13 @@
     padding: 5px 10px;
 }
 
+.personalizar{
+    border: none;
+    background-color: green;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
 .eliminar {
     border: none;
     background-color: rgb(192, 0, 0);
@@ -103,6 +110,36 @@
 .btn-area-admin:hover {
     background-color: rgba(43, 48, 53, 0.8);
     color: white;
+}
+
+/* BUSCADOR */
+.buscador {
+   display: flex;
+   justify-content: flex-end;
+   margin-bottom: 20px;
+}
+
+.buscador-admin{
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-buscador{
+    background-color: #3B3B3B;
+    padding: 5px 15px;
+    border-radius: 10px;
+}
+
+.form-buscador label{
+    margin-right: 5px;
+    color: white;
+    font-weight: bold;
+}
+
+.form-buscador input{
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
 }
 
 

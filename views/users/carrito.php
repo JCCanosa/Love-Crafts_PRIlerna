@@ -26,7 +26,6 @@ if(isset($_GET['guardarPersonalizar'])){
     }
 }
 
-var_dump($_SESSION);
 ?>
 
 <h1 class="titulo-usr">Carrito</h1>

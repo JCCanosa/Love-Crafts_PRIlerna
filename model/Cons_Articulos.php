@@ -114,6 +114,27 @@ class Cons_Articulos
         $db->cerrarConexion($conexion);
     }
 
+    public function getArticuloBuscar($descripcion)
+    {
+        //Instancia de la clase Db y llamada a la función crearConexión
+        $db = new Db;
+        $conexion = $db->crearConexion();
+
+        //Consulta y ejecución SQL
+        $sql = 'SELECT * FROM articulos WHERE descripcion LIKE "%' . $descripcion . '%"';
+        $resultado = mysqli_query($conexion, $sql);
+
+        // Comprobamos que obtenemos el resultado
+        if (mysqli_num_rows($resultado) > 0) {
+            return $resultado;
+        } else {
+            echo 'Error al filtrar articulo';
+        }
+
+        //Cerramos la conexión
+        $db->cerrarConexion($conexion);
+    }
+
     public function getPrecio($id)
     {
         //Instancia de la clase Db y llamada a la función crearConexión

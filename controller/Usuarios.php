@@ -91,6 +91,58 @@ class Usuarios
         }
     }
 
+    public function mostrarUsuariosBuscador($nombre)
+    {
+        //Recogemos los datos de la consulta
+        $consultas = new Cons_Usuarios();
+        $datos = $consultas->getUsuarioBuscar($nombre);
+
+        //Comprobamos y recorremos los datos recogidos
+        if (is_string($datos)) {
+            echo $datos;
+        } else if ($datos) {
+            while ($fila = mysqli_fetch_assoc($datos)) {
+
+                //Cambia el formato de salida de confirmado y permisos para que el usuario lo vea claro.
+                $filaConfirmado = '';
+                if ($fila["confirmado"] == 1) {
+                    $filaConfirmado = 'Si';
+                } else {
+                    $filaConfirmado = 'No';
+                }
+
+                $filaPermisos = '';
+                if ($fila["permisos"] == 1) {
+                    $filaPermisos = 'Administrador';
+                } else {
+                    $filaPermisos = 'Usuario';
+                }
+
+                //Muestra por pantalla una tabla con los usuarios
+                echo "<tr class='text-center'>
+                        <td>" . $fila["id"] . "</td>\n
+                        <td>" . $fila["nombre"] . "</td>\n
+                        <td>" . $fila["apellidos"] . "</td>\n
+                        <td>" . $fila["email"] . "</td>\n
+                        <td>" . $fila["telefono"] . "</td>\n
+                        <td>" . $filaConfirmado . "</td>\n
+                        <td>" . $filaPermisos . "</td>\n
+                        <td>\n
+                            <a name='editar' id='editar' class='btn btn-success' href='editar.php?id=" . $fila["id"] . "&permisos=" . $fila["permisos"] . "' role='button'>Editar</a>\n
+                        </td>\n
+                        <td>\n
+                            <form action='index.php' method='POST'>\n
+                                <input type='hidden' name='idUsuario' value='" . $fila['id'] . "'>\n
+                                <input type='submit' name='eliminarUsuario' id='eliminar' class='btn btn-danger'value='Eliminar'>\n
+                            </form>\n
+                        </td>\n
+                    </tr>";
+            }
+        } else {
+            echo "<p class='vacio'>No se ha registrado ningún Usuario</p>";
+        }
+    }
+
     //Muestra un usuario concreto en base a su id, para cuando entramos a editar.
     public function mostrarUnUsuario($id)
     {

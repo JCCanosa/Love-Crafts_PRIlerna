@@ -12,7 +12,14 @@ $consultas = new Cons_Usuarios();
 <h3 class="titulo-vista-admin">Usuarios Registrados</h3>
 <div class="card">
     <div class="card-header">
-        <br>
+        <div class="buscador-admin">
+            <form action="index.php" method="get">
+                <label for="nombre">Nombre</label>
+                <input type="text" name="nombre">
+                <input class="btn btn-primary" type="submit" name="buscar" value="Buscar">
+                <input class="btn btn-primary" type="submit" name="reset" value="Ver Todos">
+            </form>
+        </div>
     </div>
     <div class="card-body">
         <div class="table-responsive-sm">
@@ -41,7 +48,19 @@ $consultas = new Cons_Usuarios();
                         $id = intval($_POST['idUsuario']);
                         $consultas->eliminarUsuario($id);
                     }
-                    $usuario->mostrarUsuarios();
+
+                    if (isset($_GET['buscar'])) {
+                        $nombre = $_GET['nombre'];
+
+                        if ($nombre) {
+                            $usuario->mostrarUsuariosBuscador($nombre);
+                        }
+                    } elseif (isset($_GET['reset'])) {
+                        $usuario->mostrarUsuarios();
+                    } else {
+                        $usuario->mostrarUsuarios();
+                    }
+
                     ?>
                 </tbody>
             </table>

@@ -1,20 +1,29 @@
 <?php
-    include '../../../templates/header.php';
-    include '../../../templates/navAdmin.php';
-    include '../../../templates/alertas.php';
-    include_once __DIR__ . '../../../../controller/Articulos.php';
-    include_once __DIR__ . '../../../../controller/Alertas.php';
-    include_once __DIR__ . '../../../../model/Cons_Articulos.php';
-    $articulo = new Articulos();
-    $consultas = new Cons_Articulos();
-    $alertas = new Alertas();
+include '../../../templates/header.php';
+include '../../../templates/navAdmin.php';
+include '../../../templates/alertas.php';
+include_once __DIR__ . '../../../../controller/Articulos.php';
+include_once __DIR__ . '../../../../controller/Alertas.php';
+include_once __DIR__ . '../../../../model/Cons_Articulos.php';
+$articulos = new Articulos();
+$consultas = new Cons_Articulos();
+$alertas = new Alertas();
 ?>
 
 <br>
 <h3 class="titulo-vista-admin">Gestión de Artículos</h3>
 <div class="card">
     <div class="card-header">
-        <a name="crearArticulo" id="crearArticulo" class="btn btn-primary" href="crear.php" role="button">Crear Nuevo Artículo</a>
+        <div class="buscador-admin">
+            <a name="crearArticulo" id="crearArticulo" class="btn btn-primary" href="crear.php" role="button">Crear Nuevo Artículo</a>
+            <form action="index.php" method="get">
+                <label for="articulo">Artículo</label>
+                <input type="text" name="articulo">
+                <input class="btn btn-primary" type="submit" name="buscar" value="Buscar">
+                <input class="btn btn-primary" type="submit" name="reset" value="Ver Todos">
+            </form>
+        </div>
+
     </div>
     <div class="card-body">
         <div class="table-responsive-sm">
@@ -36,33 +45,32 @@
                     if (isset($_POST['editarArticulo'])) {
                         $_POST;
                     }
-                    
+
                     if (isset($_POST['agregarArticulo'])) {
                         $id = $_POST['idArt'];
                         $desc = $_POST['descripcionArticulo'];
                         $grupo = $_POST['grupoArticulo'];
                         $precio = $_POST['precioArticulo'];
                         $imagen = $_POST['fotoArticulo'];
-                        
+
                         $validarDatos = $alertas->validarDatosArticulos($desc, $precio, $grupo);
 
-                        if($validarDatos){
+                        if ($validarDatos) {
                             echo mostrarAlertas($validarDatos);
                         } else {
-                            $articulo->actualizarArticulos($id, $desc, $grupo, $precio);
+                            $articulos->actualizarArticulos($id, $desc, $grupo, $precio);
                             if (empty($_FILES['fotoArticulo']['name'])) {
                                 $imagen = $imagen;
-                            } else { 
+                            } else {
                                 $imagen = $_FILES['fotoArticulo']['name'];
-                                $articulo->actualizarImagen($id, $imagen);
-    
+                                $articulos->actualizarImagen($id, $imagen);
+
                                 $imagen = $_POST['fotoArticulo'];
                                 if (file_exists("../../../images/" . $imagen)) {
                                     unlink("../../../images/" . $imagen);
                                 }
                             }
                         }
-                        
                     }
 
                     if (isset($_POST['eliminarArticulo'])) {
@@ -75,7 +83,18 @@
                         $consultas->eliminarArticulo($id);
                     }
 
-                    $articulo->mostrarArticulos();
+                    if(isset($_GET['buscar'])){
+                        $articulo = $_GET['articulo'];
+     
+                        if($articulo){
+                            $articulos->mostrarArticulosBuscarAdmin($articulo);
+                        }
+                                                
+                    } elseif (isset($_GET['reset'])){
+                        $articulos->mostrarArticulos();
+                    } else {
+                        $articulos->mostrarArticulos();
+                    }
                     ?>
                 </tbody>
             </table>

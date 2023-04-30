@@ -73,6 +73,27 @@ class Cons_Usuarios
         $db->cerrarConexion($conexion);
     }
 
+    public function getUsuarioBuscar($nombre)
+    {
+        //Instancia de la clase Db y llamada a la función crearConexión
+        $db = new Db;
+        $conexion = $db->crearConexion();
+
+        //Consulta y ejecución SQL
+        $sql = 'SELECT * FROM usuarios WHERE nombre LIKE "%' . $nombre . '%"';
+        $resultado = mysqli_query($conexion, $sql);
+
+        // Comprobamos que obtenemos el resultado
+        if (mysqli_num_rows($resultado) > 0) {
+            return $resultado;
+        } else {
+            // echo 'Error al filtrar usuarios';
+        }
+
+        //Cerramos la conexión
+        $db->cerrarConexion($conexion);
+    }
+
     //Devolver un usuario mediante su email
     public function getUsuarioEmail($email)
     {
@@ -248,4 +269,5 @@ class Cons_Usuarios
         //Cerramos la conexión
         $db->cerrarConexion($conexion);
     }
+
 }

@@ -31,8 +31,26 @@ if (isset($_GET['crear-pedido'])) {
 
 <?php include_once '../../templates/navUsers.php'; ?>
 
+<div class="buscador">
+    <form class="form-buscador" action="index.php" method="get">
+        <label for="articulo">Buscar</label>
+        <input type="text" name="articulo">
+        <input class="boton-anadir-articulo" type="submit" name="buscar" value="Buscar">
+        <input class="boton-anadir-articulo" type="submit" name="reset" value="Ver Todos">
+    </form>
+</div>
+
 <div class="articulos-usuarios">
-    <?php echo $articulos->mostrarArticulosUsuarios(); ?>
+    <?php 
+        if(isset($_GET['buscar'])){
+            $articulo = $_GET['articulo'];
+            $pedido -> buscadorArticulo($articulo);
+        } elseif (isset($_GET['reset'])){
+            $articulos->mostrarArticulosUsuarios();
+        } else {
+            $articulos->mostrarArticulosUsuarios();
+        }
+    ?>
 </div>
 
 <?php include_once '../../templates/footer.php'; ?>
