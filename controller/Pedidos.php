@@ -44,12 +44,12 @@ class Pedidos
                         <td>" . $filaPagado . "</td>\n
                         <td>" . $filaEntregado . "</td>\n
                 <td>\n
-                    <a name='editar' id='editar' class='btn btn-success' href='editar.php?id=" . $fila["id"] . "' role='button'>Editar</a>\n
+                    <a name='editar' id='editar' class='btn btn-success' href='editar.php?id=" . $fila["id"] . "' role='button'>✏️</a>\n
                 </td>\n
                 <td>\n
                     <form action='index.php' method='POST'>\n
                         <input type='hidden' name='numeroPedido' value='" . $fila['id'] . "'>\n
-                        <input type='submit' name='eliminarPedido' id='eliminar' class='btn btn-danger'value='Eliminar'>\n
+                        <input type='submit' name='eliminarPedido' id='eliminar' class='btn btn-danger'value=🗑️>\n
                     </form>\n
                 </td>\n
             </tr>";
@@ -185,7 +185,7 @@ class Pedidos
                                     src = '../../images/" . $fila["imagen"] . "' alt=''/>\n
                                 </td>\n
                                 <td>" . $fila['grupo'] . "</td>\n
-                                <td>" . $fila['precio'] . "</td>\n
+                                <td>" . $fila['precio'] . " €</td>\n
                                 <td>\n
                                     <form method='POST' action='act_carrito.php'>\n
                                         <input class='cantidad' type='number' name='cantidad' value=" . $item['cantidad'] . " min=1>\n
@@ -224,11 +224,116 @@ class Pedidos
         }
         echo "<tfoot>\n
                 <tr>\n
-                    <th colspan='6'>Total a Pagar</th>\n
+                    <th>Total</th>\n
+                    <td></td>\n
+                    <td></td>\n
+                    <td></td>\n
+                    <td></td>\n
                     <td><strong>" . $total . " €</<strong></td>\n
+                    <td></td>\n
                     <td></td>\n
                 </tr>\n
             </tfoot>";
+    }
+
+    public function mostrarArticulosSeleccionadosDiv()
+    {
+        $total = 0;
+        foreach ($_SESSION['carrito'] as $id => $item) {
+            $consultas = new Cons_Articulos();
+            $datos = $consultas->getArticulo($id);
+
+            if (is_string($datos)) {
+                echo $datos;
+            } else if ($datos) {
+                while ($fila = mysqli_fetch_assoc($datos)) {
+                    $subtotal = $item['cantidad'] * $fila['precio'];
+                    $total = $total + $subtotal;
+
+                    echo "<div class='cabecera-usr cabecera-usr-producto'>\n
+                            <h5>Producto</h5>\n
+                        </div>\n
+                        <div class='contenido-usr'>\n
+                            <p>" . $fila['descripcion'] . "</p>\n
+                        </div>\n
+
+                        <div class='cabecera-usr'>\n
+                            <h5>Imagen</h5>\n
+                        </div>\n
+                        <div class='contenido-usr'>\n
+                            <img class='img-fluid rounded' src = '../../images/" . $fila["imagen"] . "' alt=''/>\n
+                        </div>\n
+
+                        <div class='cabecera-usr'>\n
+                            <h5>Grupo</h5>\n
+                        </div>\n
+                        <div class='contenido-usr'>\n
+                            <p>" . $fila['grupo'] . "</p>\n
+                        </div>\n
+
+                        <div class='cabecera-usr'>\n
+                            <h5>Precio Unitario</h5>\n
+                        </div>\n
+                        <div class='contenido-usr'>\n
+                            <p>" . $fila['precio'] . " €</p>\n
+                        </div>\n
+                        
+                        <div class='cabecera-usr'>\n
+                            <h5>Cantidad</h5>\n
+                        </div>\n
+                        <div class='contenido-usr'>\n
+                            <form method='POST' action='act_carrito.php'>\n
+                                <input class='cantidad' type='number' name='cantidad' value=" . $item['cantidad'] . " min=1>\n
+                                <input type='hidden' name='id' value=" . $item['id'] . ">\n
+                                <input class='actualizar' type='submit' name='actualizar' value='🔄️'>\n
+                            </form>\n
+                        </div>\n
+
+                        <div class='cabecera-usr'>\n
+                            <h5>Subtotal</h5>\n
+                        </div>\n
+                        <div class='contenido-usr'>\n
+                            <p>" . $subtotal . " €</p>\n
+                        </div>\n
+
+                        <div class='cabecera-usr'>\n
+                            <h5>Personalizar</h5>\n
+                        </div>\n";
+
+                        if ($fila['grupo'] == '3D') {
+                        echo "<div class='contenido-usr'>\n
+                                    <form method='POST' action='personalizar_3d.php'>\n
+                                        <input type='hidden' name='id' value=" . $item['id'] . ">\n
+                                        <input class='personalizar' type='submit' name='personalizar' value='✏️'>\n
+                                    </form>\n
+                            </div>\n";
+                        } else if ($fila['grupo'] == 'Laser') {
+                        echo "<div class='contenido-usr'>\n
+                                <form method='POST' action='personalizar_laser.php'>\n
+                                    <input type='hidden' name='id' value=" . $item['id'] . ">\n
+                                    <input class='personalizar' type='submit' name='personalizar' value='✏️'>\n
+                                </form>\n
+                            </div>\n";
+                        }
+
+                    echo  "<div class='cabecera-usr'>\n
+                            <h5>Eliminar del Carrito</h5>\n
+                        </div>\n 
+                        <div class='contenido-usr contenido-usr-eliminar'>\n
+                            <form method='POST' action='eliminar_carrito.php'>\n
+                                <input type='hidden' name='id' value=" . $item['id'] . ">\n
+                                <input class='eliminar' type='submit' name='eliminar' value='🗑️'>\n
+                            </form>\n
+                        </div>\n";
+                }
+            }
+        }
+        echo "<div class='cabecera-usr cabecera-usr-total'>\n
+                <h5>Total a Pagar</h5>\n
+            </div>\n 
+            <div class='contenido-usr contenido-usr-total'>\n
+                <p>" . $total . " €</p>\n
+            </div>\n";
     }
 
     public function agregarPersonalizar($id, $texto, $color, $disenyo, $fecha)
@@ -292,11 +397,6 @@ class Pedidos
                     echo "<tbody>\n
                             <tr>\n
                                 <td>" . $fila['descripcion'] . "</td>\n
-                                <td>\n
-                                    <img width='50' class='img-fluid rounded'
-                                    src = '../../images/" . $fila["imagen"] . "' alt=''/>\n
-                                </td>\n
-                                <td>" . $fila['grupo'] . "</td>\n
                                 <td>" . $fila['precio'] . "</td>\n
                                 <td>" . $item['cantidad'] . "</td>\n
                                 <td>" . $subtotal . "</td>\n
@@ -307,7 +407,7 @@ class Pedidos
         }
         echo "<tfoot>\n
                 <tr>\n
-                    <th colspan='4'>Total a Pagar</th>\n
+                    <th colspan='2'>Total a Pagar</th>\n
                     <td><strong>" . $total . " €</<strong></td>\n
                     <td></td>\n
                 </tr>\n

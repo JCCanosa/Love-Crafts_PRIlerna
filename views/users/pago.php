@@ -19,8 +19,7 @@ if (isset($_SESSION['carrito']) && !empty($_SESSION['carrito'])) { ?>
     <table class="tabla-pedidos-usr">
         <thead>
             <tr>
-                <th colspan='2'>Producto</th>
-                <th>Grupo</th>
+                <th>Producto</th>
                 <th>Precio</th>
                 <th>Cantidad</th>
                 <th>Total</th>
@@ -71,6 +70,12 @@ if (isset($_SESSION['carrito']) && !empty($_SESSION['carrito'])) { ?>
                 <label for="provincia">Provincia</label>
                 <input type="text" name="provincia" placeholder="Provincia">
             </div>
+        </div>
+
+        <div class="recogida" id="recogida">
+            <p>La recogida ,se podrá realizar cuando tengamos su artículo finalizado, en:</p>
+            <p>C/ Ramon y Cajal 23 2º A</p>
+            <p>25005 - Lleida</p>
         </div>
 
         <label for="comentarios">¿Quieres dejarnos algún comentario o sugerencia?</label>

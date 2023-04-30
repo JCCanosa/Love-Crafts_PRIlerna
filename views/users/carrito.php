@@ -10,7 +10,7 @@ if (!isset($_SESSION['nombre'])) {
 }
 include_once '../../templates/navUsers.php';
 
-if(isset($_GET['guardarPersonalizar'])){
+if (isset($_GET['guardarPersonalizar'])) {
     $id = $_GET['id'];
     $texto = $_GET['texto-personalizar'] ?? '';
     $color = $_GET['color'] ?? '';
@@ -33,22 +33,31 @@ if(isset($_GET['guardarPersonalizar'])){
 <?php
 if (isset($_SESSION['carrito']) && !empty($_SESSION['carrito'])) { ?>
 
-    <table class="tabla-pedidos-usr">
-        <thead>
-            <tr>
-                <th colspan='2'>Producto</th>
-                <th>Grupo</th>
-                <th>Precio</th>
-                <th>Cantidad</th>
-                <th>Total</th>
-                <th>Personalizar</th>
-                <th>Eliminar</th>
-            </tr>
-        </thead>
-        <?php
-        $pedido->mostrarArticulosSeleccionados();
-        ?>
-    </table>
+    <!-- Se oculta cuando el ancho de la pantalla es menor a 769px -->
+    <div class="tabla-pedidos">
+        <table class="tabla-pedidos-usr">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th>Imagen</th>
+                    <th>Grupo</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Total</th>
+                    <th>Personalizar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <?php
+            $pedido->mostrarArticulosSeleccionados();
+            ?>
+        </table>
+    </div>
+
+    <!-- Se muestra cuando el ancho de la pantalla es menor a 769px -->
+    <div class="pedidos-usr">
+            <?php $pedido->mostrarArticulosSeleccionadosDiv(); ?>
+    </div>
 
 <?php } else { ?>
 

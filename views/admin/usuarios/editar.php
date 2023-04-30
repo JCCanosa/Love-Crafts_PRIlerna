@@ -6,11 +6,10 @@
 ?>
 
 <br>
-<h3>Editar Usuario</h3>
 
 <div class="card">
     <div class="card-header">
-        <br>
+        Editar Usuario
     </div>
     <div class="card-body">
         <form action="index.php" method="post" name="editar">

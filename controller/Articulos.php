@@ -31,14 +31,14 @@ class Articulos
                             <input type='hidden' name='grupoArt' value='" . $fila['grupo'] . "'>\n
                             <input type='hidden' name='imagenArticulo' value='" . $fila['imagen'] . "'>\n
                             <input type='hidden' name='precioArt' value='" . $fila['precio'] . "'>\n
-                            <input type='submit' name='editarArt' id='editar' class='btn btn-success'value='Editar'>\n
+                            <input type='submit' name='editarArt' id='editar' class='btn btn-success'value=✏️>\n
                         </form>\n
                         </td>\n
                         <td>\n
                             <form action='index.php' method='POST'>\n
                                 <input type='hidden' name='idArticulo' value='" . $fila['id'] . "'>\n
                                 <input type='hidden' name='imagenArticulo' value='" . $fila['imagen'] . "'>\n
-                                <input type='submit' name='eliminarArticulo' id='eliminar' class='btn btn-danger'value='Eliminar'>\n
+                                <input type='submit' name='eliminarArticulo' id='eliminar' class='btn btn-danger'value=🗑️>\n
                             </form>\n
                         </td>\n
                     </tr>";

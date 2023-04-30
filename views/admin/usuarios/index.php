@@ -23,7 +23,7 @@ $consultas = new Cons_Usuarios();
     </div>
     <div class="card-body">
         <div class="table-responsive-sm">
-            <table class="table">
+            <table class="table table-usuarios">
                 <thead>
                     <tr class="text-center" style="background-color: #F7F7F7;">
                         <th scope="col">Id</th>

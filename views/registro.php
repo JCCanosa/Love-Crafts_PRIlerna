@@ -52,7 +52,7 @@ $alertas = new Alertas();
         </div>
         <div class="mb-3">
             <label for="passwordUsuario" class="form-label">Password</label>
-            <input type="tel" name="passwordUsuario" class="form-control" id="passwordUsuario" placeholder="Introduce una Contraseña">
+            <input type="password" name="passwordUsuario" class="form-control" id="passwordUsuario" placeholder="Introduce una Contraseña">
         </div>
         <input type="submit" name="registro" class="boton-submit" value="Registrarse" />
 

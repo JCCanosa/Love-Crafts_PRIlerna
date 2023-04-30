@@ -76,12 +76,12 @@ class Usuarios
                         <td>" . $filaConfirmado . "</td>\n
                         <td>" . $filaPermisos . "</td>\n
                         <td>\n
-                            <a name='editar' id='editar' class='btn btn-success' href='editar.php?id=" . $fila["id"] . "&permisos=" . $fila["permisos"] . "' role='button'>Editar</a>\n
+                            <a name='editar' id='editar' class='btn btn-success' href='editar.php?id=" . $fila["id"] . "&permisos=" . $fila["permisos"] . "' role='button'>✏️</a>\n
                         </td>\n
                         <td>\n
                             <form action='index.php' method='POST'>\n
                                 <input type='hidden' name='idUsuario' value='" . $fila['id'] . "'>\n
-                                <input type='submit' name='eliminarUsuario' id='eliminar' class='btn btn-danger'value='Eliminar'>\n
+                                <input type='submit' name='eliminarUsuario' id='eliminar' class='btn btn-danger'value=🗑️>\n
                             </form>\n
                         </td>\n
                     </tr>";

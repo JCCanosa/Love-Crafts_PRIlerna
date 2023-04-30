@@ -11,21 +11,20 @@ $login = new Login();
 
 <div class="container-md login">
     <img src="img/Logo.png" class="img-fluid" alt="Logo">
-    <form class="form-login" action="index.php" method="POST">
+    <?php
+    if (isset($_POST['login'])) {
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        $validarDatos = $alertas->validarDatosLogin($email, $password);
 
-        <?php
-        if (isset($_POST['login'])) {
-            $email = $_POST['email'];
-            $password = $_POST['password'];
-            $validarDatos = $alertas->validarDatosLogin($email, $password);
-        
-            if ($validarDatos) {
-                mostrarAlertas($validarDatos);
-            } else {
-                $login -> setLogin($email);
-            }
+        if ($validarDatos) {
+            mostrarAlertas($validarDatos);
+        } else {
+            $login->setLogin($email);
         }
-        ?>
+    }
+    ?>
+    <form class="form-login" action="index.php" method="POST">
 
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>

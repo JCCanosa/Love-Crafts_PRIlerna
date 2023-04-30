@@ -11,7 +11,7 @@ $alertas = new Alertas();
 ?>
 
 <br>
-<h3 class="titulo-vista-admin">Gestión de Artículos</h3>
+<h3 class="titulo-vista-admin">Artículos</h3>
 <div class="card">
     <div class="card-header">
         <div class="buscador-admin">
@@ -27,7 +27,7 @@ $alertas = new Alertas();
     </div>
     <div class="card-body">
         <div class="table-responsive-sm">
-            <table class="table">
+            <table class="table table-articulos">
                 <thead>
                     <tr class="text-center" style="background-color: #F7F7F7;">
                         <th scope="col">Id</th>

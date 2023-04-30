@@ -30,7 +30,7 @@ $alertas = new Alertas();
     </div>
     <div class="card-body">
         <div class="table-responsive-sm">
-            <table class="table">
+            <table class="table table-pedidos">
                 <thead>
                     <tr class="text-center" style="background-color: #F7F7F7;">
                         <th scope="col">Id</th>

@@ -42,7 +42,7 @@ if(isset($_POST)){
 
 <div class="container-md contenedor">
     <img class="contenedor-imagen" src="../../img/Logo.png" alt="Logo L&C">
-    <h1 class="contenedor-titulo"> Pedido Realizado con Éxito</h1>
+    <h1 class="contenedor-titulo"> Pedido Realizado</h1>
     <p class="contenedor-p">
         Le hemos enviado un correo con el resumen del pedido<br>
         <?php if(isset($_POST['bizzum'])){ ?>

@@ -128,7 +128,7 @@ class Cons_Articulos
         if (mysqli_num_rows($resultado) > 0) {
             return $resultado;
         } else {
-            echo 'Error al filtrar articulo';
+            // echo 'Error al filtrar articulo';
         }
 
         //Cerramos la conexión

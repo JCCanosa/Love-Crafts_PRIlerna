@@ -124,6 +124,68 @@
     justify-content: space-between;
 }
 
+@media screen and (max-width: 1200px) {
+    .buscador-admin{
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .buscador-admin form{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+}
+
+@media screen and (max-width: 992px) {
+    .buscador form{
+        width: 100%;
+        text-align: center;
+    }
+    
+    .buscador-admin form{
+        display: flex;
+        flex-direction: column;
+        align-items: normal;
+        gap: 5px;
+    }
+
+    .buscador-admin form input[type='checkbox']{
+        margin-bottom: 15px;
+    }
+
+    .table{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .table th{
+        display: none;
+    }
+
+    .table-usuarios td:first-child,
+    .table-usuarios td:nth-child(7){
+        display: none;
+    }
+}
+
+@media screen and (max-width: 769px) {
+    .buscador form{
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .table-pedidos td:first-child,
+    .table-pedidos td:nth-child(5),
+    .table-pedidos td:nth-child(7),
+    .table-pedidos td:nth-child(8),
+    .table-usuarios td:nth-child(4){
+        display: none;
+    }
+}
+
 .form-buscador{
     background-color: #3B3B3B;
     padding: 5px 15px;
@@ -163,6 +225,7 @@
     flex-direction: column;
 }
 
+
 .form-login label {
     color: white;
     font-weight: bold;
@@ -190,6 +253,18 @@
     color: white;
 }
 
+@media screen and (max-width: 720px) {
+    .form-login {
+        width: 80%;
+    }
+
+    .links {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+}
+
 /* FORMULARIO DE REGISTRO Y RECUPERAR CONTRASEÑA */
 .registro,
 .recupera {
@@ -198,6 +273,7 @@
     align-items: center;
     margin-top: 40px;
     margin-bottom: 60px;
+    width: 80%;
 }
 
 .registro img,
@@ -205,10 +281,6 @@
     width: 200px;
 }
 
-.form-registro,
-.form-recupera {
-    min-width: 450px;
-}
 
 .form-registro label,
 .form-recupera label {
@@ -242,10 +314,17 @@
     width: 450px;
 }
 
+@media screen and (max-width: 540px) {
+    .contenedor-imagen {
+        width: 250px;
+    }
+}
+
 .contenedor-titulo {
     font-weight: bold;
     margin-top: 20px;
     color: white;
+    text-align: center;
 }
 
 .contenedor-p {
@@ -297,6 +376,25 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 50px;
+}
+
+@media screen and (max-width: 1200px) {
+    .articulos-usuarios{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 769px) {
+    .cabecera-usuario{
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .articulos-usuarios{
+        grid-template-columns: repeat(1, 1fr);
+    }
+
 }
 
 .tarjeta-imagen {
@@ -357,6 +455,14 @@
     border-collapse: collapse;
 }
 
+
+@media screen and (max-width: 769px) {
+    .tabla-pedidos{
+        display: none;
+    }
+
+}
+
 .tabla-pedidos-usr tbody th,
 .tabla-pedidos-usr tbody td {
     width: 10%;
@@ -392,6 +498,56 @@
     padding: 5px;
 }
 
+/* CARRITO EN FORMATO DIV PARA RESOLUCIONES PEQUEÑAS */
+.pedidos-usr{
+    display: none;
+}
+
+.cabecera-usr,
+.contenido-usr{
+    padding: 10px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.cabecera-usr{
+    background-color: #3B3B3B;
+    color: white;
+}
+
+.cabecera-usr-producto,
+.cabecera-usr-total{
+    margin-top: 60px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.contenido-usr-eliminar,
+.contenido-usr-total{
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.contenido-usr{
+    background-color: #E7E4E4;
+    font-size: larger;
+}
+
+.contenido-usr p{
+    margin: 0;
+}
+
+.contenido-usr img{
+    max-width: 250px;
+}
+
+@media screen and (max-width: 769px) {
+    .pedidos-usr{
+        display: block;
+    }
+}
+
+
 /* FORMULARIO PERSONALIZAR */
 .titulo-personalizar h4 {
     text-align: center;
@@ -414,10 +570,16 @@
 
 .formulario-personalizar {
     background-color: #3B3B3B;
-    width: 50%;
+    width: 60%;
     margin: 0 auto;
     padding: 15px;
     border-radius: 10px;
+}
+
+@media screen and (max-width: 992px) {
+    .formulario-personalizar{
+        width: 100%;
+    }
 }
 
 .campo-personalizar {
@@ -530,11 +692,17 @@
     display: flex;
     flex-direction: column;
     margin: 0 auto;
-    width: 50%;
+    width: 60%;
     margin-top: 20px;
     padding: 50px;
     border-radius: 10px;
     background-color: #3B3B3B;
+}
+
+@media screen and (max-width: 992px) {
+    .form-envio-comentarios{
+        width: 100%;
+    }
 }
 
 .form-envio-comentarios label,
@@ -577,6 +745,19 @@
     display: none;
 }
 
+.recogida{
+    text-align: center;
+    color: white;
+}
+
+.recogida p:first-child{
+    font-weight: bold;
+}
+
+#recogida {
+    display: none;
+}
+
 .area-comentarios {
     margin-top: 10px;
     border-radius: 5px;
@@ -587,6 +768,12 @@
     display: flex;
     flex-direction: column;
     gap: 5px;
+}
+
+@media screen and (max-width: 769px) {
+    .btn-pago:first-child{
+        padding: 10px;
+    }
 }
 
 .botones-pago span {
@@ -619,7 +806,11 @@
     gap: 50px;
 }
 
-
+@media screen and (max-width: 769px) {
+    .navegacion-ul {
+        flex-direction: column;
+    }
+}
 
 .navegacion-enlace {
     text-decoration: none;
@@ -649,6 +840,7 @@
     margin-top: 60px;
 }
 
+
 .tarjeta {
     width: 300px;
     min-height: 600px;
@@ -665,6 +857,18 @@
     margin-top: 20px;
 }
 
+@media screen and (max-width: 769px) {
+    .tarjetas{
+        flex-direction: column;
+        margin-top: 30px;
+    }
+
+    .tarjeta {
+        width: 200px;
+        min-height: 450px;
+    }
+}
+
 .tarjeta-title {
     color: white;
     font-weight: bold;
@@ -678,40 +882,42 @@
     margin-top: 40px;
     margin-bottom: 40px;
     text-align: center;
-    color: lightgray;
+    color: white;
     font-weight: bold;
+}
+
+@media screen and (max-width: 720px) {
+    .card-header{
+        display: flex;
+        flex-direction: column;
+    }
 }
 
 
 /* ESTILOS DE MENSAJES DE VALIDACION */
-.exito {
-    background-color: rgb(0, 167, 0);
+.exito,
+.error,
+.vacio{
+    margin: 0 auto;
+    width: 50%;
     color: white;
     text-align: center;
-    margin-top: 10px;
+    margin-top: 5px;
     padding: 5px;
     border-radius: 5px;
+}
+
+.exito {
+    background-color: rgb(0, 167, 0);
 }
 
 .error {
     background-color: rgb(246, 70, 70);
-    color: white;
-    text-align: center;
-    margin-top: 10px;
-    padding: 5px;
-    border-radius: 5px;
 }
 
 .vacio {
-    margin: 0 auto;
-    width: 80%;
     background-color: darkcyan;
-    color: white;
-    text-align: center;
-    margin-top: 10px;
     margin-bottom: 10px;
-    padding: 5px;
-    border-radius: 5px;
 }
 
 /* FOOTER */

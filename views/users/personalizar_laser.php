@@ -25,9 +25,9 @@ include_once '../../templates/navUsers.php';
     </div>
 
     <div class="campo-personalizar">
-        <label for="diseño">Diseño</label>
+        <label for="disenyo">Diseño</label>
         <span>Solo para artículos con varios Diseños</span>
-        <input type="text" name="diseño" placeholder="Escribe aquí el Texto">
+        <input type="text" name="disenyo" placeholder="Escribe aquí el Texto">
     </div>
 
     <div class="campo-personalizar">
