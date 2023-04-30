@@ -14,6 +14,7 @@ $alertas = new Alertas();
     <img src="../img/Logo.png" class="img-fluid" alt="Logo">
 
     <?php
+    // Recogemos los datos del formulario los validamos y creamos el usuario
     if (isset($_POST['registro'])) {
         $nombre = $_POST['nombreUsuario'];
         $apellidos = $_POST['apellidosUsuario'];
@@ -23,16 +24,22 @@ $alertas = new Alertas();
         $validarDatos = $alertas->validarDatosRegistro($nombre, $apellidos, $email, $password, $telefono);
 
         if ($validarDatos) {
+            // Muestra las alertas
             echo mostrarAlertas($validarDatos);
         } else {
+            //Hace hash del password y lo guarda en la variable
             $password = $usuario->hashPassword($password);
+            //Crea un validador
             $validador = $usuario->setValidador();
+            //Guarda el usuario
             $usuario->guardarUsuario($nombre, $apellidos, $email, $password, $telefono, $validador);
+            //Envia el email
             $mail->enviarEmailRegistro($email, $nombre, $validador);
         }
     }
     ?>
 
+    <!-- Formulario de registro -->
     <form action="registro.php" method="POST" class="form-registro">
         <div class="mb-3">
             <label for="nombreUsuario" class="form-label">Nombre</label>

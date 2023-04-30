@@ -159,6 +159,7 @@ class Cons_Pedidos
         $db->cerrarConexion($conexion);
     }
 
+    // Consulta para buscar pedidos
     public function getPedidoBuscar($campo, $buscar)
     {
         //Instancia de la clase Db y llamada a la función crearConexión

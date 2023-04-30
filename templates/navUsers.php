@@ -1,3 +1,5 @@
+<!-- Cabecera para usuarios e iconos de carrito y cerrar sesión -->
+
 <div class="cabecera-usuario">
     <h1 class="bienvenida">Bienvenido <?php echo $_SESSION['nombre'] ?> !</h1>
     <div class="botones-compra">

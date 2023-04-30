@@ -13,6 +13,7 @@ $usuario = new Usuarios();
 
     <?php
 
+    //Comprobamos los datos y actualizamos el password
     if (isset($_POST['recuperar'])) {
         $password = $_POST['password'];
         $validarDatos = $alertas->validarNuevoPassword($password);
@@ -27,6 +28,7 @@ $usuario = new Usuarios();
     }
     ?>
 
+    <!-- Formulario de recuperar contraseña -->
     <form class="form-recupera" action="recuperar_pass.php?validador=<?php echo $_GET['validador'] ?>" method="POST">
         <div class="mb-3">
             <label for="password" class="form-label">Password</label>

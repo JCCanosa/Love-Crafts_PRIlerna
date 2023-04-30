@@ -5,7 +5,7 @@ include_once __DIR__ . '../../controller/Login.php';
 
 class Alertas
 {
-
+    //Validacion de los campos de login
     public function validarDatosLogin($email, $password)
     {
         $cons_login = new Cons_Login();

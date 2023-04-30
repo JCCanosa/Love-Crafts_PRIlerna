@@ -1,7 +1,4 @@
 <?php
-
-//Import PHPMailer classes into the global namespace
-//These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
@@ -13,6 +10,7 @@ require 'SMTP.php';
 
 class EnviarEmail
 {
+    //Email que se envia cuando se registra un usuario
     public function enviarEmailRegistro($email, $nombre, $validador)
     {
         $mail = new PHPMailer(true);
@@ -76,6 +74,7 @@ class EnviarEmail
         }
     }
 
+    //Email para recuperar contraseña
     public function enviarEmailRecuperar($email, $nombre, $validador)
     {
         $mail = new PHPMailer(true);
@@ -140,6 +139,7 @@ class EnviarEmail
         }
     }
 
+    //Email que se envia al usuario cuando hace un pedido
     public function enviarEmailPedido($email, $nombre, $metodoPago, $metodoEntrega)
     {
         $mail = new PHPMailer(true);
@@ -258,6 +258,7 @@ class EnviarEmail
         }
     }
 
+    //Email que se envia al admin cuando un usuario hace un pedido
     public function enviarEmailAdmin($nombre, $metodoPago, $metodoEntrega, $calle, $numero, $piso_puerta, $cp, $poblacion, $provincia, $comentarios)
     {
         $mail = new PHPMailer(true);

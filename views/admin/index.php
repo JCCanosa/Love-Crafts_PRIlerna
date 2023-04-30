@@ -4,6 +4,7 @@ include '../../templates/navAdmin.php';
 include_once __DIR__ . '/../../controller/Contadores.php';
 $contador = new Contadores();
 
+//Recuperamos la sesión y comprobamos que sea correcta
 session_start();
 if(!isset($_SESSION['nombre']) || $_SESSION['permisos'] != "1"){
   header('Location: http://localhost/PRIlerna/');
@@ -11,7 +12,7 @@ if(!isset($_SESSION['nombre']) || $_SESSION['permisos'] != "1"){
 }
 ?>
 
-
+<!-- Mostramos los contadores  -->
 <div class="container text-center">
   <a class="contenedor-enlace" href="http://localhost/PRIlerna/views/users">Ir al Panel de Usuarios</a>
   <div class="tarjetas">

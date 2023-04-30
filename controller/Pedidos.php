@@ -140,6 +140,7 @@ class Pedidos
         }
     }
 
+    //Crear y rellenar el array carrito
     public function agregarCarrito($id, $cantidad)
     {
         $consultas = new Cons_Articulos();
@@ -163,6 +164,7 @@ class Pedidos
         return $art_seleccionado;
     }
 
+    //Muestra la tabla de articulos del carrito
     public function mostrarArticulosSeleccionados()
     {
         $total = 0;
@@ -236,6 +238,7 @@ class Pedidos
             </tfoot>";
     }
 
+    //Muestra los articulos del carrito en divs cuando el ancho de la pantalla es menor a 769px
     public function mostrarArticulosSeleccionadosDiv()
     {
         $total = 0;
@@ -336,6 +339,7 @@ class Pedidos
             </div>\n";
     }
 
+    //Crea y rellena el array personalizar
     public function agregarPersonalizar($id, $texto, $color, $disenyo, $fecha)
     {
         $cons_articulos = new Cons_Articulos;
@@ -360,7 +364,7 @@ class Pedidos
         return $datos_personalizar;
     }
 
-
+    //Muestra el articulo seleccionado para personalizar
     public function mostrarArticuloPersonalizar($id)
     {
         $consultas = new Cons_Articulos();
@@ -380,6 +384,7 @@ class Pedidos
         }
     }
 
+    //Muestra el resumen del pedido
     public function mostrarResumen()
     {
         $total = 0;
@@ -521,6 +526,7 @@ class Pedidos
         $consultas->setPedido($id_usuario, $pedidoPor, $id_articulo, $articulo, $cantidad, $precioU, $total, $pagado = 0, $entregado = 0);
     }
 
+    //Muestra segun el campo buscador
     public function buscadorArticulo($articulo)
     {
         $cons_articulos = new Cons_Articulos();
@@ -549,6 +555,7 @@ class Pedidos
         }
     }
 
+    //Muestra segun lo que busquemos en la tabla de admin
     public function buscarPedidoPorUsuarioAreaAdmin($campo, $buscar)
     {
         //Recogemos los datos

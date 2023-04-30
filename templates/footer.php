@@ -2,6 +2,7 @@
 
 </main>
 
+<!-- Footer con links de contacto copy con fecha actualizable y cargas de JS -->
 <footer class="footer">
   <div class="copy">
   <p>&copy; Love & Crafts <?php echo date('Y'); ?></p>

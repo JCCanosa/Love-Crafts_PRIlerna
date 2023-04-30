@@ -3,6 +3,7 @@ include_once '../../templates/header.php';
 include_once '../../controller/Pedidos.php';
 $pedido = new Pedidos();
 
+//Recuperamos la sesión y comprobamos que sea correcta
 session_start();
 if (!isset($_SESSION['nombre'])) {
     header('Location: http://localhost/PRIlerna/');
@@ -12,11 +13,13 @@ include_once '../../templates/navUsers.php';
 ?>
 
 <?php
-    if(isset($_POST['personalizar'])){
-        $pedido->mostrarArticuloPersonalizar($_POST['id']);
-    }
+// Si venimos de personalizar mostramos el articulo
+if (isset($_POST['personalizar'])) {
+    $pedido->mostrarArticuloPersonalizar($_POST['id']);
+}
 ?>
 
+<!-- Formulario de personalizar laser -->
 <form class="formulario-personalizar" action="carrito.php" method="GET">
     <div class="campo-personalizar">
         <label for="texto-personalizar">Texto a Mostrar</label>

@@ -73,6 +73,7 @@ class Cons_Usuarios
         $db->cerrarConexion($conexion);
     }
 
+    // Busca por nombre de usuario
     public function getUsuarioBuscar($nombre)
     {
         //Instancia de la clase Db y llamada a la función crearConexión
@@ -116,6 +117,7 @@ class Cons_Usuarios
         $db->cerrarConexion($conexion);
     }
 
+    // Obtiene el id del usuario mediante su nombre
     public function getIdUsuarioNombre($nombre)
     {
         //Instancia de la clase Db y llamada a la función crearConexión
@@ -138,6 +140,7 @@ class Cons_Usuarios
         $db->cerrarConexion($conexion);
     }
 
+    // Obtiene los datos de un usuario mediante el validador
     public function getValidador($validador)
     {
         //Instancia de la clase Db y llamada a la función crearConexión
@@ -204,7 +207,7 @@ class Cons_Usuarios
         $db->cerrarConexion($conexion);
     }
 
-    //Editar los validador
+    //Editar validador
     public function editarValidador($email, $validador)
     {
         //Instancia de la clase Db y llamada a la función crearConexión

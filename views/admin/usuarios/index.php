@@ -6,8 +6,16 @@ include_once __DIR__ . '../../../../controller/Usuarios.php';
 include_once __DIR__ . '../../../../model/Cons_Usuarios.php';
 $usuario = new Usuarios();
 $consultas = new Cons_Usuarios();
+
+//Recuperamos la sesión y comprobamos que sea correcta
+session_start();
+if (!isset($_SESSION['nombre']) || $_SESSION['permisos'] != "1") {
+    header('Location: http://localhost/PRIlerna/');
+    exit();
+}
 ?>
 
+<!-- Tabla Usuarios -->
 <br>
 <h3 class="titulo-vista-admin">Usuarios Registrados</h3>
 <div class="card">
@@ -39,16 +47,20 @@ $consultas = new Cons_Usuarios();
                 </thead>
                 <tbody>
                     <?php
+                    //Si venimos de editarUsuario actualizamos con los nuevos datos
                     if (isset($_POST['editarUsuario'])) {
                         $permisos = intval($_POST['permisosUsuario']);
                         $id = intval($_POST['idUsuario']);
                         $consultas->editarPermisosUsuarios($permisos, $id);
                     }
+
+                    //Si venimos de eliminarUsuario lo borramos
                     if (isset($_POST['eliminarUsuario'])) {
                         $id = intval($_POST['idUsuario']);
                         $consultas->eliminarUsuario($id);
                     }
 
+                    //Si buscamos algun texto, mostramos los resultados si no lo mostramos todo
                     if (isset($_GET['buscar'])) {
                         $nombre = $_GET['nombre'];
 

@@ -4,6 +4,7 @@ require_once 'Db.php';
 
 class Cons_Login
 {
+    //Obtiene el email de un usuario
     public function getEmail($email)
     {
         // Nos conectamos a la BD
@@ -22,6 +23,7 @@ class Cons_Login
         }
     }
 
+    //Obtiene el password mediante el email
     public function getPassword($email)
     {
         // Nos conectamos a la BD
@@ -39,6 +41,7 @@ class Cons_Login
         }
     }
 
+    //Obtiene el valor de permisos mediante el email
     public function getPermisos($email)
     {
         // Nos conectamos a la BD
@@ -56,6 +59,7 @@ class Cons_Login
         }
     }
 
+    //Obtiene el valor de confirmado mediante el email
     public function getConfirmado($email)
     {
         // Nos conectamos a la BD
@@ -73,6 +77,7 @@ class Cons_Login
         }
     }
 
+    //Verificar si existe el email
     public function verificarEmail($email)
     {
         // Nos conectamos a la BD

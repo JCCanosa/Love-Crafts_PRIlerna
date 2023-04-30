@@ -5,7 +5,14 @@ include_once '../../phpmailer/EnviarEmail.php';
 $mail = new EnviarEmail();
 $pedido = new Pedidos();
 
+//Recuperamos la sesión y comprobamos que sea correcta
 session_start();
+if (!isset($_SESSION['nombre'])) {
+    header('Location: http://localhost/PRIlerna/');
+    exit();
+}
+
+//Recogemos los datos del formulario de envio, los datos de pago y del carrito
 if(isset($_POST)){
     $pedidoPor = $_SESSION['nombre'];
     $email = $_SESSION['email'];
@@ -40,6 +47,7 @@ if(isset($_POST)){
 }
 ?>
 
+<!-- Mostramos al usuario el mensaje que hemos enviado dependiendo de la forma de pago -->
 <div class="container-md contenedor">
     <img class="contenedor-imagen" src="../../img/Logo.png" alt="Logo L&C">
     <h1 class="contenedor-titulo"> Pedido Realizado</h1>

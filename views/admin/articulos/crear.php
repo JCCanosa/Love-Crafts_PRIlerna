@@ -5,9 +5,17 @@ include '../../../templates/alertas.php';
 include '../../../controller/Articulos.php';
 $articulo = new Articulos();
 $alertas = new Alertas();
-?>
-<br>
 
+//Recuperamos la sesión y comprobamos que sea correcta
+session_start();
+if (!isset($_SESSION['nombre']) || $_SESSION['permisos'] != "1") {
+    header('Location: http://localhost/PRIlerna/');
+    exit();
+}
+?>
+
+<!-- Formulario para crear articulos -->
+<br>
 <div class="card">
     <div class="card-header">
         Crear Nuevo Artículo
@@ -17,21 +25,21 @@ $alertas = new Alertas();
         <form action="crear.php" method="POST" enctype="multipart/form-data">
             <?php
 
-                if (isset($_POST['agregarArticulo'])) {
-                    $desc = $_POST['descArticulo'];
-                    $grupo = $_POST['grArticulo'];
-                    $imagen =  $_FILES['fotoArticulo']['name'];
-                    $precio = $_POST['precioArticulo'];
-                    $validarDatos = $alertas -> validarDatosArticulos($desc, $precio, $grupo);
+            // Si venimos de agregarArticulo validamos datos y guardamos
+            if (isset($_POST['agregarArticulo'])) {
+                $desc = $_POST['descArticulo'];
+                $grupo = $_POST['grArticulo'];
+                $imagen =  $_FILES['fotoArticulo']['name'];
+                $precio = $_POST['precioArticulo'];
+                $validarDatos = $alertas->validarDatosArticulos($desc, $precio, $grupo);
 
-                if($validarDatos){
+                if ($validarDatos) {
                     echo mostrarAlertas($validarDatos);
                 } else {
                     $archivoImagen = $articulo->guardarImagen();
                     $imagen = $archivoImagen;
                     $articulo->guardarArticulo($desc, $grupo, $imagen, $precio);
                 }
-
             }
             ?>
 

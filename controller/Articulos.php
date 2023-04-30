@@ -134,6 +134,7 @@ class Articulos
         }
     }
 
+    //Muestra articulos segun buscador
     public function mostrarArticulosBuscarAdmin($descripcion)
     {
         $consultas = new Cons_Articulos();

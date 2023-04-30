@@ -3,6 +3,7 @@ include_once '../../templates/header.php';
 include_once '../../controller/Pedidos.php';
 $pedido = new Pedidos();
 
+//Recuperamos la sesión y comprobamos que sea correcta
 session_start();
 if (!isset($_SESSION['nombre'])) {
     header('Location: http://localhost/PRIlerna/');
@@ -15,6 +16,8 @@ include_once '../../templates/navUsers.php';
 <h1 class="titulo-usr">Resumen del Pedido</h1>
 
 <?php
+
+//Comprobamos el carrito y mostramos el contenido de resumen
 if (isset($_SESSION['carrito']) && !empty($_SESSION['carrito'])) { ?>
     <table class="tabla-pedidos-usr">
         <thead>
@@ -30,6 +33,7 @@ if (isset($_SESSION['carrito']) && !empty($_SESSION['carrito'])) { ?>
         ?>
     </table>
 
+    <!-- Formulario de pago -->
     <form class="form-envio-comentarios" action="confirmarPedido.php" method="POST">
         <label for="entrega">¿Quieres que te enviemos el pedido?</label>
         <span>Envíos a todo el territorio Español</span>
@@ -39,6 +43,7 @@ if (isset($_SESSION['carrito']) && !empty($_SESSION['carrito'])) { ?>
             <option value="Enviar">Enviar</option>
         </select>
 
+        <!-- Parte condicional si se selecciona envio -->
         <div id='formulario-envio' class="formulario-envio">
             <h5>Dirección de Envío</h5>
             <div class="campo-direccion">
@@ -72,6 +77,7 @@ if (isset($_SESSION['carrito']) && !empty($_SESSION['carrito'])) { ?>
             </div>
         </div>
 
+        <!-- Parte condicional si se selecciona recogida -->
         <div class="recogida" id="recogida">
             <p>La recogida ,se podrá realizar cuando tengamos su artículo finalizado, en:</p>
             <p>C/ Ramon y Cajal 23 2º A</p>

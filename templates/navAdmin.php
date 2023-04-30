@@ -2,6 +2,7 @@
 $url_absoluta = "http://localhost/PRIlerna/";
 ?>
 
+<!-- Navegacion para el area de admin -->
 <header>
         <nav class="navegacion">
             <ul class="navegacion-ul">

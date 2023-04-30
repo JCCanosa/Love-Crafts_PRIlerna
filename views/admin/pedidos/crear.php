@@ -3,12 +3,18 @@ include_once '../../../templates/header.php';
 include_once '../../../templates/navAdmin.php';
 include_once '../../../templates/alertas.php';
 include_once '../../../controller/Pedidos.php';
-include_once '../../../model/Cons_Pedidos.php';
 $pedido = new Pedidos();
-$consultas = new Cons_Pedidos();
 $alertas = new Alertas();
+
+//Recuperamos la sesión y comprobamos que sea correcta
+session_start();
+if (!isset($_SESSION['nombre']) || $_SESSION['permisos'] != "1") {
+    header('Location: http://localhost/PRIlerna/');
+    exit();
+}
 ?>
 
+<!-- Formulario para crear un pedido manualmente -->
 <br>
 <div class="card">
     <div class="card-header">
@@ -18,6 +24,7 @@ $alertas = new Alertas();
 
         <form action="crear.php" method="POST">
             <?php
+            //Si pulsamos agregarPedido validamos datos y guardamos
             if (isset($_POST['agregarPedido'])) {
                 $pedidoPor = $_POST['pedidoPor'];
                 $articulo = $_POST['articulo'];

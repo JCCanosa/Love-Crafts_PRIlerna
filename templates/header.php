@@ -5,6 +5,8 @@ $url_absoluta = "http://localhost/PRIlerna/";
 <!doctype html>
 <html lang="en">
 
+<!-- Header Principal para todas las paginas -->
+
 <head>
     <title>Love & Crafts</title>
     <meta charset="utf-8">

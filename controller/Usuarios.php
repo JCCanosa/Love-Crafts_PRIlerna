@@ -18,12 +18,14 @@ class Usuarios
         return $validador;
     }
 
+    //Actualiza el validador
     public function actualizarValidador($email){
         $consultas = new Cons_Usuarios();
         $validador = self::setValidador();
         $consultas -> editarValidador($email, $validador);
     }
 
+    //Actualiza el password
     public function actualizarPassword($validador, $password){
         $consultas = new Cons_Usuarios();
         $password = self::hashPassword($password);
@@ -91,6 +93,7 @@ class Usuarios
         }
     }
 
+    //Muestra según el campo de busqueda
     public function mostrarUsuariosBuscador($nombre)
     {
         //Recogemos los datos de la consulta
@@ -217,6 +220,7 @@ class Usuarios
         }
     }
 
+    //Recupera los datos del usuario mediante el email pasado
     public function obtenerDatosUsuario($email){
         $consultas = new Cons_Usuarios();
         $datos = $consultas->getUsuarioEmail($email);
@@ -230,6 +234,7 @@ class Usuarios
         }
     }
 
+    //Confirma el usuario mediante el validador y cambia el valor de confirmado
     public function confirmarUsuario($validador){
         $consultas = new Cons_Usuarios();
         $datos = $consultas->getValidador($validador);

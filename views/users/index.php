@@ -1,18 +1,18 @@
 <?php
 include_once '../../templates/header.php';
-include_once '../../controller/Login.php';
 include_once '../../controller/Articulos.php';
 include_once '../../controller/Pedidos.php';
-$login = new Login();
 $articulos = new Articulos();
 $pedido = new Pedidos();
 
+//Recuperamos la sesión y comprobamos que sea correcta
 session_start();
 if(!isset($_SESSION['nombre'])){
     header('Location: http://localhost/PRIlerna/');
     exit();
 }
 
+//Obtenemos los datos de los articulos seleccionados y rellenamos carrito
 if (isset($_GET['crear-pedido'])) {
     $id = $_GET['id'];
     $cantidad = $_GET['cantidad'];
@@ -31,6 +31,7 @@ if (isset($_GET['crear-pedido'])) {
 
 <?php include_once '../../templates/navUsers.php'; ?>
 
+<!-- Formulario buscador -->
 <div class="buscador">
     <form class="form-buscador" action="index.php" method="get">
         <label for="articulo">Buscar</label>
@@ -42,6 +43,7 @@ if (isset($_GET['crear-pedido'])) {
 
 <div class="articulos-usuarios">
     <?php 
+        //Si hemos buscado algo lo mostramos si no lo mostramos todo
         if(isset($_GET['buscar'])){
             $articulo = $_GET['articulo'];
             $pedido -> buscadorArticulo($articulo);

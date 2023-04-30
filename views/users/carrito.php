@@ -3,6 +3,7 @@ include_once '../../templates/header.php';
 include_once '../../controller/Pedidos.php';
 $pedido = new Pedidos();
 
+//Recuperamos la sesión y comprobamos que sea correcta
 session_start();
 if (!isset($_SESSION['nombre'])) {
     header('Location: http://localhost/PRIlerna/');
@@ -10,6 +11,7 @@ if (!isset($_SESSION['nombre'])) {
 }
 include_once '../../templates/navUsers.php';
 
+//Recogemos los datos de personalizar y creamos el array
 if (isset($_GET['guardarPersonalizar'])) {
     $id = $_GET['id'];
     $texto = $_GET['texto-personalizar'] ?? '';
@@ -31,6 +33,7 @@ if (isset($_GET['guardarPersonalizar'])) {
 <h1 class="titulo-usr">Carrito</h1>
 
 <?php
+// Si hay contenido en carrito mostramos la tabla
 if (isset($_SESSION['carrito']) && !empty($_SESSION['carrito'])) { ?>
 
     <!-- Se oculta cuando el ancho de la pantalla es menor a 769px -->
@@ -61,6 +64,7 @@ if (isset($_SESSION['carrito']) && !empty($_SESSION['carrito'])) { ?>
 
 <?php } else { ?>
 
+    <!-- Cuando no hay nada mostramos un mensaje -->
     <p class="no-articulos">Debe Seleccionar al menos 1 artículo para continuar</p>
 
 <?php } ?>

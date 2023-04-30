@@ -28,6 +28,7 @@ class Cons_Articulos
         $db->cerrarConexion($conexion);
     }
 
+    // Obtiene un articulo mediante la id
     public function getArticulo($id)
     {
         //Instancia de la clase Db y llamada a la función crearConexión
@@ -49,6 +50,7 @@ class Cons_Articulos
         $db->cerrarConexion($conexion);
     }
 
+    // Obtiene el id del articulo mediante su descripcion
     public function getIdArticulo($descripcion)
     {
         //Instancia de la clase Db y llamada a la función crearConexión
@@ -71,6 +73,7 @@ class Cons_Articulos
         $db->cerrarConexion($conexion);
     }
 
+    // Obtiene el precio del articulo mediante su descripcion
     public function getPrecioPorDescripcion($descripcion)
     {
         //Instancia de la clase Db y llamada a la función crearConexión
@@ -93,6 +96,7 @@ class Cons_Articulos
         $db->cerrarConexion($conexion);
     }
 
+    //Obtiene los grupos de los articulos
     public function getGrupo($grupo)
     {
         //Instancia de la clase Db y llamada a la función crearConexión
@@ -114,6 +118,7 @@ class Cons_Articulos
         $db->cerrarConexion($conexion);
     }
 
+    //Busca articulos
     public function getArticuloBuscar($descripcion)
     {
         //Instancia de la clase Db y llamada a la función crearConexión
@@ -129,27 +134,6 @@ class Cons_Articulos
             return $resultado;
         } else {
             // echo 'Error al filtrar articulo';
-        }
-
-        //Cerramos la conexión
-        $db->cerrarConexion($conexion);
-    }
-
-    public function getPrecio($id)
-    {
-        //Instancia de la clase Db y llamada a la función crearConexión
-        $db = new Db;
-        $conexion = $db->crearConexion();
-
-        //Consulta y ejecución SQL
-        $sql = 'SELECT precio FROM articulos WHERE id=' . $id;
-        $resultado = mysqli_query($conexion, $sql);
-
-        // Comprobamos que obtenemos el resultado
-        if (mysqli_num_rows($resultado) > 0) {
-            return $resultado;
-        } else {
-            echo 'Error al consultar el precio';
         }
 
         //Cerramos la conexión

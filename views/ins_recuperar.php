@@ -4,6 +4,7 @@ include_once '../templates/header.php';
 
 ?>
 
+<!-- Instrucciones - Se muestran después del formulario de recuperar -->
 <div class="container-md contenedor">
     <img class="contenedor-imagen" src="../img/Logo.png" alt="Logo L&C">
     <h1 class="contenedor-titulo">Recuperar Contraseña</h1>

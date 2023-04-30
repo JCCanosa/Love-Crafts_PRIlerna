@@ -1,6 +1,6 @@
 
 // Condición formulario envio o recogida -> pago.php
-// Muestra el formulario cuando escogemos que se envie el pedido
+// Muestra el formulario cuando escogemos una opcion
 let opcion = document.getElementById('opcion')
 let formulario = document.getElementById('formulario-envio')
 let divRecogida = document.getElementById('recogida')

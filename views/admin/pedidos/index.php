@@ -8,8 +8,16 @@ include_once '../../../model/Cons_Pedidos.php';
 $pedido = new Pedidos();
 $consultas = new Cons_Pedidos();
 $alertas = new Alertas();
+
+//Recuperamos la sesión y comprobamos que sea correcta
+session_start();
+if (!isset($_SESSION['nombre']) || $_SESSION['permisos'] != "1") {
+    header('Location: http://localhost/PRIlerna/');
+    exit();
+}
 ?>
 
+<!-- Formulario de buscar y mostrar tabla de articulos -->
 <br>
 <h3 class="titulo-vista-admin">Pedidos</h3>
 <div class="card">
@@ -48,6 +56,7 @@ $alertas = new Alertas();
                 <tbody>
 
                     <?php
+                    //Si venimos de editarPedido, validamos datos y actualizamos pedidos
                     if (isset($_POST['editarPedido'])) {
                         $id = intval($_POST['numeroPedido']);
                         $cantidad = intval($_POST['cantidad']);
@@ -61,35 +70,37 @@ $alertas = new Alertas();
                             $consultas->editarPedido($id, $cantidad, $pagado, $entregado);
                         }
                     }
+                    //Si venimos de eliminarPedido lo eliminamos
                     if (isset($_POST['eliminarPedido'])) {
                         $id = intval($_POST['numeroPedido']);
                         $consultas->eliminarPedido($id);
                     }
-                    if(isset($_GET['buscar'])){
+
+                    //Si buscamos por alguno de los campos mostramos la tabla filtrada si no lo mostramos todo
+                    if (isset($_GET['buscar'])) {
                         $articulo = $_GET['articulo'];
                         $pedidoPor = $_GET['pedidoPor'];
-                        if(isset($_GET['pagado'])){
+                        if (isset($_GET['pagado'])) {
                             $pagado = $_GET['pagado'];
                         }
-     
-                        if($pedidoPor){
+
+                        if ($pedidoPor) {
                             $pedido->buscarPedidoPorUsuarioAreaAdmin('pedidopor', $pedidoPor);
                         }
-                        if($articulo){
+                        if ($articulo) {
                             $pedido->buscarPedidoPorUsuarioAreaAdmin('articulopedido', $articulo);
                         }
-                        if(isset($pagado)){
+                        if (isset($pagado)) {
                             $pedido->buscarPedidoPorUsuarioAreaAdmin('pagado', $pagado);
                         } else {
                             $pedido->mostrarPedidos();
                         }
-                                                
-                    } elseif (isset($_GET['reset'])){
+                    } elseif (isset($_GET['reset'])) {
                         $pedido->mostrarPedidos();
                     } else {
                         $pedido->mostrarPedidos();
                     }
-                    
+
                     ?>
 
                 </tbody>

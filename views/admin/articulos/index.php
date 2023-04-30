@@ -8,8 +8,16 @@ include_once __DIR__ . '../../../../model/Cons_Articulos.php';
 $articulos = new Articulos();
 $consultas = new Cons_Articulos();
 $alertas = new Alertas();
+
+//Recuperamos la sesión y comprobamos que sea correcta
+session_start();
+if (!isset($_SESSION['nombre']) || $_SESSION['permisos'] != "1") {
+    header('Location: http://localhost/PRIlerna/');
+    exit();
+}
 ?>
 
+<!-- Formulario de buscar y tabla de articulos -->
 <br>
 <h3 class="titulo-vista-admin">Artículos</h3>
 <div class="card">
@@ -41,11 +49,13 @@ $alertas = new Alertas();
                 </thead>
                 <tbody>
                     <?php
-
+                    //Si venimos de editar articulo pasamos los datos
                     if (isset($_POST['editarArticulo'])) {
                         $_POST;
                     }
 
+                    //Si venimos de agregarArticulo validamos los datos y guardamos
+                    // Comprobamos si hay que actualizar la imagen
                     if (isset($_POST['agregarArticulo'])) {
                         $id = $_POST['idArt'];
                         $desc = $_POST['descripcionArticulo'];
@@ -73,6 +83,7 @@ $alertas = new Alertas();
                         }
                     }
 
+                    //Si venimos de eliminarArticulo borramos el articulo y la imagen
                     if (isset($_POST['eliminarArticulo'])) {
                         $imagen = $_POST['imagenArticulo'];
                         if (file_exists("../../../images/" . $imagen)) {
@@ -83,14 +94,14 @@ $alertas = new Alertas();
                         $consultas->eliminarArticulo($id);
                     }
 
-                    if(isset($_GET['buscar'])){
+                    //Si buscamos algun articulo lo mostramos, si no mostramos todo
+                    if (isset($_GET['buscar'])) {
                         $articulo = $_GET['articulo'];
-     
-                        if($articulo){
+
+                        if ($articulo) {
                             $articulos->mostrarArticulosBuscarAdmin($articulo);
                         }
-                                                
-                    } elseif (isset($_GET['reset'])){
+                    } elseif (isset($_GET['reset'])) {
                         $articulos->mostrarArticulos();
                     } else {
                         $articulos->mostrarArticulos();

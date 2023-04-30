@@ -8,10 +8,11 @@ $alertas = new Alertas();
 $login = new Login();
 ?>
 
-
 <div class="container-md login">
     <img src="img/Logo.png" class="img-fluid" alt="Logo">
+
     <?php
+    //Comprobamos si los datos son correctos y creamos la sesión
     if (isset($_POST['login'])) {
         $email = $_POST['email'];
         $password = $_POST['password'];
@@ -24,8 +25,9 @@ $login = new Login();
         }
     }
     ?>
-    <form class="form-login" action="index.php" method="POST">
 
+    <!-- Formulario de login -->
+    <form class="form-login" action="index.php" method="POST">
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input type="email" class="form-control" name="email" id="email" placeholder="Introduzca Email">

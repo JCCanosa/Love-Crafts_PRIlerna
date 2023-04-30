@@ -5,6 +5,7 @@ include_once __DIR__ . '../../controller/Usuarios.php';
 
 class Login{
 
+    //Obtiene los valores de password según email
     public function obtenerPassword($email){
         $cons_login = new Cons_Login();
         $datos = $cons_login -> getPassword($email);
@@ -18,6 +19,7 @@ class Login{
         }
     }
 
+    //Obtiene los campos para validar los permisos
     public function validarPermisos($email){
         $cons_login = new Cons_Login();
         $datos = $cons_login -> getPermisos($email);
@@ -31,6 +33,7 @@ class Login{
         }
     }
 
+    //Verfica si existe el email
     public function existeEmail($email){
         $cons_login = new Cons_Login();
         $datos = $cons_login->verificarEmail($email);
@@ -45,6 +48,7 @@ class Login{
         
     }
 
+    //Valida el valor de confirmado
     public function validarConfirmado($email){
         $cons_login = new Cons_Login();
         $datos = $cons_login -> getConfirmado($email);
@@ -58,6 +62,7 @@ class Login{
         }
     }
 
+    //Crea y redirecciona segun permisos
     public function setLogin($email){
         $permisos = self::validarPermisos($email);
         
@@ -73,6 +78,7 @@ class Login{
 
     }
 
+    //Crea la variable Session con los campos recogidos
     public function setSession($email){
         $usuario = new Usuarios();
         $datos_usuario = $usuario -> obtenerDatosUsuario($email);

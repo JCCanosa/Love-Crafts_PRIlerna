@@ -1,12 +1,17 @@
 <?php
 include '../../../templates/header.php';
 include '../../../templates/navAdmin.php';
-// include '../../../model/Cons_Articulos.php';
-// include '../../../controller/Articulos.php';
+
+//Recuperamos la sesión y comprobamos que sea correcta
+session_start();
+if (!isset($_SESSION['nombre']) || $_SESSION['permisos'] != "1") {
+  header('Location: http://localhost/PRIlerna/');
+  exit();
+}
 ?>
 
+<!-- Formulario de editar articulo con los datos cargados -->
 <br>
-
 <div class="card">
   <div class="card-header">
     Editar Artículo
@@ -16,7 +21,7 @@ include '../../../templates/navAdmin.php';
     <form action="index.php" method="POST" enctype="multipart/form-data">
 
       <?php
-        $id = $_POST['idArt'];
+      $id = $_POST['idArt'];
       ?>
 
       <div class="mb-3">
@@ -42,7 +47,7 @@ include '../../../templates/navAdmin.php';
       <div class="mb-3">
         <label for="fotoArticulo" class="form-label">Foto Artículo</label>
         <br>
-        <img width='100' class='img-fluid rounded' src = '../../../images/<?php echo $_POST['imagenArticulo'];?>' alt=''/>
+        <img width='100' class='img-fluid rounded' src='../../../images/<?php echo $_POST['imagenArticulo']; ?>' alt='' />
         <br><br>
         <input type="file" class="form-control" name="fotoArticulo" id="fotoArticulo" placeholder="Selecciona una Foto para el Artículo">
       </div>
