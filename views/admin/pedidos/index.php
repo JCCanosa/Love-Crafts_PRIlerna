@@ -92,9 +92,8 @@ if (!isset($_SESSION['nombre']) || $_SESSION['permisos'] != "1") {
                         }
                         if (isset($pagado)) {
                             $pedido->buscarPedidoPorUsuarioAreaAdmin('pagado', $pagado);
-                        } else {
-                            $pedido->mostrarPedidos();
                         }
+                        
                     } elseif (isset($_GET['reset'])) {
                         $pedido->mostrarPedidos();
                     } else {

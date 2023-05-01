@@ -593,12 +593,12 @@ class Pedidos
                                <td>" . $filaPagado . "</td>\n
                                <td>" . $filaEntregado . "</td>\n
                        <td>\n
-                           <a name='editar' id='editar' class='btn btn-success' href='editar.php?id=" . $fila["id"] . "' role='button'>Editar</a>\n
+                           <a name='editar' id='editar' class='btn btn-success' href='editar.php?id=" . $fila["id"] . "' role='button'>✏️</a>\n
                        </td>\n
                        <td>\n
                            <form action='index.php' method='POST'>\n
                                <input type='hidden' name='numeroPedido' value='" . $fila['id'] . "'>\n
-                               <input type='submit' name='eliminarPedido' id='eliminar' class='btn btn-danger'value='Eliminar'>\n
+                               <input type='submit' name='eliminarPedido' id='eliminar' class='btn btn-danger'value=🗑️>\n
                            </form>\n
                        </td>\n
                    </tr>";
