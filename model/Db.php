@@ -9,7 +9,7 @@ class Db
         $host = 'localhost';
         $user = 'root';
         $pass = '';
-        $db = 'lovecrafts';
+        $db = 'love_crafts';
 
         //Realizar la conexion con los datos.
         $conectar = mysqli_connect($host, $user, $pass, $db);
