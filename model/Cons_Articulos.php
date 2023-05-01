@@ -111,7 +111,7 @@ class Cons_Articulos
         if (mysqli_num_rows($resultado) > 0) {
             return $resultado;
         } else {
-            echo 'Error al consultar los grupos';
+            // echo 'Error al consultar los grupos';
         }
 
         //Cerramos la conexión
